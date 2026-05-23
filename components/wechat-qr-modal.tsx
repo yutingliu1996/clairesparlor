@@ -59,7 +59,7 @@ export default function WechatQrModal() {
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/wechat-qr.png"
+              src="/wechat-qr.jpg"
               alt="微信二维码"
               className="mx-auto block w-full max-w-xs rounded-2xl"
               onError={(e) => {
