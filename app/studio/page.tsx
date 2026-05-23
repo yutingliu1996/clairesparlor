@@ -28,8 +28,8 @@ export default function StudioPage() {
       <section className="wrap reveal pb-20">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
           {[
-            { href: '/studio#chapters', glyph: '🪐', name: 'AI 笔记', sub: '6 层金字塔 + 1 条旁支', tint: 'bg-peach/40' },
-            { href: '/studio/ip', glyph: '🎭', name: 'IP 化妆间', sub: '玉婷 × 铜板儿 mascot', tint: 'bg-cream/60' },
+            { href: '/studio#chapters', glyph: '📝', name: 'AI 笔记', sub: '6 层金字塔 + 1 条旁支', tint: 'bg-peach/40' },
+            { href: '/studio/ip', glyph: '🎨', name: 'IP 化妆间', sub: '玉婷 × 铜板儿 mascot', tint: 'bg-cream/60' },
             { href: '/studio/bookshelf', glyph: '📚', name: '书房', sub: '从微信读书直连', tint: 'bg-sage/50' },
             { href: '/studio/tunes', glyph: '🎧', name: '客厅音乐', sub: '在我客厅里循环播放', tint: 'bg-sky2/50' },
           ].map((s) => (

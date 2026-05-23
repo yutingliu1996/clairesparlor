@@ -36,43 +36,43 @@ const THEMES: Record<Halo, Theme> = {
   // 2026-05-24 Claire: workshop / manifesto 从绿换成《老友记》紫
   // 符合双原则：底色仍极简白，紫色只在焦点处（标题/active pill/光晕）跳脱出来
   sage: {
-    text: '#5B47B3',
-    stroke: 'rgba(210,195,250,0.92)',
-    strokeMid: 'rgba(185,165,245,1)',
+    text: '#4A2DB5',
+    stroke: 'rgba(210,195,250,0.95)',
+    strokeMid: 'rgba(175,150,240,1)',
     textDark: '#C9B8FF',
-    strokeDark: 'rgba(170,145,230,0.55)',
+    strokeDark: 'rgba(155,130,225,0.6)',
     pill: '#E8DFFC',
-    dot: '#8B6FE8',
+    dot: '#9676FF',
   },
   // 2026-05-24 Claire: /parlor 黄色再亮再暖一档（从 mustard 换成 sunshine + warm amber）
   peach: {
-    text: '#D4A024',
+    text: '#B57F0E',
     stroke: 'rgba(255,228,120,0.95)',
-    strokeMid: 'rgba(255,210,80,1)',
+    strokeMid: 'rgba(255,200,60,1)',
     textDark: '#FFE891',
-    strokeDark: 'rgba(245,205,80,0.55)',
+    strokeDark: 'rgba(245,195,60,0.6)',
     pill: '#FFF4B8',
-    dot: '#FFD340',
+    dot: '#FFC42E',
   },
-  // 2026-05-24 Claire: studio 从深 royal blue 换成 baby blue（之前太暗）
+  // 2026-05-24 Claire: studio baby blue + 提饱和度让渐变明显
   sky: {
-    text: '#3A8FD9',
+    text: '#1F6FCA',
     stroke: 'rgba(200,228,250,0.95)',
-    strokeMid: 'rgba(165,210,245,1)',
+    strokeMid: 'rgba(150,205,245,1)',
     textDark: '#C5E4F8',
-    strokeDark: 'rgba(130,195,240,0.55)',
-    pill: '#DAEEFC',
-    dot: '#6BB6E8',
+    strokeDark: 'rgba(110,180,235,0.6)',
+    pill: '#D5EAFC',
+    dot: '#5AB0F0',
   },
-  // 2026-05-24 Claire: cooperate 鹅黄 + 修对比度（text 加深 + pill 加饱和让 nav "合作" 文字可读）
+  // 2026-05-24 Claire: cooperate 鹅黄 + 拉大渐变对比
   cream: {
-    text: '#8B6A1A',
+    text: '#6F540C',
     stroke: 'rgba(255,238,150,0.95)',
-    strokeMid: 'rgba(252,222,110,1)',
+    strokeMid: 'rgba(250,215,90,1)',
     textDark: '#FFE891',
-    strokeDark: 'rgba(240,210,110,0.55)',
+    strokeDark: 'rgba(235,200,90,0.6)',
     pill: '#FFEDA0',
-    dot: '#F4C842',
+    dot: '#FFCC2E',
   },
 };
 
