@@ -2,11 +2,12 @@ import Link from 'next/link';
 import type { Room } from '@/lib/content';
 
 /**
- * The thiings-style room tile, beefed up:
- * - bigger hero glyph with gentle float animation
- * - 2 small "sub-orbs" floating around it (thiings collection feel)
- * - subtle 3D tilt on hover
- * - bigger card, deeper shadow, color tint visible on top half
+ * The thiings-style room tile.
+ *
+ * Visual update (2026-05-24 by Claire request):
+ *   • 去掉硬切的 "top half tint" + 顶部小光圈
+ *   • 改成一个柔和 radial gradient 光晕：中心落在卡片中部（emoji 区），
+ *     向四周柔和淡出。每张卡用自己的色调（peach / sky / sage / lemon-cream）。
  */
 
 const SUB_ORBS: Record<string, string[]> = {
@@ -14,6 +15,14 @@ const SUB_ORBS: Record<string, string[]> = {
   studio: ['📚', '🎧'],
   workshop: ['🪄', '⚡'],
   cooperate: ['✉️', '💼'],
+};
+
+// 每张卡的光晕色（取自 tailwind.config.ts 的 cream/peach/sage/sky2 hex 值，提到 .85 透明度让它在白底上柔和）
+const GLOW_COLOR: Record<string, string> = {
+  parlor: 'rgba(248, 228, 220, 0.85)',     // peach
+  studio: 'rgba(226, 232, 244, 0.85)',     // sky2
+  workshop: 'rgba(230, 238, 229, 0.85)',   // sage
+  cooperate: 'rgba(244, 239, 230, 0.85)',  // cream
 };
 
 export default function RoomCard({ room }: { room: Room }) {
@@ -24,14 +33,13 @@ export default function RoomCard({ room }: { room: Room }) {
       className="tilt-card group block aspect-[4/5] sm:aspect-square md:aspect-[4/5]"
     >
       <div className="thiings-card tilt-card-inner h-full overflow-hidden p-7 md:p-9">
-        {/* Top half tint */}
+        {/* 柔和 radial 光晕：中心落在卡片中部（emoji 区域），向四周柔和淡出 */}
         <div
-          className={`absolute inset-x-0 top-0 h-[62%] ${room.tint} opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
-          aria-hidden="true"
-        />
-        {/* Subtle radial highlight at top — Apple-style */}
-        <div
-          className="absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 rounded-full bg-white/60 blur-2xl"
+          className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(ellipse 70% 55% at 50% 45%, ${GLOW_COLOR[room.slug] ?? 'rgba(244, 239, 230, 0.85)'} 0%, transparent 75%)`,
+            opacity: 0.95,
+          }}
           aria-hidden="true"
         />
 
