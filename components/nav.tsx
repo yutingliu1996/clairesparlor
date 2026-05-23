@@ -69,19 +69,10 @@ export default function Nav() {
                   href={l.href}
                   className={`relative inline-block rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-all duration-300 ${
                     active
-                      ? 'shadow-[inset_0_0_0_1px_currentColor]/10'
-                      : 'text-ink-2 hover:bg-ink/[0.05] hover:text-ink'
+                      ? 'bg-ink/[0.07] text-ink'
+                      : 'text-ink-2 hover:bg-ink/[0.04] hover:text-ink'
                   }`}
-                  style={
-                    active
-                      ? {
-                          background: 'var(--accent-pill, #DCEFE3)',
-                          color: 'var(--accent-text, #1F7A57)',
-                          boxShadow:
-                            'inset 0 0 0 1px color-mix(in srgb, var(--accent-text, #1F7A57) 12%, transparent)',
-                        }
-                      : undefined
-                  }
+                  /* 2026-05-24 Claire: 去掉 active pill 跟主题色变化，统一极淡黑底 + 黑字 */
                 >
                   <span className="hidden sm:inline">{l.zh}</span>
                   <span className="sm:hidden">{l.en}</span>
