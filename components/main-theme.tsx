@@ -63,14 +63,14 @@ const THEMES: Record<Halo, Theme> = {
     pill: '#DAEEFC',
     dot: '#6BB6E8',
   },
-  // 2026-05-24 Claire: cooperate 从 mustard butter 换成嫩鹅黄
+  // 2026-05-24 Claire: cooperate 鹅黄 + 修对比度（text 加深 + pill 加饱和让 nav "合作" 文字可读）
   cream: {
-    text: '#A87F1F',
-    stroke: 'rgba(255,243,170,0.95)',
-    strokeMid: 'rgba(252,232,130,1)',
+    text: '#8B6A1A',
+    stroke: 'rgba(255,238,150,0.95)',
+    strokeMid: 'rgba(252,222,110,1)',
     textDark: '#FFE891',
     strokeDark: 'rgba(240,210,110,0.55)',
-    pill: '#FFF6BF',
+    pill: '#FFEDA0',
     dot: '#F4C842',
   },
 };
