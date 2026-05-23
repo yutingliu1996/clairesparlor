@@ -36,35 +36,32 @@
     letter-spacing: 0.18em;
   }
 
-  /* ===== Accent typography · "marker highlight" brand =====
-     Unified emphasis treatment used everywhere a word needs to "pop".
+  /* ===== Accent typography · Apple-style gradient text =====
+     2026-05-24 升级：从 marker highlight 改成 Apple 风渐变文字。
+     文字本身从 --accent-text 渐变到 --accent-dot（同主题更亮一档），
+     用 background-clip: text 实现。每个 room 主题自动按 CSS variable 走。
 
      Color is themed per page via CSS variables set on <main> by the
      MainTheme component:
-       --accent-text          ink color on light bg
-       --accent-stroke        marker stroke (edge)
-       --accent-stroke-mid    marker stroke (center, slightly punchier)
-       --accent-text-dark     ink color on dark bg
-       --accent-stroke-dark   marker stroke on dark bg
+       --accent-text          深 ink color (gradient from)
+       --accent-dot           亮 accent color (gradient to)
+       --accent-text-dark     dark bg 上的对应版本
 
-     Defaults below = mint/sage (brand fallback for the home page). */
+     Defaults below = mint/橙 (brand fallback for the home page). */
   .accent,
   .accent-display {
     @apply font-sans;
     font-weight: 800;
     font-style: normal;
-    color: var(--accent-text, #1F7A57);
     background-image: linear-gradient(
-      to right,
-      transparent 0%,
-      var(--accent-stroke, rgba(155, 220, 185, 0.92)) 8%,
-      var(--accent-stroke-mid, rgba(135, 215, 170, 1)) 50%,
-      var(--accent-stroke, rgba(155, 220, 185, 0.92)) 92%,
-      transparent 100%
+      135deg,
+      var(--accent-text, #C24A1E) 0%,
+      var(--accent-dot, #FF6B35) 100%
     );
-    background-repeat: no-repeat;
-    background-position: 0 88%;
-    background-size: 100% 0.32em;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     padding: 0 0.08em;
     letter-spacing: -0.025em;
     -webkit-box-decoration-break: clone;
@@ -73,21 +70,20 @@
   .accent-display {
     font-weight: 900;
     letter-spacing: -0.035em;
-    background-size: 100% 0.30em;
   }
 
-  /* On dark / ink backgrounds — lighter color + soft glow */
+  /* On dark / ink backgrounds — 浅版本 gradient */
   .accent.on-dark,
   .accent-display.on-dark {
-    color: var(--accent-text-dark, #7FE0AC);
     background-image: linear-gradient(
-      to right,
-      transparent 0%,
-      var(--accent-stroke-dark, rgba(80, 195, 145, 0.42)) 8%,
-      var(--accent-stroke-dark, rgba(80, 195, 145, 0.55)) 50%,
-      var(--accent-stroke-dark, rgba(80, 195, 145, 0.42)) 92%,
-      transparent 100%
+      135deg,
+      var(--accent-text-dark, #FFC4A8) 0%,
+      var(--accent-stroke-mid, rgba(255, 175, 130, 1)) 100%
     );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
   /* Soft accent for secondary subtitles in <h1> / <h2>.
