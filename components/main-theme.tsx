@@ -32,14 +32,16 @@ const THEMES: Record<Halo, Theme> = {
     pill: '#DCEFE3',
     dot: '#3DA67A',
   },
+  // 2026-05-24 Claire: workshop / manifesto 从绿换成《老友记》紫
+  // 符合双原则：底色仍极简白，紫色只在焦点处（标题/active pill/光晕）跳脱出来
   sage: {
-    text: '#1F7A57',
-    stroke: 'rgba(180,220,195,0.92)',
-    strokeMid: 'rgba(155,215,180,1)',
-    textDark: '#A8E0BC',
-    strokeDark: 'rgba(120,200,160,0.55)',
-    pill: '#E1EFE5',
-    dot: '#5BB988',
+    text: '#5B47B3',
+    stroke: 'rgba(210,195,250,0.92)',
+    strokeMid: 'rgba(185,165,245,1)',
+    textDark: '#C9B8FF',
+    strokeDark: 'rgba(170,145,230,0.55)',
+    pill: '#E8DFFC',
+    dot: '#8B6FE8',
   },
   peach: {
     text: '#C2502E',
