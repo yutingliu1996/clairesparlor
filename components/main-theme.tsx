@@ -43,14 +43,15 @@ const THEMES: Record<Halo, Theme> = {
     pill: '#E8DFFC',
     dot: '#8B6FE8',
   },
+  // 2026-05-24 Claire: /parlor 从 coral 换成淡柠檬黄
   peach: {
-    text: '#C2502E',
-    stroke: 'rgba(255,205,180,0.95)',
-    strokeMid: 'rgba(255,180,145,1)',
-    textDark: '#FFB89C',
-    strokeDark: 'rgba(255,150,115,0.55)',
-    pill: '#FFE5D8',
-    dot: '#E07A50',
+    text: '#A88B1F',
+    stroke: 'rgba(252,235,145,0.95)',
+    strokeMid: 'rgba(248,220,100,1)',
+    textDark: '#FFE891',
+    strokeDark: 'rgba(230,200,80,0.55)',
+    pill: '#FFF9C4',
+    dot: '#E8C547',
   },
   sky: {
     text: '#1E5BA8',
