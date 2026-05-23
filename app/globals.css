@@ -209,20 +209,19 @@
     animation: breathe 2.4s ease-in-out infinite;
   }
 
-  /* ===== Dark shimmer callout（黑底渐变流动动画）=====
-     2026-05-24 Claire 要求：黑底块也有渐变动效。
-     黑 → 深紫红 → 深靛 → 黑，14s 缓慢流动，似深空 / 极光 */
+  /* ===== Warm shimmer callout（橙色渐变流动动画）=====
+     2026-05-24 Claire 二次：紫色"阴间"换成 P1 #findme 同款活力橙
+     亮橙 → tomato → 深橙，12s 缓慢流动，温暖友好 */
   .dark-shimmer {
     background: linear-gradient(
       135deg,
-      #0a0a0a 0%,
-      #1a0e2e 25%,
-      #2a1640 50%,
-      #1a0e2e 75%,
-      #0a0a0a 100%
+      #FF8347 0%,
+      #FF6B35 35%,
+      #FF5733 55%,
+      #E04D1E 100%
     );
-    background-size: 240% 240%;
-    animation: dark-shimmer-flow 14s ease-in-out infinite;
+    background-size: 220% 220%;
+    animation: dark-shimmer-flow 12s ease-in-out infinite;
   }
   @keyframes dark-shimmer-flow {
     0%, 100% { background-position: 0% 50%; }
