@@ -414,3 +414,41 @@ body > * {
 [data-theme='dark'] strong {
   color: #fafafa;
 }
+
+/* Dark mode 通用性二修 (2026-05-24 Claire 反馈：sub-room tints + status badge 突兀)
+   tint 色块在 dark 下保留主题色但极轻量（radial 微光），badge 用深色 + 半透明 brand 色 */
+[data-theme='dark'] .bg-peach\/40,
+[data-theme='dark'] .bg-peach\/35,
+[data-theme='dark'] .bg-peach\/50,
+[data-theme='dark'] .bg-peach\/60 {
+  background-color: transparent !important;
+  background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(255, 178, 145, 0.14), transparent 70%) !important;
+}
+[data-theme='dark'] .bg-sky2\/40,
+[data-theme='dark'] .bg-sky2\/50,
+[data-theme='dark'] .bg-sky2\/60 {
+  background-color: transparent !important;
+  background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(170, 220, 250, 0.12), transparent 70%) !important;
+}
+[data-theme='dark'] .bg-sage\/40,
+[data-theme='dark'] .bg-sage\/50,
+[data-theme='dark'] .bg-sage\/60 {
+  background-color: transparent !important;
+  background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(185, 165, 245, 0.14), transparent 70%) !important;
+}
+[data-theme='dark'] .bg-sage\/40 {
+  background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(185, 165, 245, 0.10), transparent 70%) !important;
+}
+
+/* Status badge dark mode：bg-sky2 / bg-paper 等浅色 badge 在 dark 下变深底 + brand 微光 */
+[data-theme='dark'] .bg-sky2 {
+  background-color: rgba(170, 220, 250, 0.14) !important;
+  color: #c8e4f8 !important;
+}
+[data-theme='dark'] .bg-accent-soft {
+  background-color: rgba(255, 131, 71, 0.18) !important;
+  color: #ffc4a8 !important;
+}
+[data-theme='dark'] .text-accent-deep {
+  color: #ffc4a8 !important;
+}

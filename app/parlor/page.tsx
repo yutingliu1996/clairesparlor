@@ -65,7 +65,23 @@ export default function ParlorPage() {
                 </span>
               </div>
               <div className="mt-8 flex h-24 items-center justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-paper text-3xl font-rounded font-semibold text-ink-3">
+                {/* 2026-05-24 嘉宾头像：把 /public/guests/{ep}.jpg 存进去就自动显示，否则 fallback 首字母 */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/guests/${g.ep.replace('·', '').toLowerCase()}.jpg`}
+                  alt={lang === 'zh' ? g.role : g.roleEn}
+                  className="h-20 w-20 rounded-2xl object-cover"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    img.style.display = 'none';
+                    const fb = img.nextElementSibling as HTMLElement | null;
+                    if (fb) fb.style.display = 'flex';
+                  }}
+                />
+                <div
+                  className="hidden h-20 w-20 items-center justify-center rounded-2xl bg-paper text-3xl font-rounded font-semibold text-ink-3"
+                  aria-hidden="true"
+                >
                   {(lang === 'zh' ? g.role : g.roleEn).charAt(0)}
                 </div>
               </div>
