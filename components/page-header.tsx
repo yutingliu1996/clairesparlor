@@ -19,7 +19,7 @@ const HALO_RGB: Record<Halo, string> = {
   sky: '170, 220, 250',   // baby blue — Studio（2026-05-24 Claire：之前太暗换婴儿蓝）
   sage: '185, 165, 245',  // 老友记紫 — Workshop / Manifesto
   cream: '252, 230, 130', // 嫩鹅黄 — Cooperate / IP（2026-05-24 Claire：butter 太 muted 换鹅黄）
-  mint: '255, 140, 130',  // 大红 — accent / brand (2026-05-24 Claire：去绿换红)
+  mint: '255, 150, 120',  // 橙红 — accent / brand (2026-05-24 Claire：纯红太刺换橙红)
 };
 
 type Props = {

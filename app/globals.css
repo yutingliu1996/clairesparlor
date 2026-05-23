@@ -19,7 +19,7 @@
   }
 
   ::selection {
-    background: rgba(61, 166, 122, 0.18);
+    background: rgba(255, 87, 51, 0.22);
     color: #0a0a0a;
   }
 
@@ -184,13 +184,14 @@
   .pill {
     @apply inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-1.5 text-xs text-ink-2;
   }
+  /* 录制中红点呼吸灯（2026-05-24 Claire：从绿换红代表 REC ON-AIR） */
   .pill-live::before {
     content: '';
     width: 7px;
     height: 7px;
     border-radius: 999px;
-    background: #16a34a;
-    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.18);
+    background: #FF3B30;
+    box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.20);
     animation: breathe 2.4s ease-in-out infinite;
   }
 

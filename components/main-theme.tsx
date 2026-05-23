@@ -23,15 +23,15 @@ type Theme = {
 };
 
 const THEMES: Record<Halo, Theme> = {
-  // 2026-05-24 Claire: brand mint 从绿全换大红
+  // 2026-05-24 Claire: 纯红太刺，换橙红（warm orange-red，更接近 brand 风格）
   mint: {
-    text: '#C72F2F',
-    stroke: 'rgba(255,200,195,0.95)',
-    strokeMid: 'rgba(255,140,130,1)',
-    textDark: '#FFB4A8',
-    strokeDark: 'rgba(255,110,100,0.55)',
-    pill: '#FEE2E2',
-    dot: '#EF3D3D',
+    text: '#C24A1E',
+    stroke: 'rgba(255,205,178,0.95)',
+    strokeMid: 'rgba(255,150,120,1)',
+    textDark: '#FFC4A8',
+    strokeDark: 'rgba(255,140,110,0.55)',
+    pill: '#FFE0DC',
+    dot: '#FF5733',
   },
   // 2026-05-24 Claire: workshop / manifesto 从绿换成《老友记》紫
   // 符合双原则：底色仍极简白，紫色只在焦点处（标题/active pill/光晕）跳脱出来

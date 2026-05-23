@@ -23,9 +23,9 @@ const config: Config = {
         },
         hairline: 'rgba(0,0,0,0.08)',
         accent: {
-          DEFAULT: '#EF3D3D',     // vibrant red — brand accent (2026-05-24 Claire 去绿换红)
-          soft: '#FEE2E2',        // light red tint — bg-accent-soft（首页 lede 高亮 etc）
-          deep: '#B91C1C',        // deep crimson — for high-contrast text
+          DEFAULT: '#FF5733',     // warm orange-red — brand accent (2026-05-24 改橙红)
+          soft: '#FFE0DC',        // light orange-red tint — bg-accent-soft
+          deep: '#C24A1E',        // deep terracotta — high-contrast text
         },
         cream: '#F4EFE6',
         sage: '#E6EEE5',
