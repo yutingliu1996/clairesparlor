@@ -53,11 +53,15 @@
     @apply font-sans;
     font-weight: 800;
     font-style: normal;
+    /* 3-stop shimmer：深→亮→深，模拟苹果发布会标题的金属光泽 */
     background-image: linear-gradient(
-      135deg,
+      120deg,
       var(--accent-text, #C24A1E) 0%,
-      var(--accent-dot, #FF6B35) 100%
+      var(--accent-dot, #FF6B35) 45%,
+      var(--accent-text, #C24A1E) 100%
     );
+    background-size: 200% 100%;
+    background-position: 0% 50%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -70,16 +74,25 @@
   .accent-display {
     font-weight: 900;
     letter-spacing: -0.035em;
+    /* display 比 inline accent 更显眼的光泽：稍大的 gradient 距离 + animated shimmer */
+    background-size: 220% 100%;
+    animation: accent-shimmer 6s ease-in-out infinite;
+  }
+  @keyframes accent-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
   }
 
-  /* On dark / ink backgrounds — 浅版本 gradient */
+  /* On dark / ink backgrounds — 浅版本 3-stop shimmer */
   .accent.on-dark,
   .accent-display.on-dark {
     background-image: linear-gradient(
-      135deg,
+      120deg,
       var(--accent-text-dark, #FFC4A8) 0%,
-      var(--accent-stroke-mid, rgba(255, 175, 130, 1)) 100%
+      #ffffff 45%,
+      var(--accent-text-dark, #FFC4A8) 100%
     );
+    background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

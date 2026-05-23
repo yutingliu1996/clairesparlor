@@ -99,7 +99,7 @@ function pathToHalo(path: string | null): Halo {
   if (path.startsWith('/parlor')) return 'peach';
   if (path.startsWith('/workshop')) return 'sage';
   if (path.startsWith('/cooperate')) return 'cream';
-  if (path.startsWith('/manifesto')) return 'sage';
+  if (path.startsWith('/manifesto')) return 'mint';  // 2026-05-24 Claire: manifesto 改活力橙
   if (path.startsWith('/bar')) return 'mint';
   return 'mint';
 }
