@@ -79,9 +79,9 @@ export default function WorkshopPage() {
         },
       ];
 
-  const moments = lang === 'zh'
-    ? ['📸 第一场<br/>等你来', '🪧 现场<br/>白板', '☕ 歇脚<br/>咖啡', '🎤 圆桌<br/>讨论', '📝 大家的<br/>笔记', '📷 大合影']
-    : ['📸 First session<br/>see you there', '🪧 On-site<br/>whiteboard', '☕ Coffee<br/>break', '🎤 Round<br/>table', '📝 Everyone&apos;s<br/>notes', '📷 Group<br/>photo'];
+  // 2026-05-24 Claire 存了 37 张活动照片，自动 enumerate /public/moments/1.jpg ~ 37.jpg
+  const MOMENT_COUNT = 37;
+  const moments = Array.from({ length: MOMENT_COUNT }, (_, i) => i + 1);
 
   return (
     <>
@@ -214,39 +214,28 @@ export default function WorkshopPage() {
         </div>
       </section>
 
-      {/* MOMENTS placeholder */}
+      {/* MOMENTS gallery — 37 张现场照片 */}
       <section className="wrap reveal pb-24">
         <SectionTitle
           eyebrow={t({ zh: '📸 Moments · 现场', en: '📸 Moments' })}
           title={t({ zh: '线下是真的会见面', en: 'We really do meet in person' })}
           sub={t({
-            zh: '首场还没开——这墙先空着。第一期结束就把现场照片、白板涂鸦、合影全摊上来。不修图、不摆拍，就是那个味道。',
-            en: 'First session hasn\'t happened yet — wall stays empty for now. After it wraps, photos, whiteboard scribbles, group shots all go up. No retouching, no posing.',
+            zh: '现场照片、白板涂鸦、合影——不修图、不摆拍，就是那个味道。',
+            en: 'On-site photos, whiteboard scribbles, group shots — no retouching, no posing.',
           })}
         />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
-          {moments.map((m, i) => (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6">
+          {moments.map((n) => (
             <div
-              key={i}
-              className="relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-dashed border-ink-4 bg-paper text-center text-xs leading-relaxed text-ink-3"
+              key={n}
+              className="relative aspect-square overflow-hidden rounded-xl bg-paper"
             >
-              {/* 2026-05-24 把 /public/moments/moment-1.jpg ~ moment-6.jpg 放进去就自动显示 */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`/moments/moment-${i + 1}.jpg`}
+                src={`/moments/${n}.jpg`}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  img.style.display = 'none';
-                  const fb = img.nextElementSibling as HTMLElement | null;
-                  if (fb) fb.style.display = 'flex';
-                }}
-              />
-              <div
-                className="relative hidden h-full w-full items-center justify-center"
-                dangerouslySetInnerHTML={{ __html: m }}
-                aria-hidden="true"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
           ))}
