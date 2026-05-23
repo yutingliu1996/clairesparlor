@@ -120,9 +120,10 @@
     transform: translateY(-4px);
   }
 
-  /* The big object on each tile — uses Apple emoji as a 3D-ish hero. */
+  /* The big object on each tile — uses Apple emoji as a 3D-ish hero.
+     2026-05-24 小一点点点（Claire feedback）: 字号 -10% (72→64 / 9→8 / 128→116) */
   .thiings-object {
-    font-size: clamp(72px, 9vw, 128px);
+    font-size: clamp(64px, 8vw, 116px);
     line-height: 1;
     filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.14))
       drop-shadow(0 4px 8px rgba(0, 0, 0, 0.10));
