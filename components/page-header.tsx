@@ -12,14 +12,15 @@
  *    backdrop without enclosing it in a box.
  */
 
-export type Halo = 'peach' | 'sky' | 'sage' | 'cream' | 'mint';
+export type Halo = 'peach' | 'sky' | 'sage' | 'cream' | 'mint' | 'leaf';
 
 const HALO_RGB: Record<Halo, string> = {
-  peach: '255, 220, 100', // 温暖明亮的 sunshine yellow — Parlor (2026-05-24 Claire 二次反馈：再亮再暖)
-  sky: '170, 220, 250',   // baby blue — Studio（2026-05-24 Claire：之前太暗换婴儿蓝）
-  sage: '185, 165, 245',  // 老友记紫 — Workshop / Manifesto
-  cream: '252, 230, 130', // 嫩鹅黄 — Cooperate / IP（2026-05-24 Claire：butter 太 muted 换鹅黄）
-  mint: '255, 150, 120',  // 橙红 — accent / brand (2026-05-24 Claire：纯红太刺换橙红)
+  peach: '255, 220, 100', // 温暖明亮的 sunshine yellow — Parlor
+  sky: '170, 220, 250',   // baby blue — Studio
+  sage: '185, 165, 245',  // 老友记紫 — Workshop
+  cream: '252, 230, 130', // 嫩鹅黄 — Cooperate / IP
+  mint: '255, 150, 120',  // 橙红 — accent / brand / home
+  leaf: '140, 225, 180',  // 嫩绿 — Manifesto (2026-05-24 Claire：跟主张主题绿色嫩芽呼应)
 };
 
 type Props = {

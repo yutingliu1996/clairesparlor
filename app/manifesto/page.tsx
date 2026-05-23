@@ -11,7 +11,7 @@ export default function ManifestoPage() {
         eyebrow="✊ Manifesto · 我的主张"
         glyph="🌱"
         subOrbs={['🔥', '🌍']}
-        halo="sage"
+        halo="leaf"
         title={<>别被职场磨平 ——<br /><em className="accent-display">向上长，无界长。</em></>}
         lede="Don't get flattened. Grow up. No limits."
       />

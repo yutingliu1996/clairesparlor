@@ -64,6 +64,16 @@ const THEMES: Record<Halo, Theme> = {
     pill: '#D5EAFC',
     dot: '#5AB0F0',
   },
+  // 2026-05-24 Claire: manifesto 专属绿（jade leaf，跟主张嫩芽呼应）
+  leaf: {
+    text: '#0F6B47',
+    stroke: 'rgba(180,235,200,0.95)',
+    strokeMid: 'rgba(120,215,170,1)',
+    textDark: '#A8E8C8',
+    strokeDark: 'rgba(110,210,170,0.6)',
+    pill: '#DFF1E6',
+    dot: '#34C77A',
+  },
   // 2026-05-24 Claire: cooperate 鹅黄 + 拉大渐变对比
   cream: {
     text: '#6F540C',
@@ -100,7 +110,7 @@ function pathToHalo(path: string | null): Halo {
   if (path.startsWith('/parlor')) return 'peach';
   if (path.startsWith('/workshop')) return 'sage';
   if (path.startsWith('/cooperate')) return 'cream';
-  if (path.startsWith('/manifesto')) return 'mint';  // 2026-05-24 Claire: manifesto 改活力橙
+  if (path.startsWith('/manifesto')) return 'leaf';  // 2026-05-24 Claire: manifesto 单独用嫩绿（跟字+光晕统一）
   if (path.startsWith('/bar')) return 'mint';
   return 'mint';
 }
