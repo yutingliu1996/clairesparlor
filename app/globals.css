@@ -393,3 +393,22 @@ body > * {
   background-color: #1a1a1a;
   color: #c8c8c8;
 }
+
+/* Dark mode 文字可读修复（2026-05-24 Claire 截图反馈）*/
+[data-theme='dark'] .bg-accent-soft {
+  background-color: rgba(255, 87, 51, 0.22) !important;
+}
+[data-theme='dark'] mark,
+[data-theme='dark'] [class*='bg-yellow'],
+[data-theme='dark'] [style*='background'][style*='FFF59D'] {
+  filter: brightness(0.35) saturate(1.4);
+  color: #fafafa !important;
+}
+[data-theme='dark'] .pill {
+  background-color: #1f1f1f !important;
+  color: #c8c8c8 !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+[data-theme='dark'] strong {
+  color: #fafafa;
+}

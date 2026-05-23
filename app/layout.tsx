@@ -5,6 +5,7 @@ import Footer from '@/components/footer';
 import RevealScript from '@/components/reveal-script';
 import Tongbar from '@/components/tongbar';
 import MainTheme from '@/components/main-theme';
+import { LangProvider } from '@/components/lang-context';
 
 export const metadata: Metadata = {
   title: "Claire's Parlor · 一个空间，四个房间",
@@ -27,13 +28,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN">
       <body>
-        <MainTheme>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-          <Tongbar />
-        </MainTheme>
-        <RevealScript />
+        <LangProvider>
+          <MainTheme>
+            <Nav />
+            <main>{children}</main>
+            <Footer />
+            <Tongbar />
+          </MainTheme>
+          <RevealScript />
+        </LangProvider>
       </body>
     </html>
   );

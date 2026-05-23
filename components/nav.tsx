@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Logo from './logo';
+import { useLang } from './lang-context';
 
 /**
  * Top navigation — frosted-glass sticky bar.
@@ -22,14 +23,13 @@ const links = [
   { href: '/manifesto', zh: '主张', en: 'Manifesto' },
 ];
 
-type Lang = 'zh' | 'en';
 type Theme = 'light' | 'dark';
 
 export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [lang, setLang] = useState<Lang>('zh');
   const [theme, setTheme] = useState<Theme>('light');
+  const { lang, toggle: toggleLang } = useLang();
 
   // scroll
   useEffect(() => {
@@ -39,11 +39,9 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // hydrate lang + theme from localStorage
+  // hydrate theme from localStorage (lang 已由 LangProvider 处理)
   useEffect(() => {
     try {
-      const savedLang = window.localStorage.getItem('claire-lang');
-      if (savedLang === 'zh' || savedLang === 'en') setLang(savedLang);
       const savedTheme = window.localStorage.getItem('claire-theme');
       if (savedTheme === 'light' || savedTheme === 'dark') {
         setTheme(savedTheme);
@@ -53,15 +51,6 @@ export default function Nav() {
       /* ignore */
     }
   }, []);
-
-  const toggleLang = () => {
-    const next: Lang = lang === 'zh' ? 'en' : 'zh';
-    setLang(next);
-    try {
-      window.localStorage.setItem('claire-lang', next);
-    } catch {}
-    document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en';
-  };
 
   const toggleTheme = () => {
     const next: Theme = theme === 'light' ? 'dark' : 'light';
