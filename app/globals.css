@@ -212,16 +212,19 @@
   /* ===== Warm shimmer callout（橙色渐变流动动画）=====
      2026-05-24 Claire 二次：紫色"阴间"换成 P1 #findme 同款活力橙
      亮橙 → tomato → 深橙，12s 缓慢流动，温暖友好 */
+  /* 渐变更夸张：跨色更大（金黄 → 亮橙 → tomato → 深红 → 紫红），动画更快 8s */
   .dark-shimmer {
     background: linear-gradient(
-      135deg,
-      #FF8347 0%,
-      #FF6B35 35%,
-      #FF5733 55%,
-      #E04D1E 100%
+      120deg,
+      #FFC845 0%,
+      #FF8347 22%,
+      #FF5733 45%,
+      #E04D1E 65%,
+      #B83A6B 85%,
+      #FF8347 100%
     );
-    background-size: 220% 220%;
-    animation: dark-shimmer-flow 12s ease-in-out infinite;
+    background-size: 280% 280%;
+    animation: dark-shimmer-flow 8s ease-in-out infinite;
   }
   @keyframes dark-shimmer-flow {
     0%, 100% { background-position: 0% 50%; }
