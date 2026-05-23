@@ -228,9 +228,27 @@ export default function WorkshopPage() {
           {moments.map((m, i) => (
             <div
               key={i}
-              className="flex aspect-square items-center justify-center rounded-2xl border border-dashed border-ink-4 bg-paper text-center text-xs leading-relaxed text-ink-3"
-              dangerouslySetInnerHTML={{ __html: m }}
-            />
+              className="relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-dashed border-ink-4 bg-paper text-center text-xs leading-relaxed text-ink-3"
+            >
+              {/* 2026-05-24 把 /public/moments/moment-1.jpg ~ moment-6.jpg 放进去就自动显示 */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/moments/moment-${i + 1}.jpg`}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  img.style.display = 'none';
+                  const fb = img.nextElementSibling as HTMLElement | null;
+                  if (fb) fb.style.display = 'flex';
+                }}
+              />
+              <div
+                className="relative hidden h-full w-full items-center justify-center"
+                dangerouslySetInnerHTML={{ __html: m }}
+                aria-hidden="true"
+              />
+            </div>
           ))}
         </div>
       </section>
