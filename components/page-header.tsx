@@ -59,29 +59,30 @@ export default function PageHeader({
         {glyph && (
           <div className="reveal in order-first sm:order-none">
             <div className="relative flex aspect-square w-full max-w-[180px] sm:mx-auto sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] items-center justify-center">
-              {/* Outer halo — main color cloud, gently pulsing */}
+              {/* Outer halo — 2026-05-24 Claire 反馈：再亮一点 + dark 有灵光乍现感
+                  light 模式提 alpha + 扩大半径；dark 模式 .halo-glow class 在 globals.css 加 brightness */}
               <div
                 aria-hidden="true"
-                className="halo-pulse pointer-events-none absolute inset-[-14%]"
+                className="halo-pulse halo-glow pointer-events-none absolute inset-[-22%]"
                 style={{
                   background: `radial-gradient(closest-side at 50% 50%,
-                    rgba(${rgb}, 0.62) 0%,
-                    rgba(${rgb}, 0.36) 26%,
-                    rgba(${rgb}, 0.16) 50%,
-                    rgba(${rgb}, 0.04) 70%,
-                    transparent 82%)`,
+                    rgba(${rgb}, 0.85) 0%,
+                    rgba(${rgb}, 0.55) 22%,
+                    rgba(${rgb}, 0.28) 45%,
+                    rgba(${rgb}, 0.10) 68%,
+                    transparent 85%)`,
                 }}
               />
               {/* Inner soft white core — gives the glyph a quiet backdrop */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute"
+                className="pointer-events-none absolute halo-core"
                 style={{
-                  width: '46%',
-                  height: '46%',
+                  width: '50%',
+                  height: '50%',
                   background:
-                    'radial-gradient(circle, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0) 72%)',
-                  filter: 'blur(6px)',
+                    'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 72%)',
+                  filter: 'blur(8px)',
                 }}
               />
 

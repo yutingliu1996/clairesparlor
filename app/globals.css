@@ -452,3 +452,13 @@ body > * {
 [data-theme='dark'] .text-accent-deep {
   color: #ffc4a8 !important;
 }
+
+/* Dark mode 灵光乍现 — halo 在黑底更亮 (2026-05-24 Claire 收官) */
+[data-theme='dark'] .halo-glow {
+  filter: brightness(1.35) saturate(1.15);
+  mix-blend-mode: screen;
+}
+[data-theme='dark'] .halo-core {
+  filter: blur(10px) brightness(1.4) !important;
+  background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 72%) !important;
+}
