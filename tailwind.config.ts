@@ -23,9 +23,9 @@ const config: Config = {
         },
         hairline: 'rgba(0,0,0,0.08)',
         accent: {
-          DEFAULT: '#3DA67A',     // fresh sage-jade — clean, warm-leaning green
-          soft: '#DCEFE3',        // pale mint — used as marker highlight + pill bg
-          deep: '#1F7A57',        // deep forest — for high-contrast text
+          DEFAULT: '#EF3D3D',     // vibrant red — brand accent (2026-05-24 Claire 去绿换红)
+          soft: '#FEE2E2',        // light red tint — bg-accent-soft（首页 lede 高亮 etc）
+          deep: '#B91C1C',        // deep crimson — for high-contrast text
         },
         cream: '#F4EFE6',
         sage: '#E6EEE5',
