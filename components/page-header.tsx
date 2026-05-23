@@ -16,9 +16,9 @@ export type Halo = 'peach' | 'sky' | 'sage' | 'cream' | 'mint';
 
 const HALO_RGB: Record<Halo, string> = {
   peach: '252, 230, 130', // 淡柠檬黄 — Parlor (2026-05-24 Claire 截图反馈)
-  sky: '155, 188, 235',   // soft sky blue — Studio
-  sage: '185, 165, 245',  // 老友记紫 — Workshop / Manifesto（2026-05-24 Claire 截图反馈：光晕也要紫）
-  cream: '240, 215, 165', // warm butter — Cooperate / IP
+  sky: '170, 220, 250',   // baby blue — Studio（2026-05-24 Claire：之前太暗换婴儿蓝）
+  sage: '185, 165, 245',  // 老友记紫 — Workshop / Manifesto
+  cream: '252, 230, 130', // 嫩鹅黄 — Cooperate / IP（2026-05-24 Claire：butter 太 muted 换鹅黄）
   mint: '125, 220, 175',  // fresh mint — accent / brand
 };
 

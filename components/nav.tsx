@@ -53,7 +53,9 @@ export default function Nav() {
           <span className="transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-105">
             <Logo size={32} />
           </span>
-          <span>Claire&apos;s Parlor</span>
+          {/* 2026-05-24 Claire: brand 跟 nav 链接同步切中英（桌面中文、移动英文） */}
+          <span className="hidden sm:inline">Claire 的会客厅</span>
+          <span className="sm:hidden">Claire&apos;s Parlor</span>
         </Link>
 
         {/* LINKS */}
