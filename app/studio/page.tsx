@@ -1,13 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
 import { CHAPTERS } from '@/lib/content';
+import { useLang } from '@/components/lang-context';
 
 /**
  * /studio — Head down, building.
  * Four sub-rooms: AI Notes (6 chapters) · IP 化妆间 · Bookshelf · Tunes.
  */
 export default function StudioPage() {
+  const { lang } = useLang();
   return (
     <>
       <PageHeader
@@ -15,12 +19,23 @@ export default function StudioPage() {
         glyph="💻"
         subOrbs={['🪐', '🧠']}
         halo="sky"
-        title={<>工作台。<br /><span className="title-sub">自己埋头做事的地方。</span></>}
+        title={
+          lang === 'zh'
+            ? <>工作台。<br /><span className="title-sub">自己埋头做事的地方。</span></>
+            : <>The Studio.<br /><span className="title-sub">Where I head down and build.</span></>
+        }
         lede={
-          <>
-            遇到 Transformer / Agent / RAG / MCP / Vibe Coding 这些名词，
-            回来速查就好——这里不是教程，是一份<em>永远在更新的草稿</em>。
-          </>
+          lang === 'zh' ? (
+            <>
+              遇到 Transformer / Agent / RAG / MCP / Vibe Coding 这些名词，
+              回来速查就好——这里不是教程，是一份<em>永远在更新的草稿</em>。
+            </>
+          ) : (
+            <>
+              When you hit terms like Transformer / Agent / RAG / MCP / Vibe Coding,
+              come back and look them up — not a tutorial, just a <em>forever-updating draft</em>.
+            </>
+          )
         }
       />
 

@@ -1,13 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
 import { WORKSHOP_TRACKS, CHAPTERS } from '@/lib/content';
+import { useLang } from '@/components/lang-context';
 
 /**
  * /workshop — Teach a hand.
  * Three tracks · Sessions · Prerequisites.
  */
 export default function WorkshopPage() {
+  const { lang } = useLang();
   return (
     <>
       <PageHeader
@@ -15,13 +19,25 @@ export default function WorkshopPage() {
         glyph="🪄"
         subOrbs={['⚡', '🚀']}
         halo="sage"
-        title={<>来工坊<br /><span className="title-sub">学一手。</span></>}
+        title={
+          lang === 'zh'
+            ? <>来工坊<br /><span className="title-sub">学一手。</span></>
+            : <>The Workshop.<br /><span className="title-sub">Learn a craft.</span></>
+        }
         lede={
-          <>
-            <strong className="text-ink">能写出来 ≠ 真的会教</strong>。
-            把这些年趟过的坑分三条线——自媒体起号 / AI 创业 / 黑客松——你选自己想走的那条。
-            优秀的可签 MCN，可拿投资。
-          </>
+          lang === 'zh' ? (
+            <>
+              <strong className="text-ink">能写出来 ≠ 真的会教</strong>。
+              把这些年趟过的坑分三条线——自媒体起号 / AI 创业 / 黑客松——你选自己想走的那条。
+              优秀的可签 MCN，可拿投资。
+            </>
+          ) : (
+            <>
+              <strong className="text-ink">Writing it ≠ teaching it</strong>.
+              I split the lessons I&apos;ve learned into three tracks — creator launch / AI startup / hackathon — pick the one for you.
+              Top picks can get MCN signing or investor intros.
+            </>
+          )
         }
       />
 

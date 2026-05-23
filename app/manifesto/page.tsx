@@ -1,19 +1,27 @@
+'use client';
+
 import PageHeader from '@/components/page-header';
 import { MANIFESTO } from '@/lib/content';
+import { useLang } from '@/components/lang-context';
 
 /**
  * /manifesto — 6 personal beliefs.
  */
 export default function ManifestoPage() {
+  const { lang } = useLang();
   return (
     <>
       <PageHeader
-        eyebrow="✊ Manifesto · 我的主张"
+        eyebrow={lang === 'zh' ? '✊ Manifesto · 我的主张' : '✊ Manifesto · My Beliefs'}
         glyph="🌱"
         subOrbs={['🔥', '🌍']}
         halo="leaf"
-        title={<>别被职场磨平 ——<br /><em className="accent-display">向上长，无界长。</em></>}
-        lede="Don't get flattened. Grow up. No limits."
+        title={
+          lang === 'zh'
+            ? <>别被职场磨平 ——<br /><em className="accent-display">向上长，无界长。</em></>
+            : <>Don&apos;t let work flatten you ——<br /><em className="accent-display">Grow up, no limits.</em></>
+        }
+        lede={lang === 'zh' ? '别被职场磨平。向上长，无界长。' : "Don't get flattened. Grow up. No limits."}
       />
 
       <section className="wrap reveal pb-24">

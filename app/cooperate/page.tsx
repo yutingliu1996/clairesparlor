@@ -1,11 +1,15 @@
+'use client';
+
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
 import WechatQrModal from '@/components/wechat-qr-modal';
+import { useLang } from '@/components/lang-context';
 
 /**
  * /cooperate — Clients & investors.
  */
 export default function CooperatePage() {
+  const { lang } = useLang();
   return (
     <>
       <PageHeader
@@ -13,13 +17,25 @@ export default function CooperatePage() {
         glyph="🤝"
         subOrbs={['💼', '✉️']}
         halo="cream"
-        title={<>客户 / 投资人。<br /><span className="title-sub italic">金主爸爸。</span></>}
+        title={
+          lang === 'zh'
+            ? <>客户 / 投资人。<br /><span className="title-sub italic">金主爸爸。</span></>
+            : <>Clients / Investors.<br /><span className="title-sub italic">Show me the money.</span></>
+        }
         lede={
-          <>
-            想跟我做点事——<strong className="text-ink">内容定制 / 品牌合作 / KOL 投放 / AI 咨询</strong>，
-            或者你是<strong className="text-ink"> 投资人 / 金主</strong>，想跟我们一起孵化 AI 项目——
-            直接联系，国内外都可以。
-          </>
+          lang === 'zh' ? (
+            <>
+              想跟我做点事——<strong className="text-ink">内容定制 / 品牌合作 / KOL 投放 / AI 咨询</strong>，
+              或者你是<strong className="text-ink"> 投资人 / 金主</strong>，想跟我们一起孵化 AI 项目——
+              直接联系，国内外都可以。
+            </>
+          ) : (
+            <>
+              Want to make something together — <strong className="text-ink">content commissions / brand collabs / KOL placements / AI consulting</strong>,
+              or you&apos;re an <strong className="text-ink">investor / patron</strong> looking to incubate AI projects with us —
+              reach out directly. Domestic or global, both work.
+            </>
+          )
         }
       />
 

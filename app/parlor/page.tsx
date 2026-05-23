@@ -1,12 +1,16 @@
+'use client';
+
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
 import { GUESTS, HANGOUTS, PLATFORMS } from '@/lib/content';
+import { useLang } from '@/components/lang-context';
 
 /**
  * /parlor — Meet the world.
  * Three blocks: guests · hangouts · find me.
  */
 export default function ParlorPage() {
+  const { lang } = useLang();
   return (
     <>
       <PageHeader
@@ -14,12 +18,23 @@ export default function ParlorPage() {
         glyph="🛋️"
         subOrbs={['🎙️', '☕']}
         halo="peach"
-        title={<>会客厅。<br /><span className="title-sub">跟世界打交道的地方。</span></>}
+        title={
+          lang === 'zh'
+            ? <>会客厅。<br /><span className="title-sub">跟世界打交道的地方。</span></>
+            : <>The Parlor.<br /><span className="title-sub">Where I meet the world.</span></>
+        }
         lede={
-          <>
-            听众变朋友、读者变共读者。这间客厅<strong className="text-ink">永远开着门</strong>——
-            播客嘉宾在这录、社群在这聚、合作邀约在这接。
-          </>
+          lang === 'zh' ? (
+            <>
+              听众变朋友、读者变共读者。这间客厅<strong className="text-ink">永远开着门</strong>——
+              播客嘉宾在这录、社群在这聚、合作邀约在这接。
+            </>
+          ) : (
+            <>
+              Listeners turn into friends. Readers into co-readers. The door is <strong className="text-ink">always open</strong> —
+              guests record here, the community hangs out here, collab requests land here.
+            </>
+          )
         }
       />
 
