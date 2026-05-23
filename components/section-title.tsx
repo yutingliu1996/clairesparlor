@@ -3,7 +3,7 @@ export default function SectionTitle({
   title,
   sub,
 }: {
-  eyebrow: string;
+  eyebrow: React.ReactNode;
   title: React.ReactNode;
   sub?: React.ReactNode;
 }) {

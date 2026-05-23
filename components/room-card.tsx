@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import type { Room } from '@/lib/content';
+import { useLang } from './lang-context';
 
 /**
  * The thiings-style room tile.
@@ -26,6 +29,7 @@ const GLOW_COLOR: Record<string, string> = {
 };
 
 export default function RoomCard({ room }: { room: Room }) {
+  const { lang } = useLang();
   const orbs = SUB_ORBS[room.slug] ?? [];
   return (
     <Link
@@ -81,9 +85,9 @@ export default function RoomCard({ room }: { room: Room }) {
 
           <div>
             <div className="font-rounded text-[28px] font-semibold tracking-tight md:text-[32px]">
-              {room.zh}
+              {lang === 'zh' ? room.zh : room.en}
             </div>
-            <div className="mt-1 text-sm text-ink-3">{room.taglineZh}</div>
+            <div className="mt-1 text-sm text-ink-3">{lang === 'zh' ? room.taglineZh : room.taglineEn}</div>
           </div>
         </div>
       </div>

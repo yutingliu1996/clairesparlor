@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLang } from './lang-context';
 
 /**
  * 微信扫码卡片 + 二维码弹窗
@@ -10,6 +11,7 @@ import { useState } from 'react';
  */
 export default function WechatQrModal() {
   const [open, setOpen] = useState(false);
+  const { lang, t } = useLang();
 
   return (
     <>
@@ -22,8 +24,12 @@ export default function WechatQrModal() {
           💬
         </span>
         <div>
-          <div className="font-rounded text-xl font-semibold">微信 · WeChat</div>
-          <div className="mt-1 text-sm text-ink-3">点击扫码 → 直接加我</div>
+          <div className="font-rounded text-xl font-semibold">
+            {t({ zh: '微信 · WeChat', en: 'WeChat' })}
+          </div>
+          <div className="mt-1 text-sm text-ink-3">
+            {t({ zh: '点击扫码 → 直接加我', en: 'Tap to scan → add me directly' })}
+          </div>
         </div>
         <span
           aria-hidden="true"
@@ -39,7 +45,7 @@ export default function WechatQrModal() {
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label="微信二维码"
+          aria-label={lang === 'zh' ? '微信二维码' : 'WeChat QR code'}
         >
           <div
             className="thiings-card relative max-w-md p-8"
@@ -48,19 +54,23 @@ export default function WechatQrModal() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="关闭"
+              aria-label={lang === 'zh' ? '关闭' : 'Close'}
               className="absolute right-4 top-4 text-2xl text-ink-3 hover:text-ink"
             >
               ×
             </button>
             <div className="mb-4 text-center">
-              <div className="font-rounded text-xl font-semibold">扫码加我</div>
-              <div className="mt-1 text-sm text-ink-3">Claire · 5.23 线下课</div>
+              <div className="font-rounded text-xl font-semibold">
+                {t({ zh: '扫码加我', en: 'Scan to add me' })}
+              </div>
+              <div className="mt-1 text-sm text-ink-3">
+                {t({ zh: 'Claire · 5.23 线下课', en: 'Claire · 5.23 in-person session' })}
+              </div>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/wechat-qr.jpg"
-              alt="微信二维码"
+              alt={lang === 'zh' ? '微信二维码' : 'WeChat QR code'}
               className="mx-auto block w-full max-w-xs rounded-2xl"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = 'none';
@@ -73,8 +83,11 @@ export default function WechatQrModal() {
               style={{ display: 'none' }}
               className="mt-4 rounded-xl bg-paper p-4 text-center text-sm text-ink-3"
             >
-              二维码图片还没准备好<br />
-              请把 wechat-qr.png 放到 public/ 目录
+              {lang === 'zh' ? (
+                <>二维码图片还没准备好<br />请把 wechat-qr.png 放到 public/ 目录</>
+              ) : (
+                <>QR code image not ready yet<br />Place wechat-qr.png in the public/ folder</>
+              )}
             </div>
           </div>
         </div>

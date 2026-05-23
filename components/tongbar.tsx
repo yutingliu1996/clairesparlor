@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { TONGBAR_MESSAGES } from '@/lib/content';
+import { useLang } from './lang-context';
 
 const STORAGE_KEY = 'cp-tongbar-dismissed';
 const SESSION_DELAY_MS = 800;
@@ -16,6 +17,7 @@ export default function Tongbar() {
   const [idx, setIdx] = useState(0);
   const [bubbleVisible, setBubbleVisible] = useState(true);
   const timer = useRef<number | null>(null);
+  const { lang } = useLang();
 
   useEffect(() => {
     // Stay dismissed for the rest of this tab session.
@@ -45,6 +47,9 @@ export default function Tongbar() {
 
   if (!visible) return null;
 
+  const message = TONGBAR_MESSAGES[idx];
+  const text = lang === 'zh' ? message.zh : message.en;
+
   return (
     <div
       className="pointer-events-none fixed bottom-5 right-5 z-50 flex items-end gap-3"
@@ -55,7 +60,7 @@ export default function Tongbar() {
           bubbleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1'
         }`}
       >
-        <span aria-hidden="true">{TONGBAR_MESSAGES[idx]}</span>
+        <span aria-hidden="true">{text}</span>
         {/* Tail pointing right */}
         <span
           aria-hidden="true"
@@ -65,7 +70,7 @@ export default function Tongbar() {
         <button
           type="button"
           onClick={dismiss}
-          aria-label="把铜板儿哄走"
+          aria-label={lang === 'zh' ? '把铜板儿哄走' : 'Shoo Tongbar away'}
           className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full border border-hairline bg-paper text-[10px] text-ink-3 transition-colors hover:text-ink"
         >
           ✕

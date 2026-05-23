@@ -8,7 +8,7 @@ import { useLang } from '@/components/lang-context';
  * /manifesto — 6 personal beliefs.
  */
 export default function ManifestoPage() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
   return (
     <>
       <PageHeader
@@ -38,7 +38,7 @@ export default function ManifestoPage() {
               <div className="flex-1">
                 <div className="font-mono text-[11px] tracking-widest text-ink-3">{m.num}</div>
                 <p className="mt-2 font-rounded text-lg font-semibold leading-relaxed md:text-xl">
-                  {m.text}
+                  {lang === 'zh' ? m.text : m.textEn}
                 </p>
               </div>
             </li>
@@ -51,13 +51,16 @@ export default function ManifestoPage() {
           <div className="text-4xl" aria-hidden="true">☕</div>
           <p className="mt-6 font-rounded text-2xl italic">&ldquo;I&apos;ll be there for you.&rdquo;</p>
           <p className="mt-4 text-sm text-ink-3">
-            想一起搞点事——推荐嘉宾、毛遂自荐、投稿、合作、社群共建。别害羞，把信发过来。
+            {t({
+              zh: '想一起搞点事——推荐嘉宾、毛遂自荐、投稿、合作、社群共建。别害羞，把信发过来。',
+              en: "Want to make something together — suggest a guest, pitch yourself, submit work, collab, or co-build the community. Don't be shy, send a note.",
+            })}
           </p>
           <a
             href="mailto:yutingliu1996@gmail.com?subject=Hi%20Claire"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-surface transition-transform duration-300 hover:-translate-y-0.5"
           >
-            ☕ 来我的小客厅坐坐 <span aria-hidden="true">→</span>
+            {t({ zh: '☕ 来我的小客厅坐坐', en: '☕ Come sit in my parlor' })} <span aria-hidden="true">→</span>
           </a>
         </div>
       </section>

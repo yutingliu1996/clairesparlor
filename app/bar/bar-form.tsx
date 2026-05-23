@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useLang } from '@/components/lang-context';
 
 /**
  * Email magic-link form.
@@ -10,6 +11,7 @@ import { useState } from 'react';
 export default function BarForm() {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+  const { t } = useLang();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,9 +36,14 @@ export default function BarForm() {
     return (
       <div className="mt-8 rounded-2xl border border-hairline bg-paper p-6">
         <div className="text-2xl" aria-hidden="true">📬</div>
-        <p className="mt-3 font-rounded text-lg font-medium">收件箱见 ☕</p>
+        <p className="mt-3 font-rounded text-lg font-medium">
+          {t({ zh: '收件箱见 ☕', en: 'Check your inbox ☕' })}
+        </p>
         <p className="mt-1 text-sm text-ink-3">
-          如果你确实在受邀名单里，几分钟内会收到登录链接。
+          {t({
+            zh: '如果你确实在受邀名单里，几分钟内会收到登录链接。',
+            en: "If you're on the invite list, the login link will arrive in a few minutes.",
+          })}
         </p>
       </div>
     );
@@ -56,7 +63,7 @@ export default function BarForm() {
         type="submit"
         className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-surface transition-transform duration-300 hover:-translate-y-0.5"
       >
-        发送登录链接
+        {t({ zh: '发送登录链接', en: 'Send login link' })}
         <span aria-hidden="true">→</span>
       </button>
     </form>
