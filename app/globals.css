@@ -209,6 +209,26 @@
     animation: breathe 2.4s ease-in-out infinite;
   }
 
+  /* ===== Dark shimmer callout（黑底渐变流动动画）=====
+     2026-05-24 Claire 要求：黑底块也有渐变动效。
+     黑 → 深紫红 → 深靛 → 黑，14s 缓慢流动，似深空 / 极光 */
+  .dark-shimmer {
+    background: linear-gradient(
+      135deg,
+      #0a0a0a 0%,
+      #1a0e2e 25%,
+      #2a1640 50%,
+      #1a0e2e 75%,
+      #0a0a0a 100%
+    );
+    background-size: 240% 240%;
+    animation: dark-shimmer-flow 14s ease-in-out infinite;
+  }
+  @keyframes dark-shimmer-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
   /* ===== Bookmark divider ===== */
   .rule {
     @apply h-px w-full bg-hairline;

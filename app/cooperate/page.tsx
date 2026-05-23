@@ -78,7 +78,7 @@ export default function CooperatePage() {
 
       {/* JOIN CTA */}
       <section className="wrap reveal pb-12">
-        <div className="rounded-3xl bg-ink px-8 py-16 text-surface md:px-16 md:py-20">
+        <div className="dark-shimmer rounded-3xl px-8 py-16 text-surface md:px-16 md:py-20">
           <div className="eyebrow !text-ink-4">☕ Central Perk</div>
           <p className="mt-4 max-w-2xl font-rounded text-display-md font-semibold leading-tight">
             想一起<br />搞点事吗？
