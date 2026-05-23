@@ -96,7 +96,7 @@ export default function StudioIPPage() {
               </div>
               <div className="absolute inset-0 flex items-center justify-center gap-8">
                 <span className="thiings-object-xl float-y" aria-hidden="true">
-                  👩‍🎤
+                  🌸
                 </span>
                 <span
                   className="thiings-object-xl"

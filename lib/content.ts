@@ -135,7 +135,7 @@ export const CHAPTERS: Chapter[] = [
     num: 'L4',
     name: '大模型时代',
     era: '2017 至今 · 这就是当下',
-    glyph: '🤖',
+    glyph: '💬',
     tagline: '让机器理解上下文，生成像人写的内容。Transformer 是引擎，LLM 是产物——你每天用的 Claude、ChatGPT 都在这层。',
     keys: ['Transformer', 'LLM', 'Embedding', '预训练 · 微调 · RLHF'],
     keywordGroups: [

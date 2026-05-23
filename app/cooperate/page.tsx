@@ -1,5 +1,6 @@
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
+import WechatQrModal from '@/components/wechat-qr-modal';
 
 /**
  * /cooperate — Clients & investors.
@@ -25,37 +26,22 @@ export default function CooperatePage() {
       {/* DIRECT CONTACT */}
       <section className="wrap reveal pb-16">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {[
-            {
-              glyph: '📩',
-              title: '邮箱（最稳）',
-              sub: 'yutingliu1996@gmail.com',
-              href: 'mailto:yutingliu1996@gmail.com?subject=合作咨询',
-            },
-            {
-              glyph: '💬',
-              title: '微信 · WeChat',
-              sub: '点击扫码 → 直接加我',
-              href: '#',
-            },
-          ].map((c) => (
-            <a
-              key={c.title}
-              href={c.href}
-              className="thiings-card group flex items-center gap-6 p-7"
-            >
-              <span className="thiings-object" style={{ fontSize: 60 }} aria-hidden="true">
-                {c.glyph}
-              </span>
-              <div>
-                <div className="font-rounded text-xl font-semibold">{c.title}</div>
-                <div className="mt-1 text-sm text-ink-3">{c.sub}</div>
-              </div>
-              <span aria-hidden="true" className="ml-auto text-2xl text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-          ))}
+          <a
+            href="mailto:yutingliu1996@gmail.com?subject=合作咨询"
+            className="thiings-card group flex items-center gap-6 p-7"
+          >
+            <span className="thiings-object" style={{ fontSize: 60 }} aria-hidden="true">
+              📩
+            </span>
+            <div>
+              <div className="font-rounded text-xl font-semibold">邮箱（最稳）</div>
+              <div className="mt-1 text-sm text-ink-3">yutingliu1996@gmail.com</div>
+            </div>
+            <span aria-hidden="true" className="ml-auto text-2xl text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+          <WechatQrModal />
         </div>
       </section>
 

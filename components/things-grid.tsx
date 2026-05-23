@@ -17,7 +17,7 @@ const THINGS = [
   { glyph: '🧊', label: 'L1 数学', tone: 'bg-sky2/40' },
   { glyph: '🎯', label: 'L2 ML', tone: 'bg-sage/40' },
   { glyph: '🧠', label: 'L3 深度学习', tone: 'bg-peach/40' },
-  { glyph: '🤖', label: 'L4 大模型', tone: 'bg-cream/40' },
+  { glyph: '💬', label: 'L4 大模型', tone: 'bg-cream/40' },
   { glyph: '🧰', label: 'L5 应用层', tone: 'bg-sage/40' },
   { glyph: '🗺️', label: 'L6 行业', tone: 'bg-sky2/40' },
   { glyph: '🎲', label: '推荐系统', tone: 'bg-peach/40' },
