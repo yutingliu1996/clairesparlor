@@ -31,12 +31,11 @@ export default function RoomCard({ room }: { room: Room }) {
       href={`/${room.slug}`}
       className="tilt-card group relative block aspect-[4/5] sm:aspect-square md:aspect-[4/5]"
     >
-      {/* 外溢光晕：比卡片大 30%，柔和扩散，落在卡片中心 */}
+      {/* 外溢光晕：默认隐藏，hover 时柔和淡入（900ms ease-out） */}
       <div
-        className="pointer-events-none absolute -inset-[15%] transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-[20%] opacity-0 transition-opacity duration-[900ms] ease-out group-hover:opacity-75"
         style={{
           background: `radial-gradient(circle at 50% 50%, ${GLOW} 0%, transparent 60%)`,
-          opacity: 0.7,
         }}
         aria-hidden="true"
       />
