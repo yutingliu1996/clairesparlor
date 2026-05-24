@@ -2,7 +2,7 @@
 
 > 一个空间。四个房间。
 
-[![live](https://img.shields.io/badge/live-v2.clairesparlor.com-1F7A57)](https://v2.clairesparlor.com)
+[![Claire's Parlor · clairesparlor.com](https://img.shields.io/badge/Claire's_Parlor-clairesparlor.com-1F7A57?style=flat-square&logo=vercel&logoColor=white)](https://clairesparlor.com)
 
 刘玉婷 · Claire 的个人客厅 — 5 年 PM 转型 AI 内容创业者，播客 + 笔记 + 工坊 + 合作一站。
 
@@ -124,9 +124,9 @@ TONGBAR_MESSAGES   // 桌面宠物气泡轮播文案
 ## 运行 / 部署
 
 ```bash
-# 本地开发
+# 本地开发 —— dev 默认跑在 :1023（Claire 生日 10/23，别改）
 pnpm install        # or npm / yarn
-pnpm dev            # → http://localhost:3000
+pnpm dev            # → http://localhost:1023
 
 # 静态构建
 pnpm build          # 输出到 ./out
@@ -143,15 +143,15 @@ build 会覆盖 `.next/` 里 dev 正在用的运行时 chunk → 浏览器收到
 要 build 之前：
 
 ```bash
-lsof -ti:3000 | xargs -r kill -9     # 先停 dev
-rm -rf .next                          # 保险清缓存
+lsof -ti:1023 | xargs -r kill -9     # 先停 dev
+rm -rf .next                         # 保险清缓存
 pnpm build
 ```
 
 如果已经裂了：
 
 ```bash
-lsof -ti:3000 -ti:3030 | xargs -r kill -9
+lsof -ti:1023 | xargs -r kill -9
 rm -rf .next out
 pnpm dev
 ```
@@ -175,7 +175,7 @@ pnpm dev
 - [ ] 工坊照片墙真照片
 - [ ] `/bar` 接真后端（magic-link endpoint，目前 UI stub）
 - [ ] 抖音 QR modal（已有微信 modal 模板）
-- [ ] 域名从 `v2.clairesparlor.com` 切到 `clairesparlor.com`
+- [x] 域名从 `v2.clairesparlor.com` 切到 `clairesparlor.com` —— 已上线
 
 
 

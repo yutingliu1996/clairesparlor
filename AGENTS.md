@@ -150,17 +150,30 @@ web/
 
 ### 5.3 平台图标
 
-12 个平台 PNG 在 `public/logos/{key}.png`，**512×512 来自 iTunes Search API**：
+平台 PNG 都在 `public/logos/{key}.png`。**不要装 react-icons / lucide / simple-icons** 任何第三方图标包。要换图标按下面优先级找官方源：
+
+**优先级 1 — iTunes Search API（512×512，最高清）**
+
+App Store 有的 app 走这条：
 
 ```bash
 curl "https://itunes.apple.com/search?term=APP_NAME&entity=software&country=cn&limit=1" \
   | jq -r '.results[0].artworkUrl512'
 ```
 
-X (Twitter) 用 ID 直拉：`https://itunes.apple.com/lookup?id=333903271`。
-Gmail 代替 mailto 的 mail icon。
+X 用 ID 直拉避免重名（`...lookup?id=333903271`）。Gmail 代替 mailto 的 mail icon。
 
-**不要装 react-icons / lucide / simple-icons**。要换图标 → 重抓 iTunes API。
+**优先级 2 — 平台官网/CDN favicon 或 brand kit**
+
+App Store 没有的（如 视频号）→ 找平台自己的官网：
+- 先看 `https://{平台域}/favicon.ico` 或 apple-touch-icon
+- 再 `curl` 落地页，`grep` 出真实 CDN 路径（如视频号在 `res.wx.qq.com/.../finder-helper-web/res/favicon-v2.ico`）
+
+**优先级 3 — iconfont.cn（阿里巴巴矢量图标库）**
+
+前两条都拿不到 → 上 [iconfont.cn](https://www.iconfont.cn) 搜，下载 SVG/PNG。是国内最权威的图标库，很多平台官方账号也在上面发自家 logo。挑标着「官方」或下载量最高的版本，**不要随便挑社区魔改版**。
+
+落地后 PNG 命名 `{key}.png`，Claire 也可以手动替换成更高清的版本（component 不用动，会自动加载新文件）。
 
 ### 5.4 Logo
 
@@ -172,31 +185,37 @@ Favicon 是同一段 SVG inline 在 `metadata.icons`。
 
 ## 6. 操作避坑
 
-### 6.1 别同时跑 `dev` 和 `build`
+### 6.1 dev 跑在 `:1023`。不是 3000，也不是 3030。
 
-`next build` 会覆盖 `.next/` 里 dev 正在用的运行时 chunk，浏览器收到 404 → 整页变 "裸 HTML"。
+`1023` = Claire 生日 10/23。`package.json` 里锁在 `next dev --port 1023`，
+**不要改回 3000**。跳转 / 调试 / 清缓存都用这个端口。
+
+### 6.2 别同时跑 `dev` 和 `build`
+
+同一个 `.next/` 被两个进程抢：build 输出覆盖 dev 运行时 chunk →
+浏览器拿到的 HTML 里还是旧 hash → 请求 chunk 404 → 裸 HTML。处理：
 
 ```bash
-# 要 build / deploy 之前
-lsof -ti:3000 -ti:3030 | xargs -r kill -9
+# 要 build / deploy 之前，先停 dev
+lsof -ti:1023 | xargs -r kill -9
 rm -rf .next
 npx next build
 
 # 已经裂了 → 同上 + 重启 dev
-npx next dev
+npx next dev      # 会自动走 package.json 里的 --port 1023
 ```
 
-### 6.2 部署
+### 6.3 部署
 
 ```bash
 cd web
-npx vercel --prod      # 生产，aliased 到 v2.clairesparlor.com
+npx vercel --prod      # 生产，aliased 到 clairesparlor.com
 npx vercel             # preview，独立 URL
 ```
 
 项目已 link 到 `harzss-projects/claires-parlor`，`.vercel/project.json` 别删。
 
-### 6.3 Git
+### 6.4 Git
 
 仓库根在 `web/`（之前误把 `web/` 当 submodule 加到外层，被回滚过两次）。
 **不要在 `/Users/chenjie/Workspace/claire/` 再 init 一个 outer git**，会冲突。
