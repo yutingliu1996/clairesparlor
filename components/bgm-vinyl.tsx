@@ -18,17 +18,22 @@ export default function BgmVinyl() {
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-      {open && (
-        <iframe
-          title="BGM player"
-          src={`https://music.163.com/outchain/player?type=0&id=${PLAYLIST_ID}&auto=1&height=66`}
-          width="330"
-          height="86"
-          frameBorder="0"
-          allow="autoplay"
-          className="rounded-2xl shadow-2xl"
-        />
-      )}
+      {/* iframe 永远 mounted，仅 visibility toggle，音乐不停 */}
+      <iframe
+        title="BGM player"
+        src={`https://music.163.com/outchain/player?type=0&id=${PLAYLIST_ID}&auto=1&height=66`}
+        width="330"
+        height="86"
+        frameBorder="0"
+        allow="autoplay"
+        className="rounded-2xl shadow-2xl transition-all duration-300"
+        style={{
+          opacity: open ? 1 : 0,
+          visibility: open ? 'visible' : 'hidden',
+          pointerEvents: open ? 'auto' : 'none',
+          transform: open ? 'translateY(0)' : 'translateY(8px)',
+        }}
+      />
 
       <button
         type="button"
