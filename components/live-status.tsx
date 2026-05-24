@@ -12,7 +12,7 @@ const MESSAGES = [
   { glyph: '📱', zh: 'Workshop · 自媒体方向 · 5/30–31 开放报名', en: 'Workshop · creator track · sign-ups open 5/30–31' },
   { glyph: '🤝', zh: '全球开源黑客松 · 找 AI Founder 组队', en: 'Global open-source hackathon · looking for AI founder teammates' },
   { glyph: '🔐', zh: '在准备一场上海高管闭门会', en: 'Prepping an exec closed-door in Shanghai' },
-  { glyph: '🔥', zh: '在参加科技火人节', en: 'At a tech burning-man festival' },
+  { glyph: '🔥', zh: '在参加科技火人节', en: 'At muShanghai pop-up city · the AI Burning Man' },
   { glyph: '☕', zh: '在举办 Coffee Chat', en: 'Hosting a coffee chat' },
 ];
 
