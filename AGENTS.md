@@ -71,12 +71,30 @@ CSS 变量，向下级联。要新增/调主题：改 `THEMES` 表 + `pathToHalo
 ```
 --accent-text          light bg 上的强调字
 --accent-stroke        marker 下划线（边）
---accent-stroke-mid    marker 下划线（中央，更饱满）
+--accent-stroke-mid    marker 下划线（中央，更饱满）→ 也是 hero 光晕用色
 --accent-text-dark     dark bg 上的强调字
 --accent-stroke-dark   dark bg 上的 marker 下划线
 --accent-pill          nav active 胶囊 bg
 --accent-dot           brand logo 角的呼吸点
 ```
+
+### 3.1.1 ❌ 不要硬编码 halo / accent 颜色
+
+光晕、accent 文字、active pill —— **全部读 CSS 变量**，不要在组件里写死 RGB。
+
+```tsx
+// ❌ 不要
+background: `radial-gradient(closest-side, rgba(255,150,120,0.85) 0%, ...)`
+
+// ✅ 要
+background: `radial-gradient(closest-side,
+  color-mix(in srgb, var(--accent-stroke-mid) 85%, transparent) 0%, ...)`
+```
+
+`color-mix(in srgb, X Y%, transparent)` = 「取 X 颜色 Y% 不透明度」。
+modern browsers (Safari 16.2+ / Chrome 111+) 全支持。
+
+这样未来在 [`main-theme.tsx`](./components/main-theme.tsx) 里改一处颜色，nav / hero / 副标题 / 光晕全部自动跟上。`PageHeader` 和 `app/page.tsx` 都已按此规范实现 —— 新写组件如果需要 page-themed 颜色，照抄相同的 `color-mix(var(--accent-*))` 模式即可，不要新增 RGB lookup map。
 
 ### 3.2 字体
 
