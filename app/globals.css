@@ -374,8 +374,7 @@ body > * {
 }
 [data-theme='dark'] .bg-paper { background-color: #0a0a0a !important; }
 [data-theme='dark'] .bg-surface { background-color: #161616 !important; }
-[data-theme='dark'] .bg-cream\/35 { background-color: rgba(40, 32, 20, 0.4) !important; }
-[data-theme='dark'] .bg-cream\/60 { background-color: rgba(40, 32, 20, 0.55) !important; }
+/* (cream tint 旧 override 删除 — 被下方 radial-gradient 版本取代) */
 [data-theme='dark'] .text-ink { color: #fafafa !important; }
 [data-theme='dark'] .text-ink-2 { color: #c8c8c8 !important; }
 [data-theme='dark'] .text-ink-3 { color: #8e8e8e !important; }
@@ -438,6 +437,13 @@ body > * {
 }
 [data-theme='dark'] .bg-sage\/40 {
   background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(185, 165, 245, 0.10), transparent 70%) !important;
+}
+[data-theme='dark'] .bg-cream\/35,
+[data-theme='dark'] .bg-cream\/40,
+[data-theme='dark'] .bg-cream\/50,
+[data-theme='dark'] .bg-cream\/60 {
+  background-color: transparent !important;
+  background-image: radial-gradient(ellipse 80% 70% at 50% 35%, rgba(255, 200, 80, 0.18), transparent 70%) !important;
 }
 
 /* Status badge dark mode：bg-sky2 / bg-paper 等浅色 badge 在 dark 下变深底 + brand 微光 */
