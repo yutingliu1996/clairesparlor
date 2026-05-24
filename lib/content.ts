@@ -738,14 +738,33 @@ export const PROMPTS: PromptItem[] = [
 
 // Tongbar floating-pet rotating speech bubble lines (bilingual)
 export const TONGBAR_MESSAGES: { zh: string; en: string }[] = [
+  // — 入门寒暄 + 性格基线 —
   { zh: '喵——欢迎来 Claire 的客厅 ☕', en: "Mrrrow — welcome to Claire's parlor ☕" },
-  { zh: '主理人又熬夜剪播客了 😴', en: 'The host is editing the pod way past midnight again 😴' },
-  { zh: '听到没？这一句要重录', en: 'Heard that? She needs to re-record that line.' },
-  { zh: '我饿了，给我一片鸡胸 🍗', en: 'I am hungry. One slice of chicken please 🍗' },
-  { zh: '钢琴键又被我踩响了 🎹', en: 'I stepped on the piano keys again 🎹' },
-  { zh: '你点这里干嘛？我在睡觉', en: 'Why are you clicking here? I am sleeping.' },
-  { zh: '主理人犯错我就翻白眼 🙄', en: 'When the host messes up, I roll my eyes 🙄' },
-  { zh: '客厅永远有 BGM 🎶', en: 'There is always a BGM in this parlor 🎶' },
-  { zh: '今天的封面图……再调一次', en: "Today's cover art… one more pass.", },
+  { zh: '客厅永远有 BGM，右下角那个胶片就是我选的 🎶', en: "BGM never stops — that spinning vinyl on the right is my pick 🎶" },
+  { zh: '你点这里干嘛？我在睡觉', en: "Why are you clicking here? I am sleeping." },
+
+  // — 对主理人的犀利吐槽 —
+  { zh: '主理人又熬夜剪播客了 😴', en: "The host is editing the pod past midnight again 😴" },
+  { zh: '听到没？这一句要重录', en: "Heard that? She needs to re-record that line." },
+  { zh: '主理人犯错我就翻白眼 🙄', en: "When the host messes up, I roll my eyes 🙄" },
+  { zh: 'AI 笔记说"永远在更新"，翻译：她又咕咕了', en: "'Forever-updating draft' = she's procrastinating again" },
+  { zh: '她说要日更小红书，我笑了', en: "She said she'd post on Xiaohongshu daily. I laughed." },
+  { zh: '工坊 PPT 又改到凌晨三点', en: "Workshop deck still being tweaked at 3am" },
+  { zh: '今天的封面图……再调一次', en: "Today's cover art… one more pass." },
   { zh: '这本书的猫描得不像 📚', en: "The cat in this book doesn't look quite right 📚" },
+
+  // — 软广 · 业务带货 —
+  { zh: '想上播客？/parlor 写信毛遂自荐，她真看 ☕', en: "Wanna guest on the pod? Pitch via /parlor — she actually reads them ☕" },
+  { zh: '翻笔记不要钱，我作证 → /studio', en: "AI notes are free, I swear on my fish → /studio" },
+  { zh: '工坊三方向：起号 / AI 创业 / 黑客松，挑一个 → /workshop', en: "Workshop tracks: creator launch / AI startup / hackathon → /workshop" },
+  { zh: '想孵化 AI 项目？上游 ~10 亿等着，邮件砸过来 → /cooperate', en: "Want to incubate AI? ~$140M upstream waiting → /cooperate" },
+  { zh: '品牌方看过来：内容定制 / KOL 投放 / AI 咨询，主理人在线接单 💼', en: "Brands: custom content / KOL / AI consulting — she's open 💼" },
+  { zh: 'Vol.01 在播：给内容创作者的 AI 全景框架 🎙️', en: "Now playing — Vol.01: AI playbook for content creators 🎙️" },
+
+  // — 性格调味 —
+  { zh: '我饿了，给我一片鸡胸 🍗', en: "I'm hungry. One slice of chicken please 🍗" },
+  { zh: '钢琴键又被我踩响了 🎹', en: "Stepped on the piano keys again 🎹" },
+  { zh: '嘉宾鸽了？翻白眼。她假装没事，我看穿了', en: "Guest bailed? Eye-roll. She acts fine, I see through it." },
+  { zh: '她跟 AI 聊了一晚上，连我都困了', en: "She talked to AI all night. Even I got sleepy." },
+  { zh: '别只看不动手，邮件砸 yutingliu1996@gmail.com 她秒回（理论上）✉️', en: "Don't just lurk — email yutingliu1996@gmail.com, she replies fast (in theory) ✉️" },
 ];
