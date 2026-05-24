@@ -1,0 +1,35 @@
+# Cloudflare Pages — caching headers for static export
+# 详见: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Next.js 内容寻址静态资源（带 hash） — 长缓存 + immutable
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 字体 / 图片 / 音频 — 较长缓存
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=2592000
+/*.png
+  Cache-Control: public, max-age=2592000
+/*.jpg
+  Cache-Control: public, max-age=2592000
+/*.jpeg
+  Cache-Control: public, max-age=2592000
+/*.webp
+  Cache-Control: public, max-age=2592000
+/*.mp3
+  Cache-Control: public, max-age=2592000
+
+# HTML — 短缓存（让发布快速生效）
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 安全头
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
