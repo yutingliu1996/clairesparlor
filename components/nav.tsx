@@ -72,20 +72,20 @@ export default function Nav() {
       }`}
     >
       <nav className="wrap flex h-16 items-center justify-between gap-3">
-        {/* BRAND */}
+        {/* BRAND — H5 只显 logo，桌面显 logo + 文字 */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 font-rounded text-[15px] font-semibold tracking-tight"
+          className="group flex shrink-0 items-center gap-2.5 font-rounded text-[15px] font-semibold tracking-tight"
         >
           <span className="transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-105">
             <Logo size={32} />
           </span>
-          <span>{brand}</span>
+          <span className="hidden sm:inline">{brand}</span>
         </Link>
 
         {/* LINKS + TOGGLES */}
         <div className="flex items-center gap-2 md:gap-3">
-          <ul className="flex items-center gap-0.5 md:gap-1">
+          <ul className="flex items-center gap-0 md:gap-1">
             {links.map((l) => {
               const active =
                 pathname === l.href || pathname?.startsWith(`${l.href}/`);
@@ -93,7 +93,7 @@ export default function Nav() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className={`relative inline-block rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-all duration-300 ${
+                    className={`relative inline-block whitespace-nowrap rounded-full px-2 py-1.5 text-[12px] font-medium transition-all duration-300 sm:px-3.5 sm:text-[14px] ${
                       active
                         ? 'bg-ink/[0.07] text-ink'
                         : 'text-ink-2 hover:bg-ink/[0.04] hover:text-ink'
