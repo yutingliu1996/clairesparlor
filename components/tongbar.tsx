@@ -50,7 +50,6 @@ const CAT_SRC: Record<CatState, string> = {
   happy: '/tongbar/tongbar_idle.png',
   wiggle: '/tongbar/tongbar_glare.png',
 };
-const SMILE_SRC = '/tongbar/tongbar_smile.png';
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(Math.max(v, lo), hi);
 
@@ -319,29 +318,6 @@ export default function Tongbar() {
             unoptimized
             style={{ width: '100%', height: '100%', objectFit: 'contain', userSelect: 'none' }}
           />
-          {/* Happy 状态下叠一张闭眼笑表情，每 4s 闪现一次实现「眨眼笑」 */}
-          {state === 'happy' && (
-            <Image
-              src={SMILE_SRC}
-              alt=""
-              width={CAT_W}
-              height={CAT_H}
-              priority
-              draggable={false}
-              unoptimized
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                userSelect: 'none',
-                opacity: 0,
-                animation: 'tongbar-eye-smile 4s ease-in-out infinite',
-                pointerEvents: 'none',
-              }}
-            />
-          )}
         </div>
       </div>
 
