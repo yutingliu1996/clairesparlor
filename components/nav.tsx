@@ -23,12 +23,39 @@ const links = [
   { href: '/manifesto', zh: '主张', en: 'Manifesto' },
 ];
 
-type Theme = 'light' | 'dark';
+type Mode = 'auto' | 'light' | 'dark';
+type Resolved = 'light' | 'dark';
+
+const MODE_ICON: Record<Mode, string> = {
+  auto: '🌗',
+  light: '☀️',
+  dark: '🌙',
+};
+const MODE_LABEL_ZH: Record<Mode, string> = {
+  auto: '跟随系统',
+  light: '亮色模式',
+  dark: '暗色模式',
+};
+const NEXT_LABEL_ZH: Record<Mode, string> = {
+  auto: '点击切亮色',
+  light: '点击切暗色',
+  dark: '点击跟随系统',
+};
+const MODE_LABEL_EN: Record<Mode, string> = {
+  auto: 'follows system',
+  light: 'light mode',
+  dark: 'dark mode',
+};
+const NEXT_LABEL_EN: Record<Mode, string> = {
+  auto: 'click for light',
+  light: 'click for dark',
+  dark: 'click for auto',
+};
 
 export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<Theme>('light');
+  const [mode, setMode] = useState<Mode>('auto');
   const { lang, toggle: toggleLang } = useLang();
 
   // scroll
@@ -39,26 +66,53 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // hydrate theme from localStorage (lang 已由 LangProvider 处理)
+  // 1. Read saved mode once on mount (bootstrap script already painted
+  //    the resolved theme; here we just sync React state with what the
+  //    user previously chose).
   useEffect(() => {
     try {
-      const savedTheme = window.localStorage.getItem('claire-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        setTheme(savedTheme);
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      }
+      const v = window.localStorage.getItem('claire-theme');
+      if (v === 'light' || v === 'dark') setMode(v);
+      // anything else (null / 'auto' / unknown) → stay 'auto'
     } catch {
       /* ignore */
     }
   }, []);
 
-  const toggleTheme = () => {
-    const next: Theme = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
+  // 2. Apply mode + subscribe to OS changes when in auto. Re-runs when
+  //    the user toggles, so the matchMedia listener is added/removed
+  //    according to whether 'auto' is active.
+  useEffect(() => {
+    const apply = (m: Mode) => {
+      const resolved: Resolved =
+        m === 'auto'
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+          : m;
+      document.documentElement.setAttribute('data-theme', resolved);
+    };
+    apply(mode);
+
+    if (mode !== 'auto') return;
+
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = () => apply('auto');
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [mode]);
+
+  // Cycle: auto → light → dark → auto.
+  // 'auto' is encoded as "no localStorage entry", so picking auto removes the key.
+  const cycleTheme = () => {
+    const next: Mode = mode === 'auto' ? 'light' : mode === 'light' ? 'dark' : 'auto';
+    setMode(next);
     try {
-      window.localStorage.setItem('claire-theme', next);
-    } catch {}
-    document.documentElement.setAttribute('data-theme', next);
+      if (next === 'auto') window.localStorage.removeItem('claire-theme');
+      else window.localStorage.setItem('claire-theme', next);
+    } catch {
+      /* ignore */
+    }
   };
 
   const brand = lang === 'zh' ? 'Claire 的会客厅' : "Claire's Parlor";
@@ -116,14 +170,23 @@ export default function Nav() {
             {lang === 'zh' ? 'EN' : 'CN'}
           </button>
 
-          {/* THEME TOGGLE — 单按钮，显当前可切到的目标 */}
+          {/* THEME TOGGLE — 3 态循环：跟随系统 → 亮色 → 暗色 → 跟随 */}
           <button
             type="button"
-            onClick={toggleTheme}
-            aria-label={theme === 'light' ? '切换到夜间模式' : 'Switch to day mode'}
+            onClick={cycleTheme}
+            title={
+              lang === 'zh'
+                ? `当前${MODE_LABEL_ZH[mode]} · ${NEXT_LABEL_ZH[mode]}`
+                : `Currently ${MODE_LABEL_EN[mode]} · ${NEXT_LABEL_EN[mode]}`
+            }
+            aria-label={
+              lang === 'zh'
+                ? `当前${MODE_LABEL_ZH[mode]}，${NEXT_LABEL_ZH[mode]}`
+                : `Currently ${MODE_LABEL_EN[mode]}, ${NEXT_LABEL_EN[mode]}`
+            }
             className="inline-flex h-8 w-9 items-center justify-center rounded-full border border-hairline bg-surface/70 text-[13px] backdrop-blur-sm transition-colors hover:bg-ink/[0.05] dark:bg-white/[0.06] dark:hover:bg-white/[0.12]"
           >
-            {theme === 'light' ? '🌙' : '☀️'}
+            {MODE_ICON[mode]}
           </button>
         </div>
       </nav>

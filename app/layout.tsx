@@ -20,14 +20,35 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FAFAFA',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
+    { media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
+  ],
   width: 'device-width',
   initialScale: 1,
 };
 
+/**
+ * Synchronous theme initializer — runs before first paint to avoid the
+ * light-mode flash when a dark-mode user lands on the site.
+ *
+ * Order:
+ *   1. user's explicit choice in localStorage  ('claire-theme' = 'light' | 'dark')
+ *   2. OS preference  (prefers-color-scheme: dark)
+ *   3. fallback: light
+ *
+ * Stored explicit choices stick. If localStorage is empty, the page
+ * follows the OS, and React's nav effect will subscribe to media-query
+ * changes so it stays in sync if the OS flips while open.
+ */
+const themeBootstrap = `(function(){try{var s=localStorage.getItem('claire-theme');var t=(s==='light'||s==='dark')?s:(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+      </head>
       <body>
         <LangProvider>
           <MainTheme>
