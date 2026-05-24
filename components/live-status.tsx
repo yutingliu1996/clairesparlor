@@ -30,14 +30,24 @@ export default function LiveStatus() {
   const m = MESSAGES[idx];
   return (
     <span
-      className="pill pill-live"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      className="inline-flex items-center gap-2 rounded-full bg-ink px-3.5 py-1.5 text-xs text-surface shadow-[0_4px_12px_-4px_rgba(0,0,0,0.25)]"
     >
-      <span aria-hidden="true" className="text-sm">
+      {/* 红点呼吸 REC — inline 因为 pill class 不再用 */}
+      <span
+        aria-hidden="true"
+        className="inline-block h-[7px] w-[7px] shrink-0 rounded-full"
+        style={{
+          background: '#FF3B30',
+          boxShadow: '0 0 0 3px rgba(255, 59, 48, 0.25)',
+          animation: 'breathe 2.4s ease-in-out infinite',
+        }}
+      />
+      <span aria-hidden="true" className="text-sm leading-none">
         {m.glyph}
       </span>
-      <span className="font-mono text-[11px] uppercase tracking-eyebrow text-ink-2">
+      <span className="font-mono text-[11px] uppercase tracking-eyebrow text-surface/90">
         {lang === 'zh' ? m.zh : m.en}
       </span>
     </span>
