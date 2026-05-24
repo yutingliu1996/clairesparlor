@@ -400,10 +400,10 @@ export type Platform = {
 
 export const PLATFORMS: Platform[] = [
   // 2026-05-24 Claire 重排：1. 视频  2. 音频  3. 图文  4. 纯文字  5. 邮件
-  // ① 视频
-  { key: 'channels', zh: '视频号', en: 'WeChat Channels', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎬', group: 'cn' },
-  { key: 'douyin', zh: '抖音', en: 'Douyin', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎵', group: 'cn' },
+  // ① 视频（顺序：B 站 → 抖音 → 视频号）
   { key: 'bili', zh: 'B 站', en: 'Bilibili', handle: 'Claire 的会客厅', handleEn: "Claire's Parlor", href: 'https://space.bilibili.com/293315913', glyph: '📺', group: 'cn' },
+  { key: 'douyin', zh: '抖音', en: 'Douyin', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎵', group: 'cn' },
+  { key: 'channels', zh: '视频号', en: 'WeChat Channels', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎬', group: 'cn' },
   { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
   // ② 音频
   { key: 'xyz', zh: '小宇宙', en: 'Xiaoyuzhou', handle: 'Claire 的会客厅', handleEn: "Claire's Parlor", href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
