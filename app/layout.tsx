@@ -6,6 +6,7 @@ import RevealScript from '@/components/reveal-script';
 import Tongbar from '@/components/tongbar';
 import MainTheme from '@/components/main-theme';
 import BgmVinyl from '@/components/bgm-vinyl';
+import EasterEggs from '@/components/easter-eggs';
 import { LangProvider } from '@/components/lang-context';
 
 export const metadata: Metadata = {
@@ -45,7 +46,10 @@ const themeBootstrap = `(function(){try{var s=localStorage.getItem('claire-theme
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
+    // suppressHydrationWarning：themeBootstrap 内联脚本在 React hydrate 前就把
+    // data-theme 写到 <html> 上（避免暗色模式刷新闪白），这是有意为之的服务端 / 客户端
+    // 属性差异，告诉 React 不要在这一层报 hydration mismatch。
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
       </head>
@@ -59,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <BgmVinyl />
           </MainTheme>
           <RevealScript />
+          <EasterEggs />
         </LangProvider>
       </body>
     </html>
