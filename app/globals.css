@@ -10,12 +10,16 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* 全局兜底：装饰性外溢光晕（halo / hover glow）不会触发横向滚动。
+       用 clip 不创建滚动容器，sticky nav / 内部滚动行为均不受影响。 */
+    overflow-x: clip;
   }
 
   body {
     @apply bg-paper text-ink font-sans antialiased;
     font-feature-settings: 'ss01', 'cv11';
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
 
   ::selection {
