@@ -52,7 +52,7 @@ export default function Tongbar() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-5 right-5 z-50 flex items-end gap-3"
+      className="pointer-events-none fixed bottom-5 left-5 z-50 flex flex-row-reverse items-end gap-3"
       aria-live="polite"
     >
       <div
@@ -61,17 +61,17 @@ export default function Tongbar() {
         }`}
       >
         <span aria-hidden="true">{text}</span>
-        {/* Tail pointing right */}
+        {/* Tail pointing left (toward Tongbar on left side) */}
         <span
           aria-hidden="true"
-          className="absolute -right-1.5 bottom-4 h-3 w-3 rotate-45 bg-surface"
-          style={{ boxShadow: '2px -2px 0 rgba(0,0,0,0.04)' }}
+          className="absolute -left-1.5 bottom-4 h-3 w-3 rotate-45 bg-surface"
+          style={{ boxShadow: '-2px 2px 0 rgba(0,0,0,0.04)' }}
         />
         <button
           type="button"
           onClick={dismiss}
           aria-label={lang === 'zh' ? '把铜板儿哄走' : 'Shoo Tongbar away'}
-          className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full border border-hairline bg-paper text-[10px] text-ink-3 transition-colors hover:text-ink"
+          className="absolute -top-2 -left-2 flex h-5 w-5 items-center justify-center rounded-full border border-hairline bg-paper text-[10px] text-ink-3 transition-colors hover:text-ink"
         >
           ✕
         </button>
