@@ -489,6 +489,53 @@ body > * {
   background: rgba(255, 255, 255, 0.03) !important;
 }
 
+/* Dark mode 第三轮收尾 (2026-05-24)：补漏的几个 tint / gradient.
+
+   1) bg-cream/70 — Tongbar 桌面宠物按钮底，原是浅米黄圆，dark 下变温暖琥珀微光
+   2) bg-sage   — Parlor "听友群"等"免费"badge 用的纯绿底，dark 下深绿玻璃感
+   3) bg-gradient-to-br · from-X/via-X/to-X — featured-podcast / home host card /
+      bar magic-link 三处暖色渐变背板，dark 下把每个色站调暗 + 减不透明度，保留
+      渐变层次但不刺眼 */
+
+/* 1) Tongbar 等用 cream/70 浅米的圆 */
+[data-theme='dark'] .bg-cream\/70 {
+  background-color: rgba(244, 220, 165, 0.10) !important;
+}
+
+/* 2) 纯色 sage / peach / cream pill (作 badge 用) */
+[data-theme='dark'] .bg-sage {
+  background-color: rgba(180, 220, 195, 0.14) !important;
+  color: #b9e4c9 !important;
+}
+[data-theme='dark'] .bg-peach {
+  background-color: rgba(255, 178, 145, 0.14) !important;
+  color: #ffc4a8 !important;
+}
+[data-theme='dark'] .bg-cream {
+  background-color: rgba(244, 220, 165, 0.14) !important;
+  color: #f4e4b8 !important;
+}
+
+/* 3) 渐变背板的色站 — 关键是改 --tw-gradient-from/via/to 这三个 CSS 变量，
+      渐变 utility 在背后用它们组装。把三个色站都调成低不透明度暖色调。 */
+[data-theme='dark'] .from-peach\/60,
+[data-theme='dark'] .from-cream\/60 {
+  --tw-gradient-from: rgba(255, 178, 145, 0.10) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(255, 178, 145, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+[data-theme='dark'] .via-cream\/40,
+[data-theme='dark'] .via-peach\/40,
+[data-theme='dark'] .via-surface {
+  --tw-gradient-via-position: ;
+  --tw-gradient-to: rgba(255, 220, 165, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 220, 165, 0.06) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+[data-theme='dark'] .to-sky2\/40,
+[data-theme='dark'] .to-sky2\/30 {
+  --tw-gradient-to: rgba(170, 220, 250, 0.06) var(--tw-gradient-to-position) !important;
+}
+
 /* 2026-05-24 Claire 收官：home 4 房间卡彻底去 border/卡背景 light+dark 都纯光晕 */
 .tilt-card-inner {
   background: transparent !important;

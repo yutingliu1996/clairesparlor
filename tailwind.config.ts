@@ -9,6 +9,8 @@ import type { Config } from 'tailwindcss';
  */
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  // Dark mode driven by <html data-theme="dark"> set by ThemeToggle
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
