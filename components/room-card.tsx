@@ -20,13 +20,8 @@ const SUB_ORBS: Record<string, string[]> = {
   cooperate: ['✉️', '💼'],
 };
 
-// 每张卡的光晕色（取自 tailwind.config.ts 的 cream/peach/sage/sky2 hex 值，提到 .85 透明度让它在白底上柔和）
-const GLOW_COLOR: Record<string, string> = {
-  parlor: 'rgba(248, 228, 220, 0.85)',     // peach
-  studio: 'rgba(226, 232, 244, 0.85)',     // sky2
-  workshop: 'rgba(230, 238, 229, 0.85)',   // sage
-  cooperate: 'rgba(244, 239, 230, 0.85)',  // cream
-};
+// 2026-05-24 Claire 收官：4 张卡共用一种嫩鹅黄光晕，去边框，光晕大于卡片
+const GLOW = 'rgba(255, 240, 150, 0.85)'; // 嫩鹅黄
 
 export default function RoomCard({ room }: { room: Room }) {
   const { lang } = useLang();
@@ -34,18 +29,18 @@ export default function RoomCard({ room }: { room: Room }) {
   return (
     <Link
       href={`/${room.slug}`}
-      className="tilt-card group block aspect-[4/5] sm:aspect-square md:aspect-[4/5]"
+      className="tilt-card group relative block aspect-[4/5] sm:aspect-square md:aspect-[4/5]"
     >
-      <div className="thiings-card tilt-card-inner h-full overflow-hidden p-7 md:p-9">
-        {/* 柔和 radial 光晕：中心落在卡片中部（emoji 区域），向四周柔和淡出 */}
-        <div
-          className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(ellipse 70% 55% at 50% 45%, ${GLOW_COLOR[room.slug] ?? 'rgba(244, 239, 230, 0.85)'} 0%, transparent 75%)`,
-            opacity: 0.95,
-          }}
-          aria-hidden="true"
-        />
+      {/* 外溢光晕：比卡片大 30%，柔和扩散，落在卡片中心 */}
+      <div
+        className="pointer-events-none absolute -inset-[15%] transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle at 50% 50%, ${GLOW} 0%, transparent 60%)`,
+          opacity: 0.7,
+        }}
+        aria-hidden="true"
+      />
+      <div className="tilt-card-inner relative h-full overflow-visible p-7 md:p-9">
 
         <div className="relative flex h-full flex-col items-center justify-between text-center">
           <div className="flex w-full items-center justify-between">

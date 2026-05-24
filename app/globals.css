@@ -488,3 +488,10 @@ body > * {
   box-shadow: none !important;
   background: rgba(255, 255, 255, 0.03) !important;
 }
+
+/* 2026-05-24 Claire 收官：home 4 房间卡彻底去 border/卡背景 light+dark 都纯光晕 */
+.tilt-card-inner {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
