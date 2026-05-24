@@ -2,6 +2,7 @@
 
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
+import PlatformLogo from '@/components/platform-logo';
 import { GUESTS, HANGOUTS, PLATFORMS } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
 
@@ -175,13 +176,7 @@ export default function ParlorPage() {
               rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft"
             >
-              <span
-                aria-hidden="true"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-paper text-2xl"
-                style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.06))' }}
-              >
-                {p.glyph}
-              </span>
+              <PlatformLogo platform={p.key} />
               <div className="min-w-0">
                 <div className="font-rounded text-[15px] font-semibold leading-tight">
                   {lang === 'zh' ? (
