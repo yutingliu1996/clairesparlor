@@ -398,7 +398,10 @@ body > * {
 
 /* Dark mode 文字可读修复（2026-05-24 Claire 截图反馈）*/
 [data-theme='dark'] .bg-accent-soft {
-  background-color: rgba(255, 87, 51, 0.22) !important;
+  /* 不用饱和橙红，用半透明白 + 微 brand 暖光，柔和过渡 */
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.10) !important;
+  border-radius: 4px;
 }
 [data-theme='dark'] mark,
 [data-theme='dark'] [class*='bg-yellow'],
@@ -474,4 +477,14 @@ body > * {
 [data-theme='dark'] .live-status-pill {
   background-color: #1f1f1f !important;
   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Dark mode: 首页 4 房间卡（RoomCard）去掉卡片背景，只留光晕 + emoji + 文字 */
+[data-theme='dark'] .tilt-card .thiings-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+[data-theme='dark'] .tilt-card:hover .thiings-card {
+  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.03) !important;
 }
