@@ -410,7 +410,7 @@ export const PLATFORMS: Platform[] = [
   { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
   { key: 'x', zh: 'X · Twitter', en: 'X', handle: '@clairesparlor', href: 'https://x.com/clairesparlor', glyph: '✖️', group: 'global' },
   { key: 'substack', zh: 'Substack', en: 'Newsletter', handle: 'clairesparlor.substack.com', href: 'https://clairesparlor.substack.com', glyph: '📬', group: 'global' },
-  { key: 'reddit', zh: 'Reddit', en: 'Reddit', handle: 'u/clairesparlor', href: 'https://reddit.com/user/clairesparlor', glyph: '👽', group: 'global' },
+  // Reddit 已下线（2026-05-24 Claire 决定暂不维护 Reddit）
   // Mail
   { key: 'mail', zh: 'Email', en: 'Email', handle: 'yutingliu1996@gmail.com', href: 'mailto:yutingliu1996@gmail.com', glyph: '✉️', group: 'mail' },
 ];

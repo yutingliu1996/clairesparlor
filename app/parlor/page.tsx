@@ -5,6 +5,13 @@ import SectionTitle from '@/components/section-title';
 import PlatformLogo from '@/components/platform-logo';
 import { GUESTS, HANGOUTS, PLATFORMS } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
+import QrCardModal from '@/components/qr-card-modal';
+
+// 2026-05-24 抖音 + 微信公众号扫码弹窗
+const QR_MAP: Record<string, { src: string; titleZh: string; titleEn: string; subZh: string; subEn: string }> = {
+  douyin: { src: '/qr/douyin-qr.jpg', titleZh: '扫码关注抖音', titleEn: 'Scan to follow on Douyin', subZh: '@Claire', subEn: '@Claire' },
+  wechat: { src: '/qr/wechat-public.jpg', titleZh: '扫码关注公众号', titleEn: 'Scan to follow WeChat Official', subZh: 'Claire 的会客厅', subEn: "Claire's Parlor" },
+};
 
 /**
  * /parlor — Meet the world.
@@ -168,30 +175,52 @@ export default function ParlorPage() {
           })}
         />
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PLATFORMS.map((p) => (
-            <a
-              key={p.key}
-              href={p.href}
-              target={p.href.startsWith('http') ? '_blank' : undefined}
-              rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft"
-            >
-              <PlatformLogo platform={p.key} />
-              <div className="min-w-0">
-                <div className="font-rounded text-[15px] font-semibold leading-tight">
-                  {lang === 'zh' ? (
-                    <>{p.zh} <span className="text-ink-3">· {p.en}</span></>
-                  ) : (
-                    <>{p.en} <span className="text-ink-3">· {p.zh}</span></>
-                  )}
+          {PLATFORMS.map((p) => {
+            const qr = QR_MAP[p.key];
+            const cardInner = (
+              <div className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft">
+                <PlatformLogo platform={p.key} />
+                <div className="min-w-0">
+                  <div className="font-rounded text-[15px] font-semibold leading-tight">
+                    {lang === 'zh' ? (
+                      <>{p.zh} <span className="text-ink-3">· {p.en}</span></>
+                    ) : (
+                      <>{p.en} <span className="text-ink-3">· {p.zh}</span></>
+                    )}
+                  </div>
+                  <div className="mt-1 truncate text-xs text-ink-3">{p.handle}</div>
                 </div>
-                <div className="mt-1 truncate text-xs text-ink-3">{p.handle}</div>
+                <span aria-hidden="true" className="ml-auto text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </div>
-              <span aria-hidden="true" className="ml-auto text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-          ))}
+            );
+            if (qr) {
+              return (
+                <QrCardModal
+                  key={p.key}
+                  qrSrc={qr.src}
+                  titleZh={qr.titleZh}
+                  titleEn={qr.titleEn}
+                  subZh={qr.subZh}
+                  subEn={qr.subEn}
+                >
+                  {cardInner}
+                </QrCardModal>
+              );
+            }
+            return (
+              <a
+                key={p.key}
+                href={p.href}
+                target={p.href.startsWith('http') ? '_blank' : undefined}
+                rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="block"
+              >
+                {cardInner}
+              </a>
+            );
+          })}
         </div>
       </section>
     </>
