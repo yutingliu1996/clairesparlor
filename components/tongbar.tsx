@@ -20,8 +20,8 @@ export default function Tongbar() {
   const { lang } = useLang();
 
   useEffect(() => {
-    // Stay dismissed for the rest of this tab session.
-    if (sessionStorage.getItem(STORAGE_KEY) === '1') return;
+    // 2026-05-24 Claire 强制要求：去掉 sessionStorage dismiss 持久化
+    // 每次刷新都显示，点 ✕ 只在当前 tab + 不刷新前隐藏
     const t = window.setTimeout(() => setVisible(true), SESSION_DELAY_MS);
     return () => window.clearTimeout(t);
   }, []);
@@ -41,7 +41,7 @@ export default function Tongbar() {
   }, [visible]);
 
   const dismiss = () => {
-    sessionStorage.setItem(STORAGE_KEY, '1');
+    // 不再写 sessionStorage，关 / 刷新后铜板儿都回来
     setVisible(false);
   };
 
