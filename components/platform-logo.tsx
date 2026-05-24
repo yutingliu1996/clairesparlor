@@ -9,6 +9,8 @@
  * phone home screen.
  */
 
+import type { CSSProperties } from 'react';
+
 type Props = {
   platform: string;
   size?: number;
@@ -31,6 +33,20 @@ const ALT: Record<string, string> = {
   mail: 'Gmail',
 };
 
+// 2026-05-24 Apple liquid-style 3D depth：
+//   - 多层阴影（hairline + contact + mid + deep）= 真实立体感
+//   - 内部 sheen overlay（顶部高光 + 底部微暗）= 光泽镜面
+const ICON_SHADOW =
+  '0 0 0 0.5px rgba(0, 0, 0, 0.06), ' +
+  '0 1px 2px rgba(0, 0, 0, 0.06), ' +
+  '0 4px 8px -2px rgba(0, 0, 0, 0.10), ' +
+  '0 12px 24px -8px rgba(0, 0, 0, 0.16)';
+
+const SHEEN_OVERLAY: CSSProperties = {
+  background:
+    'linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 38%, transparent 62%, rgba(0,0,0,0.06) 100%)',
+};
+
 // 2026-05-24 视频号官方 logo（白色 SVG + 品牌橙→红渐变背景），
 // 走特例渲染，不走 /logos/{key}.png 的通用路径
 function ChannelsLogo({ size }: { size: number }) {
@@ -42,8 +58,7 @@ function ChannelsLogo({ size }: { size: number }) {
         height: size,
         background:
           'linear-gradient(135deg, #FFB849 0%, #FE7A3B 50%, #FE4F38 100%)',
-        boxShadow:
-          '0 1px 2px rgba(0,0,0,0.06), 0 4px 10px -4px rgba(0,0,0,0.10)',
+        boxShadow: ICON_SHADOW,
       }}
       aria-hidden="true"
     >
@@ -55,6 +70,7 @@ function ChannelsLogo({ size }: { size: number }) {
         decoding="async"
         style={{ width: size * 0.62, height: size * 0.62 }}
       />
+      <span className="pointer-events-none absolute inset-0" style={SHEEN_OVERLAY} aria-hidden="true" />
     </span>
   );
 }
@@ -76,8 +92,7 @@ export default function PlatformLogo({ platform, size = 48 }: Props) {
       style={{
         width: size,
         height: size,
-        boxShadow:
-          '0 1px 2px rgba(0,0,0,0.06), 0 4px 10px -4px rgba(0,0,0,0.10)',
+        boxShadow: ICON_SHADOW,
       }}
       aria-hidden="true"
     >
@@ -91,6 +106,7 @@ export default function PlatformLogo({ platform, size = 48 }: Props) {
         decoding="async"
         className="h-full w-full object-cover"
       />
+      <span className="pointer-events-none absolute inset-0" style={SHEEN_OVERLAY} aria-hidden="true" />
     </span>
   );
 }

@@ -191,7 +191,7 @@ export default function ParlorPage() {
                 {items.map((p) => {
                   const qr = QR_MAP[p.key];
                   const cardInner = (
-                    <div className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft">
+                    <div className="liquid-card group flex items-center gap-4 rounded-2xl px-5 py-4">
                       <PlatformLogo platform={p.key} />
                       <div className="min-w-0">
                         <div className="font-rounded text-[15px] font-semibold leading-tight">
