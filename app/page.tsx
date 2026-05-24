@@ -25,61 +25,146 @@ export default function HomePage() {
   const { lang, t } = useLang();
   return (
     <>
-      {/* ============== 1 · HERO ============== */}
-      <section className="wrap pt-20 pb-12 md:pt-32 md:pb-16">
-        <div className="reveal in">
-          <LiveStatus />
-        </div>
+      {/* ============== 1 · HERO — two-column, mirrors PageHeader ============== */}
+      <section className="wrap pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-32 md:pb-16">
+        <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-[1fr_220px] sm:gap-10 md:grid-cols-[1fr_280px] md:gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
+          {/* LEFT — title + lede + CTAs */}
+          <div>
+            <div className="reveal in">
+              <LiveStatus />
+            </div>
 
-        <h1 className="reveal in mt-8 max-w-[20ch] text-display-xl font-semibold leading-[0.96]">
-          {lang === 'zh' ? (
-            <>
-              一个空间。
-              <br />
-              <span className="accent-display">四个房间。</span>
-            </>
-          ) : (
-            <>
-              One space.
-              <br />
-              <span className="accent-display">Four rooms.</span>
-            </>
-          )}
-        </h1>
+            <h1 className="reveal in mt-6 max-w-[20ch] text-display-xl font-semibold leading-[0.96] sm:mt-8">
+              {lang === 'zh' ? (
+                <>
+                  一个空间。
+                  <br />
+                  <span className="accent-display">四个房间。</span>
+                </>
+              ) : (
+                <>
+                  One space.
+                  <br />
+                  <span className="accent-display">Four rooms.</span>
+                </>
+              )}
+            </h1>
 
-        <div className="reveal in mt-8 grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-[1fr_auto] md:items-end">
-          <p className="text-lg text-ink-2 md:text-xl">
-            {lang === 'zh' ? (
-              <>
-                看你想做的事，挑一扇门走进来 ——
-                <span className="bg-accent-soft px-1.5 py-0.5">
-                  听播客 · 翻笔记 · 报 workshop · 找合作
-                </span>
-                ，一站搞定。
-              </>
-            ) : (
-              <>
-                Pick a door based on what you want to do —
-                <span className="bg-accent-soft px-1.5 py-0.5">
-                  listen to the pod · flip the notes · join a workshop · pitch a collab
-                </span>
-                , all in one place.
-              </>
-            )}
-          </p>
-          <div className="flex gap-3">
-            <Link
-              href="/parlor"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-surface transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              {t({ zh: '先听一期', en: 'Hear an episode' })} <span aria-hidden="true">→</span>
-            </Link>
-            <Link
-              href="/studio"
-              className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-5 py-2.5 text-sm font-medium text-ink-2 transition-colors hover:text-ink"
-            >
-              {t({ zh: '翻笔记', en: 'Flip the notes' })}
-            </Link>
+            <p className="reveal in mt-6 max-w-prose text-base text-ink-2 sm:mt-8 sm:text-lg md:text-xl">
+              {lang === 'zh' ? (
+                <>
+                  看你想做的事，挑一扇门走进来 ——
+                  <span className="bg-accent-soft px-1.5 py-0.5">
+                    听播客 · 翻笔记 · 报 workshop · 找合作
+                  </span>
+                  ，一站搞定。
+                </>
+              ) : (
+                <>
+                  Pick a door based on what you want to do —
+                  <span className="bg-accent-soft px-1.5 py-0.5">
+                    listen to the pod · flip the notes · join a workshop · pitch a collab
+                  </span>
+                  , all in one place.
+                </>
+              )}
+            </p>
+
+            <div className="reveal in mt-6 flex flex-wrap gap-3 sm:mt-8">
+              <Link
+                href="/parlor"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-surface transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                {t({ zh: '先听一期', en: 'Hear an episode' })} <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/studio"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-5 py-2.5 text-sm font-medium text-ink-2 transition-colors hover:text-ink"
+              >
+                {t({ zh: '翻笔记', en: 'Flip the notes' })}
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT — ☕ at center, 4 room glyphs orbiting at compass points,
+              wrapped in mint halo. Tells the "one space, four rooms" story
+              visually in a single tile. Matches PageHeader pattern on
+              every other page so the home no longer reads "empty on the right". */}
+          <div className="reveal in order-first sm:order-none">
+            <div className="relative flex aspect-square w-full max-w-[200px] sm:mx-auto sm:max-w-[220px] md:max-w-[280px] lg:max-w-[320px] items-center justify-center">
+              {/* Outer halo — color follows the active page theme via
+                  --accent-stroke-mid (set on <main> by MainTheme).
+                  color-mix gives us "this color at X% opacity" without
+                  hardcoding the RGB triplet. */}
+              <div
+                aria-hidden="true"
+                className="halo-pulse pointer-events-none absolute inset-[-14%]"
+                style={{
+                  background: `radial-gradient(closest-side at 50% 50%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 62%, transparent) 0%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 36%, transparent) 26%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 16%, transparent) 50%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 4%, transparent) 70%,
+                    transparent 82%)`,
+                }}
+              />
+              {/* Inner soft white core */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute"
+                style={{
+                  width: '46%',
+                  height: '46%',
+                  background:
+                    'radial-gradient(circle, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0) 72%)',
+                  filter: 'blur(6px)',
+                }}
+              />
+              {/* Center: ☕ — the brand signature */}
+              <span
+                className="float-y relative"
+                style={{
+                  fontSize: 'clamp(80px, 9.5vw, 110px)',
+                  lineHeight: 1,
+                  filter:
+                    'drop-shadow(0 14px 24px rgba(0,0,0,0.14)) drop-shadow(0 4px 8px rgba(0,0,0,0.10))',
+                }}
+                aria-hidden="true"
+              >
+                ☕
+              </span>
+              {/* Four room glyphs at NW / NE / SW / SE corners — mapped to the
+                  4 rooms (Parlor / Studio / Workshop / Cooperate). Staggered
+                  animation delays so they breathe out of sync. */}
+              <span
+                className="sub-orb float-tilt"
+                style={{ top: '4%', left: '4%', fontSize: '28px' }}
+                aria-hidden="true"
+              >
+                🛋️
+              </span>
+              <span
+                className="sub-orb float-y"
+                style={{ top: '4%', right: '4%', fontSize: '28px', animationDelay: '0.8s' }}
+                aria-hidden="true"
+              >
+                💻
+              </span>
+              <span
+                className="sub-orb float-tilt"
+                style={{ bottom: '4%', left: '4%', fontSize: '26px', animationDelay: '1.6s' }}
+                aria-hidden="true"
+              >
+                🪄
+              </span>
+              <span
+                className="sub-orb float-y"
+                style={{ bottom: '4%', right: '4%', fontSize: '26px', animationDelay: '2.4s' }}
+                aria-hidden="true"
+              >
+                🤝
+              </span>
+            </div>
           </div>
         </div>
       </section>

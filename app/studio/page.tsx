@@ -69,7 +69,6 @@ export default function StudioPage() {
         eyebrow="Room · 02"
         glyph="💻"
         subOrbs={['🪐', '🧠']}
-        halo="sky"
         title={
           lang === 'zh'
             ? <>工作台。<br /><span className="title-sub">自己埋头做事的地方。</span></>

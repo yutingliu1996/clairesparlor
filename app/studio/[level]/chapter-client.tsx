@@ -5,15 +5,8 @@ import PageHeader from '@/components/page-header';
 import type { Chapter } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
 
-const HALO_BY_LEVEL: Record<string, 'peach' | 'sky' | 'sage' | 'cream'> = {
-  l1: 'sky',
-  l2: 'sage',
-  l3: 'peach',
-  l4: 'cream',
-  l5: 'sage',
-  l6: 'sky',
-  aside: 'peach',
-};
+// Halo color is now driven by MainTheme based on path (/studio/lN);
+// chapter-client only needs to choose sub-orb glyphs.
 
 const SUB_ORBS_BY_LEVEL: Record<string, string[]> = {
   l1: ['📊', '📐'],
@@ -65,7 +58,6 @@ export default function ChapterClient({
         eyebrow={episode}
         glyph={ch.glyph}
         subOrbs={SUB_ORBS_BY_LEVEL[slug]}
-        halo={HALO_BY_LEVEL[slug]}
         title={
           <>
             {lang === 'zh' ? ch.name : ch.nameEn}

@@ -10,18 +10,10 @@
  *    with the float-y bob on the glyph itself.
  *  • A faint white core highlight inside the halo gives the emoji a
  *    backdrop without enclosing it in a box.
+ *  • Halo color is NOT hardcoded — it reads --accent-stroke-mid which
+ *    MainTheme sets per route. So the theme follows the path. To
+ *    re-theme a page, edit components/main-theme.tsx, not this file.
  */
-
-export type Halo = 'peach' | 'sky' | 'sage' | 'cream' | 'mint' | 'leaf';
-
-const HALO_RGB: Record<Halo, string> = {
-  peach: '255, 220, 100', // 温暖明亮的 sunshine yellow — Parlor
-  sky: '170, 220, 250',   // baby blue — Studio
-  sage: '185, 165, 245',  // 老友记紫 — Workshop
-  cream: '252, 230, 130', // 嫩鹅黄 — Cooperate / IP
-  mint: '255, 150, 120',  // 橙红 — accent / brand / home
-  leaf: '140, 225, 180',  // 嫩绿 — Manifesto (2026-05-24 Claire：跟主张主题绿色嫩芽呼应)
-};
 
 type Props = {
   eyebrow: string;
@@ -30,8 +22,6 @@ type Props = {
   glyph?: string;
   /** Optional floating sub-objects around the hero glyph. */
   subOrbs?: string[];
-  /** Halo color theme. */
-  halo?: Halo;
 };
 
 export default function PageHeader({
@@ -40,9 +30,7 @@ export default function PageHeader({
   lede,
   glyph,
   subOrbs = [],
-  halo = 'cream',
 }: Props) {
-  const rgb = HALO_RGB[halo];
   return (
     <header className="wrap pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-28 md:pb-20">
       <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-[1fr_200px] sm:gap-10 md:grid-cols-[1fr_240px] md:gap-12 lg:grid-cols-[1fr_280px] lg:gap-16">
@@ -59,17 +47,19 @@ export default function PageHeader({
         {glyph && (
           <div className="reveal in order-first sm:order-none">
             <div className="relative flex aspect-square w-full max-w-[180px] sm:mx-auto sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] items-center justify-center">
-              {/* Outer halo — 2026-05-24 Claire 反馈：再亮一点 + dark 有灵光乍现感
-                  light 模式提 alpha + 扩大半径；dark 模式 .halo-glow class 在 globals.css 加 brightness */}
+              {/* Outer halo — color follows page theme via --accent-stroke-mid
+                  (set by MainTheme per route). color-mix gives "this color at
+                  X% opacity" without hardcoding RGB. Alpha curve 85→55→28→10
+                  preserves the bright-and-glowy character Claire 调过的. */}
               <div
                 aria-hidden="true"
                 className="halo-pulse halo-glow pointer-events-none absolute inset-[-22%]"
                 style={{
                   background: `radial-gradient(closest-side at 50% 50%,
-                    rgba(${rgb}, 0.85) 0%,
-                    rgba(${rgb}, 0.55) 22%,
-                    rgba(${rgb}, 0.28) 45%,
-                    rgba(${rgb}, 0.10) 68%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 85%, transparent) 0%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 55%, transparent) 22%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 28%, transparent) 45%,
+                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 10%, transparent) 68%,
                     transparent 85%)`,
                 }}
               />

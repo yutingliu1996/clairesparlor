@@ -26,7 +26,6 @@ export default function ParlorPage() {
         eyebrow="Room · 01"
         glyph="🛋️"
         subOrbs={['🎙️', '☕']}
-        halo="peach"
         title={
           lang === 'zh'
             ? <>会客厅。<br /><span className="title-sub">跟世界打交道的地方。</span></>

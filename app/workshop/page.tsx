@@ -89,7 +89,6 @@ export default function WorkshopPage() {
         eyebrow="Room · 03"
         glyph="🪄"
         subOrbs={['⚡', '🚀']}
-        halo="sage"
         title={
           lang === 'zh'
             ? <>来工坊<br /><span className="title-sub">学一手。</span></>

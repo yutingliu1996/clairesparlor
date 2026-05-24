@@ -16,7 +16,6 @@ export default function CooperatePage() {
         eyebrow="Room · 04"
         glyph="🤝"
         subOrbs={['💼', '✉️']}
-        halo="cream"
         title={
           lang === 'zh'
             ? <>客户 / 投资人。<br /><span className="title-sub italic">金主爸爸。</span></>

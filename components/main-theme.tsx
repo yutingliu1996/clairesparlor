@@ -1,7 +1,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import type { Halo } from './page-header';
 
 /**
  * MainTheme — sets per-route accent CSS variables on <main>.
@@ -10,7 +9,13 @@ import type { Halo } from './page-header';
  * subtitle color all derive from that halo. This is what gives the
  * site its "every page is its own color world" feel without changing
  * any page code.
+ *
+ * MainTheme is the single source of truth for halo colors. PageHeader
+ * and home page hero both read --accent-stroke-mid via color-mix,
+ * so they automatically follow whatever theme is set here.
  */
+
+export type Halo = 'peach' | 'sky' | 'sage' | 'cream' | 'mint' | 'leaf';
 
 type Theme = {
   text: string;        // accent text color on light bg

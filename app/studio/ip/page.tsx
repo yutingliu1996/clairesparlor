@@ -19,7 +19,6 @@ export default function StudioIPPage() {
         eyebrow={t({ zh: '🎨 STUDIO · IP', en: '🎨 STUDIO · IP' })}
         glyph="🎭"
         subOrbs={['🐱', '🎹']}
-        halo="cream"
         title={
           lang === 'zh' ? (
             <>

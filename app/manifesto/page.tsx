@@ -15,7 +15,6 @@ export default function ManifestoPage() {
         eyebrow={lang === 'zh' ? '✊ Manifesto · 我的主张' : '✊ Manifesto · My Beliefs'}
         glyph="🌱"
         subOrbs={['🔥', '🌍']}
-        halo="leaf"
         title={
           lang === 'zh'
             ? <>别被职场磨平 ——<br /><em className="accent-display">向上长，无界长。</em></>
