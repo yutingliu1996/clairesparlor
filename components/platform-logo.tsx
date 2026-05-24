@@ -14,6 +14,7 @@ type Props = {
   size?: number;
 };
 
+/** alt text per platform */
 const ALT: Record<string, string> = {
   rednote: '小红书',
   bili: '哔哩哔哩',
@@ -58,9 +59,17 @@ function ChannelsLogo({ size }: { size: number }) {
   );
 }
 
+/** map platform key → file under public/logos. By default key === filename;
+ *  this map is for the rare cases where the file name differs (e.g. when
+ *  multiple keys share one file). Currently empty since every platform has
+ *  its own icon under /logos/{key}.png — including 视频号 (channels.png,
+ *  fetched from res.wx.qq.com/.../finder-helper-web/res/favicon-v2.ico). */
+const FILE: Record<string, string> = {};
+
 export default function PlatformLogo({ platform, size = 48 }: Props) {
   if (platform === 'channels') return <ChannelsLogo size={size} />;
   const key = platform in ALT ? platform : 'mail';
+  const file = FILE[key] ?? key;
   return (
     <span
       className="relative flex shrink-0 overflow-hidden rounded-xl"
@@ -74,7 +83,7 @@ export default function PlatformLogo({ platform, size = 48 }: Props) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/logos/${key}.png`}
+        src={`/logos/${file}.png`}
         alt={ALT[key]}
         width={size * 2}
         height={size * 2}

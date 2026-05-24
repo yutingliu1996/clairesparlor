@@ -161,7 +161,7 @@ export default function ParlorPage() {
         </div>
       </section>
 
-      {/* FIND ME */}
+      {/* FIND ME — grouped by region: 国内 / 海外 / Email */}
       <section className="wrap reveal pb-24">
         <SectionTitle
           eyebrow={t({ zh: '🤝 Find me · 在哪里找我', en: '🤝 Find me' })}
@@ -171,58 +171,70 @@ export default function ParlorPage() {
               : <>Want to talk?<br />Find me here</>
           }
           sub={t({
-            zh: '海外平台 handle 已锁 @clairesparlor。反馈、合作、闲聊、骂我都可以——哪个平台舒服哪个来。',
-            en: 'Handle is @clairesparlor across global platforms. Feedback, collab, small talk, even hate mail — whichever platform feels easiest.',
+            zh: '反馈、合作、闲聊、骂我都可以——哪个平台舒服哪个来。',
+            en: 'Feedback, collab, small talk, even hate mail — whichever platform feels easiest.',
           })}
         />
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PLATFORMS.map((p) => {
-            const qr = QR_MAP[p.key];
-            const cardInner = (
-              <div className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft">
-                <PlatformLogo platform={p.key} />
-                <div className="min-w-0">
-                  <div className="font-rounded text-[15px] font-semibold leading-tight">
-                    {lang === 'zh' ? (
-                      <>{p.zh} <span className="text-ink-3">· {p.en}</span></>
-                    ) : (
-                      <>{p.en} <span className="text-ink-3">· {p.zh}</span></>
-                    )}
-                  </div>
-                  <div className="mt-1 truncate text-xs text-ink-3">{p.handle}</div>
-                </div>
-                <span aria-hidden="true" className="ml-auto text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
+
+        {(['cn', 'global', 'mail'] as const).map((group) => {
+          const items = PLATFORMS.filter((p) => p.group === group);
+          if (items.length === 0) return null;
+          const groupLabel =
+            group === 'cn'
+              ? t({ zh: '🇨🇳 国内平台', en: '🇨🇳 China' })
+              : group === 'global'
+              ? t({ zh: '🌍 海外平台 · @clairesparlor', en: '🌍 Global · @clairesparlor' })
+              : t({ zh: '✉️ 邮件', en: '✉️ Mail' });
+          return (
+            <div key={group} className="mt-10 first:mt-0">
+              <div className="eyebrow mb-4">{groupLabel}</div>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {items.map((p) => {
+                  const qr = QR_MAP[p.key];
+                  const cardInner = (
+                    <div className="group flex items-center gap-4 rounded-2xl border border-hairline bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft">
+                      <PlatformLogo platform={p.key} />
+                      <div className="min-w-0">
+                        <div className="font-rounded text-[15px] font-semibold leading-tight">
+                          {lang === 'zh' ? p.zh : p.en}
+                        </div>
+                        <div className="mt-1 truncate text-xs text-ink-3">{p.handle}</div>
+                      </div>
+                      <span aria-hidden="true" className="ml-auto text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </div>
+                  );
+                  if (qr) {
+                    return (
+                      <QrCardModal
+                        key={p.key}
+                        qrSrc={qr.src}
+                        titleZh={qr.titleZh}
+                        titleEn={qr.titleEn}
+                        subZh={qr.subZh}
+                        subEn={qr.subEn}
+                      >
+                        {cardInner}
+                      </QrCardModal>
+                    );
+                  }
+                  return (
+                    <a
+                      key={p.key}
+                      href={p.href}
+                      target={p.href.startsWith('http') ? '_blank' : undefined}
+                      rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="block"
+                    >
+                      {cardInner}
+                    </a>
+                  );
+                })}
               </div>
-            );
-            if (qr) {
-              return (
-                <QrCardModal
-                  key={p.key}
-                  qrSrc={qr.src}
-                  titleZh={qr.titleZh}
-                  titleEn={qr.titleEn}
-                  subZh={qr.subZh}
-                  subEn={qr.subEn}
-                >
-                  {cardInner}
-                </QrCardModal>
-              );
-            }
-            return (
-              <a
-                key={p.key}
-                href={p.href}
-                target={p.href.startsWith('http') ? '_blank' : undefined}
-                rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="block"
-              >
-                {cardInner}
-              </a>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </section>
     </>
   );
