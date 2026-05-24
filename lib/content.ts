@@ -392,29 +392,28 @@ export type Platform = {
   zh: string;
   en: string;
   handle: string;
+  handleEn?: string; // 仅当中英文 handle 含义不同时填；否则 fallback to handle
   href: string;
   glyph: string;
   group: 'cn' | 'global' | 'mail';
 };
 
 export const PLATFORMS: Platform[] = [
-  // 2026-05-24 Claire 重排：1. 视频  2. 音频  3. 图文  4. 纯文字  5. 邮件
-  // ① 视频
-  { key: 'channels', zh: '视频号', en: 'WeChat Channels', handle: '点击扫码关注', href: '#', glyph: '🎬', group: 'cn' },
-  { key: 'douyin', zh: '抖音', en: 'Douyin', handle: '点击扫码关注', href: '#', glyph: '🎵', group: 'cn' },
-  { key: 'bili', zh: 'B 站', en: 'Bilibili', handle: 'UID 293315913', href: 'https://space.bilibili.com/293315913', glyph: '📺', group: 'cn' },
-  { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
-  // ② 音频
-  { key: 'xyz', zh: '小宇宙', en: 'Xiaoyuzhou', handle: 'Claire 的会客厅', href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
-  { key: 'netease', zh: '网易云音乐', en: 'NetEase Cloud Music', handle: 'Claire 的会客厅 · 播客', href: 'https://music.163.com/#/djradio?id=1491594017', glyph: '🎧', group: 'cn' },
-  // ③ 图文
-  { key: 'rednote', zh: '小红书', en: 'rednote', handle: '@Claire · 29.8K 赞', href: 'https://xhslink.com/m/A7Sw3zZLj08', glyph: '📕', group: 'cn' },
-  { key: 'wechat', zh: '公众号', en: 'WeChat', handle: '点击扫码关注', href: '#', glyph: '💬', group: 'cn' },
+  // 2026-05-24 Claire 定的最终顺序（国内：视频 → 图文/音频 → 短文 → 公众号）
+  // 国内
+  { key: 'bili', zh: 'B 站', en: 'Bilibili', handle: 'Claire 的会客厅', handleEn: "Claire's Parlor", href: 'https://space.bilibili.com/293315913', glyph: '📺', group: 'cn' },
+  { key: 'douyin', zh: '抖音', en: 'Douyin', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎵', group: 'cn' },
+  { key: 'channels', zh: '视频号', en: 'WeChat Channels', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '🎬', group: 'cn' },
+  { key: 'rednote', zh: '小红书', en: 'rednote', handle: '@Claire · 29.8K 赞', handleEn: '@Claire · 29.8K likes', href: 'https://xhslink.com/m/A7Sw3zZLj08', glyph: '📕', group: 'cn' },
+  { key: 'netease', zh: '网易云音乐', en: 'NetEase Cloud Music', handle: 'Claire 的会客厅 · 播客', handleEn: "Claire's Parlor · Podcasts", href: 'https://music.163.com/#/djradio?id=1491594017', glyph: '🎧', group: 'cn' },
+  { key: 'xyz', zh: '小宇宙', en: 'Xiaoyuzhou', handle: 'Claire 的会客厅', handleEn: "Claire's Parlor", href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
   { key: 'jike', zh: '即刻', en: 'Jike', handle: '@Claire', href: 'https://web.okjike.com/u/3b2eb514-7b8d-4bb3-aa5b-5501f34dd4b2', glyph: '🟡', group: 'cn' },
-  { key: 'substack', zh: 'Substack', en: 'Substack', handle: 'clairesparlor.substack.com', href: 'https://clairesparlor.substack.com', glyph: '📬', group: 'global' },
-  // ④ 纯文字
+  { key: 'wechat', zh: '公众号', en: 'WeChat', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '💬', group: 'cn' },
+  // 海外（顺序：YouTube → X → Substack）
+  { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
   { key: 'x', zh: 'X · Twitter', en: 'X', handle: '@clairesparlor', href: 'https://x.com/clairesparlor', glyph: '✖️', group: 'global' },
-  // ⑤ 邮件
+  { key: 'substack', zh: 'Substack', en: 'Substack', handle: 'clairesparlor.substack.com', href: 'https://clairesparlor.substack.com', glyph: '📬', group: 'global' },
+  // 邮件
   { key: 'mail', zh: 'Gmail', en: 'Gmail', handle: 'yutingliu1996@gmail.com', href: 'mailto:yutingliu1996@gmail.com', glyph: '✉️', group: 'mail' },
 ];
 
