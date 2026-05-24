@@ -9,6 +9,7 @@ import QrCardModal from '@/components/qr-card-modal';
 
 // 2026-05-24 抖音 + 微信公众号扫码弹窗
 const QR_MAP: Record<string, { src: string; titleZh: string; titleEn: string; subZh: string; subEn: string }> = {
+  channels: { src: '/qr/channels-qr.jpg', titleZh: '扫码关注视频号', titleEn: 'Scan to follow WeChat Channels', subZh: 'Claire 的会客厅', subEn: "Claire's Parlor" },
   douyin: { src: '/qr/douyin-qr.jpg', titleZh: '扫码关注抖音', titleEn: 'Scan to follow on Douyin', subZh: '@Claire', subEn: '@Claire' },
   wechat: { src: '/qr/wechat-public.jpg', titleZh: '扫码关注公众号', titleEn: 'Scan to follow WeChat Official', subZh: 'Claire 的会客厅', subEn: "Claire's Parlor" },
 };
