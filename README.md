@@ -13,7 +13,7 @@
 - **Next.js 14** App Router · 静态导出（`output: 'export'`）
 - **TypeScript**
 - **Tailwind CSS v3**
-- **部署**：Vercel（自动适配 Next 静态导出）
+- **部署**：Cloudflare Pages（Git 集成 / 自动 CI）— 详见 [DEPLOY.md](./DEPLOY.md)
 
 零运行时依赖：除了 next/react，没有任何第三方 UI 库或图标包。
 
