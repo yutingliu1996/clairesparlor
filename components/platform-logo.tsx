@@ -21,6 +21,7 @@ const ALT: Record<string, string> = {
   xyz: '小宇宙',
   netease: '网易云音乐',
   wechat: '微信',
+  channels: '微信视频号',
   jike: '即刻',
   yt: 'YouTube',
   x: 'X',
@@ -29,7 +30,36 @@ const ALT: Record<string, string> = {
   mail: 'Gmail',
 };
 
+// 2026-05-24 视频号官方 logo（白色 SVG + 品牌橙→红渐变背景），
+// 走特例渲染，不走 /logos/{key}.png 的通用路径
+function ChannelsLogo({ size }: { size: number }) {
+  return (
+    <span
+      className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-xl"
+      style={{
+        width: size,
+        height: size,
+        background:
+          'linear-gradient(135deg, #FFB849 0%, #FE7A3B 50%, #FE4F38 100%)',
+        boxShadow:
+          '0 1px 2px rgba(0,0,0,0.06), 0 4px 10px -4px rgba(0,0,0,0.10)',
+      }}
+      aria-hidden="true"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logos/channels.svg"
+        alt="微信视频号"
+        loading="lazy"
+        decoding="async"
+        style={{ width: size * 0.62, height: size * 0.62 }}
+      />
+    </span>
+  );
+}
+
 export default function PlatformLogo({ platform, size = 48 }: Props) {
+  if (platform === 'channels') return <ChannelsLogo size={size} />;
   const key = platform in ALT ? platform : 'mail';
   return (
     <span
