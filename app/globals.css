@@ -83,14 +83,15 @@
     50%      { background-position: 100% 50%; }
   }
 
-  /* On dark / ink backgrounds — 浅版本 3-stop shimmer */
+  /* On dark / ink backgrounds — 2026-05-24 Claire 反馈"不够抓眼"：
+     从浅 textDark→白 渐变 改成 饱和 dot→浅 textDark→饱和 dot，两端饱和橙红中间亮白光泽 */
   .accent.on-dark,
   .accent-display.on-dark {
     background-image: linear-gradient(
       120deg,
-      var(--accent-text-dark, #FFC4A8) 0%,
-      #ffffff 45%,
-      var(--accent-text-dark, #FFC4A8) 100%
+      var(--accent-dot, #FF5733) 0%,
+      var(--accent-text-dark, #FFC4A8) 50%,
+      var(--accent-dot, #FF5733) 100%
     );
     background-size: 220% 100%;
     -webkit-background-clip: text;
