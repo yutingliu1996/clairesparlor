@@ -277,6 +277,33 @@
   animation: halo-pulse 7s ease-in-out infinite;
 }
 
+/* ===== Tongbar (desktop pet) ===== */
+@keyframes tongbar-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.02); }
+}
+@keyframes tongbar-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+@keyframes tongbar-wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+@keyframes tongbar-tail {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(8deg); }
+}
+/* Eye blink-into-smile overlay (popped/happy state) */
+@keyframes tongbar-eye-smile {
+  0%, 80%, 100% { opacity: 0; }
+  84%, 90%      { opacity: 1; }
+}
+@keyframes tongbar-halo {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.08); }
+}
+
 @keyframes shimmer {
   from { transform: translateX(-100%); }
   to   { transform: translateX(100%); }
