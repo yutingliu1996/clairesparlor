@@ -505,6 +505,32 @@ body > * {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* Dark mode: BGM 唱片机原本黑漆漆贴近 #0a0a0a 完全融进背景。
+   1) 用 !important 覆盖内联 background，把 groove 的高光环抬亮（#5a5a5a / #444），
+      保留中间黑色凹槽，看起来像被灯光照亮的 polished vinyl
+   2) 加一圈银色 inset rim + 外层柔光，让圆盘边缘从黑底里浮出来
+   3) 中心针孔的 bg-paper 在 dark 下被全局规则改成 #0a0a0a 也消失了，重新拉回亮色 */
+[data-theme='dark'] .bgm-vinyl-disc {
+  background:
+    radial-gradient(
+      circle,
+      #5a5a5a 0%,
+      #1a1a1a 28%,
+      #4a4a4a 35%,
+      #1a1a1a 65%,
+      #5a5a5a 100%
+    ) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(255, 255, 255, 0.05) !important;
+}
+[data-theme='dark'] .bgm-vinyl-pin {
+  background-color: #fafafa !important;
+}
+
 /* Dark mode: 首页 4 房间卡（RoomCard）去掉卡片背景，只留光晕 + emoji + 文字 */
 [data-theme='dark'] .tilt-card .thiings-card {
   background: transparent !important;

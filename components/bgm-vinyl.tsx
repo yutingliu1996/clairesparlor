@@ -114,9 +114,10 @@ export default function BgmVinyl() {
         aria-pressed={playing}
         className="relative block h-20 w-20 transition-transform hover:scale-105"
       >
-        {/* 唱片 — 右下角 56x56 */}
+        {/* 唱片 — 右下角 56x56
+            class `bgm-vinyl-disc` 用作 dark 模式的钩子（globals.css 里加亮 groove + 银色边） */}
         <span
-          className="absolute bottom-0 right-0 block h-14 w-14 overflow-hidden rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+          className="bgm-vinyl-disc absolute bottom-0 right-0 block h-14 w-14 overflow-hidden rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
           style={{
             background:
               'radial-gradient(circle, #2a2a2a 0%, #0a0a0a 28%, #1a1a1a 35%, #0a0a0a 65%, #2a2a2a 100%)',
@@ -130,8 +131,8 @@ export default function BgmVinyl() {
           >
             🎵
           </span>
-          {/* 唱片中心针孔 */}
-          <span className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper" />
+          {/* 唱片中心针孔 — class `bgm-vinyl-pin` 让 dark 模式下保留白点（不被 bg-paper 全局深色覆盖） */}
+          <span className="bgm-vinyl-pin absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-paper" />
         </span>
 
         {/* 唱针 — 仿网易云风格：纯白扁平、轻微 drop-shadow、臂身略带弯折
