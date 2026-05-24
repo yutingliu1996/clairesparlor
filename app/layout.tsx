@@ -5,6 +5,7 @@ import Footer from '@/components/footer';
 import RevealScript from '@/components/reveal-script';
 import Tongbar from '@/components/tongbar';
 import MainTheme from '@/components/main-theme';
+import BgmVinyl from '@/components/bgm-vinyl';
 import { LangProvider } from '@/components/lang-context';
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main>{children}</main>
             <Footer />
             <Tongbar />
+            <BgmVinyl />
           </MainTheme>
           <RevealScript />
         </LangProvider>
