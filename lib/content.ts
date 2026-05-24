@@ -409,10 +409,10 @@ export const PLATFORMS: Platform[] = [
   { key: 'xyz', zh: '小宇宙', en: 'Xiaoyuzhou', handle: 'Claire 的会客厅', handleEn: "Claire's Parlor", href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
   { key: 'jike', zh: '即刻', en: 'Jike', handle: '@Claire', href: 'https://web.okjike.com/u/3b2eb514-7b8d-4bb3-aa5b-5501f34dd4b2', glyph: '🟡', group: 'cn' },
   { key: 'wechat', zh: '公众号', en: 'WeChat', handle: '点击扫码关注', handleEn: 'Scan to follow', href: '#', glyph: '💬', group: 'cn' },
-  // 海外
+  // 海外（顺序：YouTube → X → Substack）
   { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
-  { key: 'substack', zh: 'Substack', en: 'Substack', handle: 'clairesparlor.substack.com', href: 'https://clairesparlor.substack.com', glyph: '📬', group: 'global' },
   { key: 'x', zh: 'X · Twitter', en: 'X', handle: '@clairesparlor', href: 'https://x.com/clairesparlor', glyph: '✖️', group: 'global' },
+  { key: 'substack', zh: 'Substack', en: 'Substack', handle: 'clairesparlor.substack.com', href: 'https://clairesparlor.substack.com', glyph: '📬', group: 'global' },
   // 邮件
   { key: 'mail', zh: 'Gmail', en: 'Gmail', handle: 'yutingliu1996@gmail.com', href: 'mailto:yutingliu1996@gmail.com', glyph: '✉️', group: 'mail' },
 ];
