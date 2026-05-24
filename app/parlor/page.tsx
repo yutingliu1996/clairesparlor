@@ -197,7 +197,7 @@ export default function ParlorPage() {
                         <div className="font-rounded text-[15px] font-semibold leading-tight">
                           {lang === 'zh' ? p.zh : p.en}
                         </div>
-                        <div className="mt-1 truncate text-xs text-ink-3">{p.handle}</div>
+                        <div className="mt-1 truncate text-xs text-ink-3">{lang === 'zh' ? p.handle : (p.handleEn ?? p.handle)}</div>
                       </div>
                       <span aria-hidden="true" className="ml-auto text-ink-4 transition-transform duration-300 group-hover:translate-x-1">
                         →
