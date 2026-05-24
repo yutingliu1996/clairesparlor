@@ -405,8 +405,8 @@ export const PLATFORMS: Platform[] = [
   { key: 'bili', zh: 'B 站', en: 'Bilibili', handle: 'UID 293315913', href: 'https://space.bilibili.com/293315913', glyph: '📺', group: 'cn' },
   { key: 'yt', zh: 'YouTube', en: 'YouTube', handle: '@clairesparlor', href: 'https://www.youtube.com/@clairesparlor', glyph: '📹', group: 'global' },
   // ② 音频
-  { key: 'xyz', zh: '小宇宙', en: 'Podcast', handle: 'Claire 的会客厅', href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
-  { key: 'netease', zh: '网易云', en: '播客', handle: 'Claire 的会客厅', href: 'https://music.163.com/#/djradio?id=1491594017', glyph: '🎧', group: 'cn' },
+  { key: 'xyz', zh: '小宇宙', en: 'Xiaoyuzhou', handle: 'Claire 的会客厅', href: 'https://www.xiaoyuzhoufm.com/podcast/69e4c6803a001fce5f9c48a2', glyph: '🎙️', group: 'cn' },
+  { key: 'netease', zh: '网易云音乐', en: 'NetEase Cloud Music', handle: 'Claire 的会客厅 · 播客', href: 'https://music.163.com/#/djradio?id=1491594017', glyph: '🎧', group: 'cn' },
   // ③ 图文
   { key: 'rednote', zh: '小红书', en: 'Xiaohongshu', handle: '@Claire · 29.8K 赞', href: 'https://xhslink.com/m/A7Sw3zZLj08', glyph: '📕', group: 'cn' },
   { key: 'wechat', zh: '公众号', en: 'WeChat', handle: '点击扫码关注', href: '#', glyph: '💬', group: 'cn' },
