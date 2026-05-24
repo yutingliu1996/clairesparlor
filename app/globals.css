@@ -462,3 +462,9 @@ body > * {
   filter: blur(10px) brightness(1.4) !important;
   background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 72%) !important;
 }
+
+/* Dark mode: live-status pill 跟 body 黑底融了，提亮 + 加 border */
+[data-theme='dark'] .live-status-pill {
+  background-color: #1f1f1f !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}

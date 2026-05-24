@@ -32,7 +32,7 @@ export default function LiveStatus() {
     <span
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-3.5 py-1.5 text-xs text-surface shadow-[0_4px_12px_-4px_rgba(0,0,0,0.25)]"
+      className="live-status-pill inline-flex items-center gap-2 rounded-full bg-ink px-3.5 py-1.5 text-xs text-surface shadow-[0_4px_12px_-4px_rgba(0,0,0,0.25)]"
     >
       {/* 红点呼吸 REC — inline 因为 pill class 不再用 */}
       <span
