@@ -294,13 +294,26 @@
   0%, 100% { transform: rotate(-3deg); }
   50%      { transform: rotate(3deg); }
 }
-@keyframes tongbar-tail {
-  0%, 100% { transform: rotate(-6deg); }
-  50%      { transform: rotate(8deg); }
-}
 @keyframes tongbar-halo {
   0%, 100% { opacity: 0.55; transform: scale(1); }
   50%      { opacity: 0.85; transform: scale(1.08); }
+}
+
+/* 单帧切换交叉过渡 —— 任意时刻只有一张帧 fully opaque，避免叠层"双脸"伪影。
+   入场帧 0→1，出场帧 1→0，时长由 React 端的 FADE_MS 同步。 */
+@keyframes tongbar-frame-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes tongbar-frame-exit {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+.tongbar-frame-enter {
+  animation: tongbar-frame-enter 360ms ease-out;
+}
+.tongbar-frame-exit {
+  animation: tongbar-frame-exit 360ms ease-out forwards;
 }
 
 @keyframes shimmer {
