@@ -93,15 +93,16 @@ export default function StudioPage() {
       <section className="wrap reveal pb-20">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
           {subRooms.map((s) => (
-            <Link key={s.href} href={s.href} className="thiings-card group block aspect-square overflow-hidden p-6">
-              <div className={`absolute inset-x-0 top-0 h-3/5 ${s.tint} opacity-70 transition-opacity duration-500 group-hover:opacity-100`} aria-hidden="true" />
-              <div className="relative flex h-full flex-col items-center justify-between text-center">
-                <div className="thiings-object" style={{ fontSize: 64 }} aria-hidden="true">
-                  {s.glyph}
+            <Link key={s.href} href={s.href} className="thiings-card group relative block aspect-square overflow-hidden">
+              <div className="flex h-full flex-col text-center">
+                <div className={`relative flex h-3/5 items-center justify-center ${s.tint} opacity-70 transition-opacity duration-500 group-hover:opacity-100`}>
+                  <div className="thiings-object" style={{ fontSize: 'clamp(46px, 13vw, 64px)' }} aria-hidden="true">
+                    {s.glyph}
+                  </div>
                 </div>
-                <div>
-                  <div className="font-rounded text-xl font-semibold tracking-tight">{s.name}</div>
-                  <div className="mt-1 text-xs text-ink-3">{s.sub}</div>
+                <div className="flex h-2/5 w-full flex-col items-center justify-center px-3 sm:px-4">
+                  <div className="font-rounded text-base font-semibold tracking-tight sm:text-xl">{s.name}</div>
+                  <div className="mt-1 text-[11px] leading-snug text-ink-3 sm:text-xs">{s.sub}</div>
                 </div>
               </div>
             </Link>
