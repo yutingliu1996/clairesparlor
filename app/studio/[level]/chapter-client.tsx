@@ -58,13 +58,8 @@ export default function ChapterClient({
         eyebrow={episode}
         glyph={ch.glyph}
         subOrbs={SUB_ORBS_BY_LEVEL[slug]}
-        title={
-          <>
-            {lang === 'zh' ? ch.name : ch.nameEn}
-            <br />
-            <span className="title-sub text-[0.62em] font-normal">{lang === 'zh' ? ch.era : ch.eraEn}</span>
-          </>
-        }
+        title={lang === 'zh' ? ch.name : ch.nameEn}
+        titleSub={<span className="title-sub text-[0.62em] font-normal">{lang === 'zh' ? ch.era : ch.eraEn}</span>}
         lede={lang === 'zh' ? ch.tagline : ch.taglineEn}
       />
 

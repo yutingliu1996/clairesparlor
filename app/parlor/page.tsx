@@ -28,8 +28,13 @@ export default function ParlorPage() {
         subOrbs={['🎙️', '☕']}
         title={
           lang === 'zh'
-            ? <>会客厅。<br /><span className="title-sub">跟世界打交道的地方。</span></>
-            : <>The Parlor.<br /><span className="title-sub">Where I meet the world.</span></>
+            ? '会客厅。'
+            : 'The Parlor.'
+        }
+        titleSub={
+          lang === 'zh'
+            ? <span className="title-sub">跟世界打交道的地方。</span>
+            : <span className="title-sub">Where I meet the world.</span>
         }
         lede={
           lang === 'zh' ? (

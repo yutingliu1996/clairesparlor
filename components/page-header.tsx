@@ -15,100 +15,127 @@
  *    re-theme a page, edit components/main-theme.tsx, not this file.
  */
 
+import FittedHeroTitle from './fitted-hero-title';
+
 type Props = {
   eyebrow: string;
   title: React.ReactNode;
+  titleSub?: React.ReactNode;
   lede?: React.ReactNode;
   glyph?: string;
   /** Optional floating sub-objects around the hero glyph. */
   subOrbs?: string[];
 };
 
+function HeroGlyph({ glyph, subOrbs = [], compact = false }: { glyph: string; subOrbs?: string[]; compact?: boolean }) {
+  return (
+    <span className={`relative mx-auto flex aspect-square w-full items-center justify-center ${compact ? 'max-w-[88px]' : 'max-w-[200px] md:max-w-[240px] lg:max-w-[280px]'}`}>
+      {/* Outer halo — color follows page theme via --accent-stroke-mid
+          (set by MainTheme per route). color-mix gives "this color at
+          X% opacity" without hardcoding RGB. Alpha curve 85→55→28→10
+          preserves the bright-and-glowy character Claire 调过的. */}
+      <span
+        aria-hidden="true"
+        className="halo-pulse halo-glow pointer-events-none absolute inset-[-22%]"
+        style={{
+          background: `radial-gradient(closest-side at 50% 50%,
+            color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 85%, transparent) 0%,
+            color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 55%, transparent) 22%,
+            color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 28%, transparent) 45%,
+            color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 10%, transparent) 68%,
+            transparent 85%)`,
+        }}
+      />
+      {/* Inner soft white core — gives the glyph a quiet backdrop */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute halo-core"
+        style={{
+          width: '50%',
+          height: '50%',
+          background:
+            'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 72%)',
+          filter: 'blur(8px)',
+        }}
+      />
+
+      {/* Main emoji — kept inside Apple emoji raster sweet spot. */}
+      <span
+        className="float-y relative"
+        style={{
+          fontSize: compact ? 'clamp(56px, 18vw, 76px)' : 'clamp(92px, 10.5vw, 122px)',
+          lineHeight: 1,
+          filter:
+            'drop-shadow(0 14px 24px rgba(0,0,0,0.14)) drop-shadow(0 4px 8px rgba(0,0,0,0.10))',
+        }}
+        aria-hidden="true"
+      >
+        {glyph}
+      </span>
+
+      {subOrbs[0] && (
+        <span
+          className="sub-orb float-tilt"
+          style={{ top: '4%', left: '4%', fontSize: compact ? '20px' : '30px' }}
+          aria-hidden="true"
+        >
+          {subOrbs[0]}
+        </span>
+      )}
+      {subOrbs[1] && (
+        <span
+          className="sub-orb float-y"
+          style={{ bottom: '4%', right: '2%', fontSize: compact ? '18px' : '28px', animationDelay: '1.5s' }}
+          aria-hidden="true"
+        >
+          {subOrbs[1]}
+        </span>
+      )}
+    </span>
+  );
+}
+
 export default function PageHeader({
   eyebrow,
   title,
+  titleSub,
   lede,
   glyph,
   subOrbs = [],
 }: Props) {
   return (
     <header className="wrap pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-28 md:pb-20">
-      <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-[1fr_200px] sm:gap-10 md:grid-cols-[1fr_240px] md:gap-12 lg:grid-cols-[1fr_280px] lg:gap-16">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_280px] lg:gap-16">
         <div className="reveal in">
           <div className="eyebrow">{eyebrow}</div>
-          <h1 className="mt-4 max-w-3xl text-display-lg font-semibold tracking-tight">
-            {title}
-          </h1>
+          <FittedHeroTitle
+            className="mt-4 max-w-3xl font-semibold tracking-tight"
+            reserveMobileGlyph={Boolean(glyph)}
+          >
+            <span className="flex items-center justify-between gap-3 lg:block">
+              <span className="min-w-0 flex-1 lg:block">
+                <span data-title-line className="block whitespace-nowrap">{title}</span>
+                {titleSub && (
+                  <span data-title-line className="block">
+                    {titleSub}
+                  </span>
+                )}
+              </span>
+              {glyph && (
+                <span className="block w-[88px] shrink-0 lg:hidden" aria-hidden="true">
+                  <HeroGlyph glyph={glyph} subOrbs={subOrbs} compact />
+                </span>
+              )}
+            </span>
+          </FittedHeroTitle>
           {lede && (
             <p className="mt-6 max-w-prose text-lg text-ink-2 md:text-xl">{lede}</p>
           )}
         </div>
 
         {glyph && (
-          <div className="reveal in order-first sm:order-none">
-            <div className="relative flex aspect-square w-full max-w-[180px] sm:mx-auto sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] items-center justify-center">
-              {/* Outer halo — color follows page theme via --accent-stroke-mid
-                  (set by MainTheme per route). color-mix gives "this color at
-                  X% opacity" without hardcoding RGB. Alpha curve 85→55→28→10
-                  preserves the bright-and-glowy character Claire 调过的. */}
-              <div
-                aria-hidden="true"
-                className="halo-pulse halo-glow pointer-events-none absolute inset-[-22%]"
-                style={{
-                  background: `radial-gradient(closest-side at 50% 50%,
-                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 85%, transparent) 0%,
-                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 55%, transparent) 22%,
-                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 28%, transparent) 45%,
-                    color-mix(in srgb, var(--accent-stroke-mid, rgba(255,150,120,1)) 10%, transparent) 68%,
-                    transparent 85%)`,
-                }}
-              />
-              {/* Inner soft white core — gives the glyph a quiet backdrop */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute halo-core"
-                style={{
-                  width: '50%',
-                  height: '50%',
-                  background:
-                    'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 72%)',
-                  filter: 'blur(8px)',
-                }}
-              />
-
-              {/* Main emoji — kept inside Apple emoji raster sweet spot */}
-              <span
-                className="float-y relative"
-                style={{
-                  fontSize: 'clamp(92px, 10.5vw, 122px)',
-                  lineHeight: 1,
-                  filter:
-                    'drop-shadow(0 14px 24px rgba(0,0,0,0.14)) drop-shadow(0 4px 8px rgba(0,0,0,0.10))',
-                }}
-                aria-hidden="true"
-              >
-                {glyph}
-              </span>
-
-              {subOrbs[0] && (
-                <span
-                  className="sub-orb float-tilt"
-                  style={{ top: '4%', left: '4%', fontSize: '30px' }}
-                  aria-hidden="true"
-                >
-                  {subOrbs[0]}
-                </span>
-              )}
-              {subOrbs[1] && (
-                <span
-                  className="sub-orb float-y"
-                  style={{ bottom: '4%', right: '2%', fontSize: '28px', animationDelay: '1.5s' }}
-                  aria-hidden="true"
-                >
-                  {subOrbs[1]}
-                </span>
-              )}
-            </div>
+          <div className="reveal in hidden lg:block">
+            <HeroGlyph glyph={glyph} subOrbs={subOrbs} />
           </div>
         )}
       </div>

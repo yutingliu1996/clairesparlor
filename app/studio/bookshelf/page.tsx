@@ -35,8 +35,13 @@ export default function BookshelfPage() {
         glyph="📚"
         title={
           lang === 'zh'
-            ? <>最近在啃<br />这些书</>
-            : <>What I&apos;m<br />reading right now</>
+            ? '最近在啃'
+            : <>What I&apos;m</>
+        }
+        titleSub={
+          lang === 'zh'
+            ? '这些书'
+            : 'reading right now'
         }
         lede={
           lang === 'zh' ? (

@@ -18,8 +18,13 @@ export default function CooperatePage() {
         subOrbs={['💼', '✉️']}
         title={
           lang === 'zh'
-            ? <>客户 / 投资人。<br /><span className="title-sub italic">金主爸爸。</span></>
-            : <>Clients / Investors.<br /><span className="title-sub italic">Show me the money.</span></>
+            ? '客户 / 投资人。'
+            : 'Clients / Investors.'
+        }
+        titleSub={
+          lang === 'zh'
+            ? <span className="title-sub italic">金主爸爸。</span>
+            : <span className="title-sub italic">Show me the money.</span>
         }
         lede={
           lang === 'zh' ? (

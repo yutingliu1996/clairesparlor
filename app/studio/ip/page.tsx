@@ -23,16 +23,17 @@ export default function StudioIPPage() {
           lang === 'zh' ? (
             <>
               玉婷 <span className="accent">×</span> 铜板儿
-              <br />
-              <span className="title-sub">= 本期主理人</span>
             </>
           ) : (
             <>
               Yuting <span className="accent">×</span> Tongbar
-              <br />
-              <span className="title-sub">= this season&apos;s hosts</span>
             </>
           )
+        }
+        titleSub={
+          lang === 'zh'
+            ? <span className="title-sub">= 本期主理人</span>
+            : <span className="title-sub">= this season&apos;s hosts</span>
         }
         lede={
           lang === 'zh' ? (

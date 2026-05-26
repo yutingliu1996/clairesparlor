@@ -76,8 +76,13 @@ export default function TunesPage() {
         glyph="🎵"
         title={
           lang === 'zh'
-            ? <>在我客厅里<br />循环播放</>
-            : <>On loop<br />in the parlor</>
+            ? '在我客厅里'
+            : 'On loop'
+        }
+        titleSub={
+          lang === 'zh'
+            ? '循环播放'
+            : 'in the parlor'
         }
         lede={
           lang === 'zh' ? (

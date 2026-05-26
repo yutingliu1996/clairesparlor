@@ -419,6 +419,7 @@ body > * {
 [data-theme='dark'] .text-ink-2 { color: #c8c8c8 !important; }
 [data-theme='dark'] .text-ink-3 { color: #8e8e8e !important; }
 [data-theme='dark'] .text-ink-4 { color: #5e5e5e !important; }
+[data-theme='dark'] .quiet-link:hover { color: #fafafa !important; }
 [data-theme='dark'] .border-hairline { border-color: rgba(255, 255, 255, 0.10) !important; }
 [data-theme='dark'] .thiings-card {
   background: #161616;

@@ -91,8 +91,13 @@ export default function WorkshopPage() {
         subOrbs={['⚡', '🚀']}
         title={
           lang === 'zh'
-            ? <>来工坊<br /><span className="title-sub">学一手。</span></>
-            : <>The Workshop.<br /><span className="title-sub">Learn a craft.</span></>
+            ? '来工坊'
+            : 'The Workshop.'
+        }
+        titleSub={
+          lang === 'zh'
+            ? <span className="title-sub">学一手。</span>
+            : <span className="title-sub">Learn a craft.</span>
         }
         lede={
           lang === 'zh' ? (

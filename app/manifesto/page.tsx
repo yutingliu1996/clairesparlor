@@ -17,8 +17,13 @@ export default function ManifestoPage() {
         subOrbs={['🔥', '🌍']}
         title={
           lang === 'zh'
-            ? <>别被职场磨平 ——<br /><em className="accent-display">向上长，无界长。</em></>
-            : <>Don&apos;t let work flatten you ——<br /><em className="accent-display">Grow up, no limits.</em></>
+            ? '别被职场磨平 ——'
+            : 'Don\'t let work flatten you ——'
+        }
+        titleSub={
+          lang === 'zh'
+            ? <em className="accent-display">向上长，无界长。</em>
+            : <em className="accent-display">Grow up, no limits.</em>
         }
         lede={lang === 'zh' ? '别被职场磨平。向上长，无界长。' : "Don't get flattened. Grow up. No limits."}
       />

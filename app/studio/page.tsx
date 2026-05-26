@@ -71,8 +71,13 @@ export default function StudioPage() {
         subOrbs={['🪐', '🧠']}
         title={
           lang === 'zh'
-            ? <>工作台。<br /><span className="title-sub">自己埋头做事的地方。</span></>
-            : <>The Studio.<br /><span className="title-sub">Where I head down and build.</span></>
+            ? '工作台。'
+            : 'The Studio.'
+        }
+        titleSub={
+          lang === 'zh'
+            ? <span className="title-sub">自己埋头做事的地方。</span>
+            : <span className="title-sub">Where I head down and build.</span>
         }
         lede={
           lang === 'zh' ? (
