@@ -136,21 +136,15 @@ export default function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 ${
+      className={`sticky top-0 z-40 transition-colors duration-300 ${
         mobileOpen
-          ? 'bg-transparent pt-2'
+          ? 'bg-transparent'
           : scrolled
           ? 'bg-paper/75 backdrop-blur-xl shadow-[0_6px_28px_-18px_rgba(0,0,0,0.18)] dark:bg-[#0a0a0a]/75 dark:shadow-[0_6px_28px_-18px_rgba(0,0,0,0.6)]'
           : 'bg-transparent'
-      } relative`}
+      }`}
     >
-      <nav
-        className={`flex items-center justify-between gap-3 transition-all duration-300 sm:mx-auto sm:h-16 sm:w-full sm:max-w-page sm:px-6 md:px-10 ${
-          mobileOpen
-            ? 'relative z-10 mx-4 h-14 px-3'
-            : 'mx-auto h-16 w-full max-w-page px-4'
-        }`}
-      >
+      <nav className="relative z-10 mx-auto flex h-16 w-full max-w-page items-center justify-between gap-3 px-4 sm:px-6 md:px-10">
         {/* BRAND — H5 只显 logo，桌面显 logo + 文字 */}
         <Link
           href="/"
@@ -246,15 +240,15 @@ export default function Nav() {
       <div
         id="mobile-nav-menu"
         aria-hidden={!mobileOpen}
-        className={`absolute left-4 right-4 top-2 z-0 transition-[opacity,transform] duration-300 sm:hidden ${
+        className={`absolute left-2 right-2 top-2 z-0 transition-[opacity,transform] duration-300 sm:hidden ${
           mobileOpen
             ? 'pointer-events-auto translate-y-0 opacity-100'
             : 'pointer-events-none -translate-y-2 opacity-0'
         }`}
       >
         <ul
-          className={`grid w-full grid-cols-2 gap-1.5 overflow-hidden rounded-[26px] bg-surface/90 shadow-[0_10px_28px_-24px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-[max-height,padding] duration-300 dark:bg-white/[0.08] dark:shadow-[0_10px_28px_-24px_rgba(0,0,0,0.6)] ${
-            mobileOpen ? 'max-h-[min(74vh,520px)] px-2 pb-2 pt-16' : 'max-h-0 px-0 pb-0 pt-0'
+          className={`grid w-full grid-cols-2 gap-1.5 overflow-hidden rounded-[24px] bg-surface/90 shadow-[0_18px_36px_-22px_rgba(0,0,0,0.22)] backdrop-blur-xl transition-[max-height,padding] duration-300 dark:bg-white/[0.08] dark:shadow-[0_18px_36px_-22px_rgba(0,0,0,0.7)] ${
+            mobileOpen ? 'max-h-[min(74vh,520px)] px-2 pb-2 pt-16' : 'max-h-0 px-0 pb-0 pt-16'
           }`}
         >
           {links.map((link) => {
