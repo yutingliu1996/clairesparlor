@@ -7,6 +7,8 @@ type Props = {
   children: React.ReactNode;
   className?: string;
   reserveMobileGlyph?: boolean;
+  /** Max viewport width (px) at which the inline glyph is visible; default lg breakpoint. */
+  glyphReserveMaxWidth?: number;
 };
 
 const DISPLAY_MIN = 44;
@@ -38,7 +40,7 @@ function measureFits(lines: string[], width: number, fontSize: number, letterSpa
   });
 }
 
-export default function FittedHeroTitle({ children, className = '', reserveMobileGlyph = false }: Props) {
+export default function FittedHeroTitle({ children, className = '', reserveMobileGlyph = false, glyphReserveMaxWidth }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const fontSizeRef = useRef<number | null>(null);
   const [fontSize, setFontSize] = useState<number | null>(null);
@@ -62,7 +64,8 @@ export default function FittedHeroTitle({ children, className = '', reserveMobil
 
         if (!lines.length) return;
 
-        const isInlineGlyphVisible = window.matchMedia('(max-width: 1023.98px)').matches;
+        const inlineMax = glyphReserveMaxWidth ?? 1023.98;
+        const isInlineGlyphVisible = window.matchMedia(`(max-width: ${inlineMax}px)`).matches;
         const lineSignature = `${lines.join('\n')}|${isInlineGlyphVisible ? 'inline' : 'side'}`;
         if (Math.abs(width - lastWidth) < 0.5 && lineSignature === lastSignature && fontSizeRef.current !== null) return;
         lastWidth = width;
@@ -112,7 +115,7 @@ export default function FittedHeroTitle({ children, className = '', reserveMobil
       resizeObserver.disconnect();
       window.removeEventListener('resize', fit);
     };
-  }, [children, reserveMobileGlyph]);
+  }, [children, reserveMobileGlyph, glyphReserveMaxWidth]);
 
   return (
     <h1
