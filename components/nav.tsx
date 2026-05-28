@@ -56,6 +56,7 @@ export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mode, setMode] = useState<Mode>('auto');
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { lang, toggle: toggleLang } = useLang();
 
   // scroll
@@ -65,6 +66,20 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen]);
 
   // 1. Read saved mode once on mount (bootstrap script already painted
   //    the resolved theme; here we just sync React state with what the
@@ -116,16 +131,26 @@ export default function Nav() {
   };
 
   const brand = lang === 'zh' ? 'Claire 的会客厅' : "Claire's Parlor";
+  const menuLabel = lang === 'zh' ? '打开导航菜单' : 'Open navigation menu';
+  const closeMenuLabel = lang === 'zh' ? '关闭导航菜单' : 'Close navigation menu';
 
   return (
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled
+        mobileOpen
+          ? 'bg-transparent pt-2'
+          : scrolled
           ? 'bg-paper/75 backdrop-blur-xl shadow-[0_6px_28px_-18px_rgba(0,0,0,0.18)] dark:bg-[#0a0a0a]/75 dark:shadow-[0_6px_28px_-18px_rgba(0,0,0,0.6)]'
           : 'bg-transparent'
-      }`}
+      } relative`}
     >
-      <nav className="wrap flex h-16 items-center justify-between gap-3">
+      <nav
+        className={`flex items-center justify-between gap-3 transition-all duration-300 sm:mx-auto sm:h-16 sm:w-full sm:max-w-page sm:px-6 md:px-10 ${
+          mobileOpen
+            ? 'relative z-10 mx-4 h-14 px-3'
+            : 'mx-auto h-16 w-full max-w-page px-4'
+        }`}
+      >
         {/* BRAND — H5 只显 logo，桌面显 logo + 文字 */}
         <Link
           href="/"
@@ -137,35 +162,34 @@ export default function Nav() {
           <span className="hidden sm:inline">{brand}</span>
         </Link>
 
-        {/* LINKS + TOGGLES */}
-        <div className="flex items-center gap-2 md:gap-3">
-          <ul className="flex items-center gap-0 md:gap-1">
-            {links.map((l) => {
-              const active =
-                pathname === l.href || pathname?.startsWith(`${l.href}/`);
-              return (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className={`relative inline-block whitespace-nowrap rounded-full px-2 py-1.5 text-[12px] font-medium transition-all duration-300 sm:px-3.5 sm:text-[14px] ${
-                      active
-                        ? 'bg-ink/[0.07] text-ink dark:bg-white/[0.10]'
-                        : 'text-ink-2 hover:bg-ink/[0.04] hover:text-ink dark:hover:bg-white/[0.06]'
-                    }`}
-                  >
-                    {lang === 'zh' ? l.zh : l.en}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+        <ul className="hidden min-w-0 items-center gap-0 sm:flex md:gap-1">
+          {links.map((link) => {
+            const active =
+              pathname === link.href || pathname?.startsWith(`${link.href}/`);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`relative inline-block whitespace-nowrap rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-all duration-300 ${
+                    active
+                      ? 'bg-ink/[0.07] text-ink dark:bg-white/[0.10]'
+                      : 'text-ink-2 hover:bg-ink/[0.04] hover:text-ink dark:hover:bg-white/[0.06]'
+                  }`}
+                >
+                  {lang === 'zh' ? link.zh : link.en}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
 
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 md:gap-3">
           {/* LANG TOGGLE — 单按钮显当前可切到的目标 */}
           <button
             type="button"
             onClick={toggleLang}
             aria-label={lang === 'zh' ? 'Switch to English' : '切换到中文'}
-            className="inline-flex h-8 w-9 items-center justify-center rounded-full border border-hairline bg-surface/70 text-[11px] font-semibold tracking-wider text-ink-2 backdrop-blur-sm transition-colors hover:bg-ink/[0.05] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.12]"
+            className="inline-flex h-8 w-9 shrink-0 items-center justify-center rounded-full border border-hairline bg-surface/70 text-[11px] font-semibold tracking-wider text-ink-2 backdrop-blur-sm transition-colors hover:bg-ink/[0.05] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.12]"
           >
             {lang === 'zh' ? 'EN' : 'CN'}
           </button>
@@ -184,12 +208,77 @@ export default function Nav() {
                 ? `当前${MODE_LABEL_ZH[mode]}，${NEXT_LABEL_ZH[mode]}`
                 : `Currently ${MODE_LABEL_EN[mode]}, ${NEXT_LABEL_EN[mode]}`
             }
-            className="inline-flex h-8 w-9 items-center justify-center rounded-full border border-hairline bg-surface/70 text-[13px] backdrop-blur-sm transition-colors hover:bg-ink/[0.05] dark:bg-white/[0.06] dark:hover:bg-white/[0.12]"
+            className="inline-flex h-8 w-9 shrink-0 items-center justify-center rounded-full border border-hairline bg-surface/70 text-[13px] backdrop-blur-sm transition-colors hover:bg-ink/[0.05] dark:bg-white/[0.06] dark:hover:bg-white/[0.12]"
           >
             {MODE_ICON[mode]}
           </button>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-label={mobileOpen ? closeMenuLabel : menuLabel}
+            aria-controls="mobile-nav-menu"
+            aria-expanded={mobileOpen}
+            className="inline-flex h-8 w-9 shrink-0 items-center justify-center rounded-full border border-hairline bg-surface/70 text-ink-2 backdrop-blur-sm transition-colors hover:bg-ink/[0.05] hover:text-ink dark:bg-white/[0.06] dark:hover:bg-white/[0.12] sm:hidden"
+          >
+            <span className="sr-only">{mobileOpen ? closeMenuLabel : menuLabel}</span>
+            <span className="relative h-3.5 w-4" aria-hidden="true">
+              <span
+                className={`absolute left-0 top-0 h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ${
+                  mobileOpen ? 'translate-y-[6px] rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[6px] h-0.5 w-4 rounded-full bg-current transition-opacity duration-300 ${
+                  mobileOpen ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-3 h-0.5 w-4 rounded-full bg-current transition-transform duration-300 ${
+                  mobileOpen ? '-translate-y-[6px] -rotate-45' : ''
+                }`}
+              />
+            </span>
+          </button>
         </div>
       </nav>
+
+      <div
+        id="mobile-nav-menu"
+        aria-hidden={!mobileOpen}
+        className={`absolute left-4 right-4 top-2 z-0 transition-[opacity,transform] duration-300 sm:hidden ${
+          mobileOpen
+            ? 'pointer-events-auto translate-y-0 opacity-100'
+            : 'pointer-events-none -translate-y-2 opacity-0'
+        }`}
+      >
+        <ul
+          className={`grid w-full grid-cols-2 gap-1.5 overflow-hidden rounded-[26px] bg-surface/90 shadow-[0_10px_28px_-24px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-[max-height,padding] duration-300 dark:bg-white/[0.08] dark:shadow-[0_10px_28px_-24px_rgba(0,0,0,0.6)] ${
+            mobileOpen ? 'max-h-[min(74vh,520px)] px-2 pb-2 pt-16' : 'max-h-0 px-0 pb-0 pt-0'
+          }`}
+        >
+          {links.map((link) => {
+            const active =
+              pathname === link.href || pathname?.startsWith(`${link.href}/`);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  tabIndex={mobileOpen ? undefined : -1}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block rounded-2xl px-4 py-3 text-[14px] font-medium transition-colors ${
+                    active
+                      ? 'bg-ink/[0.07] text-ink dark:bg-white/[0.12]'
+                      : 'text-ink-2 hover:bg-surface hover:text-ink dark:hover:bg-white/[0.12]'
+                  }`}
+                >
+                  {lang === 'zh' ? link.zh : link.en}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </header>
   );
 }
