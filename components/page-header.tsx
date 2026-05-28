@@ -27,7 +27,7 @@ type Props = {
   subOrbs?: string[];
 };
 
-function HeroGlyph({ glyph, subOrbs = [], compact = false }: { glyph: string; subOrbs?: string[]; compact?: boolean }) {
+export function HeroGlyph({ glyph, subOrbs = [], compact = false }: { glyph: string; subOrbs?: string[]; compact?: boolean }) {
   return (
     <span className={`relative mx-auto flex aspect-square w-full items-center justify-center ${compact ? 'max-w-[88px]' : 'max-w-[200px] md:max-w-[240px] lg:max-w-[280px]'}`}>
       {/* Outer halo — color follows page theme via --accent-stroke-mid

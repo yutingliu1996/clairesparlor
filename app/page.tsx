@@ -6,6 +6,7 @@ import ThingsGrid from '@/components/things-grid';
 import LiveStatus from '@/components/live-status';
 import StatsStrip from '@/components/stats-strip';
 import FeaturedPodcast from '@/components/featured-podcast';
+import FittedHeroTitle from '@/components/fitted-hero-title';
 import { ROOMS, MANIFESTO } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
 
@@ -34,21 +35,76 @@ export default function HomePage() {
               <LiveStatus />
             </div>
 
-            <h1 className="reveal in mt-6 max-w-[20ch] text-display-xl font-semibold leading-[0.96] sm:mt-8">
-              {lang === 'zh' ? (
-                <>
-                  一个空间。
-                  <br />
-                  <span className="accent-display">四个房间。</span>
-                </>
-              ) : (
-                <>
-                  One space.
-                  <br />
-                  <span className="accent-display">Four rooms.</span>
-                </>
-              )}
-            </h1>
+            <FittedHeroTitle
+              className="reveal in mt-6 max-w-[20ch] font-semibold tracking-tight sm:mt-8"
+              reserveMobileGlyph
+              glyphReserveMaxWidth={639.98}
+            >
+              <span className="flex items-center justify-between gap-3 sm:block">
+                <span className="min-w-0 flex-1 sm:block">
+                  <span data-title-line className="block whitespace-nowrap">
+                    {lang === 'zh' ? '一个空间。' : 'One space.'}
+                  </span>
+                  <span data-title-line className="block whitespace-nowrap">
+                    <span className="accent-display">
+                      {lang === 'zh' ? '四个房间。' : 'Four rooms.'}
+                    </span>
+                  </span>
+                </span>
+                {/* Compact orbital — mobile only. Keeps all 4 corner orbs
+                    so the "one space, four rooms" story survives at mobile. */}
+                <span className="relative block aspect-square w-[88px] shrink-0 sm:hidden" aria-hidden="true">
+                  {/* halo (same color stops as the desktop big orbital) */}
+                  <span
+                    className="halo-pulse pointer-events-none absolute inset-[-14%]"
+                    style={{
+                      background: `radial-gradient(closest-side at 50% 50%,
+                        color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 62%, transparent) 0%,
+                        color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 36%, transparent) 26%,
+                        color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 16%, transparent) 50%,
+                        color-mix(in srgb, var(--accent-stroke-mid, rgba(125,220,175,1)) 4%, transparent) 70%,
+                        transparent 82%)`,
+                    }}
+                  />
+                  {/* core */}
+                  <span
+                    className="pointer-events-none absolute inset-0 m-auto"
+                    style={{
+                      width: '46%',
+                      height: '46%',
+                      background:
+                        'radial-gradient(circle, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0) 72%)',
+                      filter: 'blur(6px)',
+                    }}
+                  />
+                  {/* center coffee */}
+                  <span
+                    className="float-y absolute inset-0 flex items-center justify-center"
+                    style={{
+                      fontSize: '38px',
+                      lineHeight: 1,
+                      filter:
+                        'drop-shadow(0 8px 16px rgba(0,0,0,0.14)) drop-shadow(0 2px 4px rgba(0,0,0,0.10))',
+                    }}
+                  >
+                    ☕
+                  </span>
+                  {/* 4 corners — same mapping as desktop big orbital. */}
+                  <span className="sub-orb float-tilt" style={{ top: '2%', left: '2%', fontSize: '16px' }}>
+                    🛋️
+                  </span>
+                  <span className="sub-orb float-y" style={{ top: '2%', right: '2%', fontSize: '16px', animationDelay: '0.8s' }}>
+                    💻
+                  </span>
+                  <span className="sub-orb float-tilt" style={{ bottom: '2%', left: '2%', fontSize: '15px', animationDelay: '1.6s' }}>
+                    🪄
+                  </span>
+                  <span className="sub-orb float-y" style={{ bottom: '2%', right: '2%', fontSize: '15px', animationDelay: '2.4s' }}>
+                    🤝
+                  </span>
+                </span>
+              </span>
+            </FittedHeroTitle>
 
             <p className="reveal in mt-6 max-w-prose text-base text-ink-2 sm:mt-8 sm:text-lg md:text-xl">
               {lang === 'zh' ? (
@@ -88,9 +144,9 @@ export default function HomePage() {
 
           {/* RIGHT — ☕ at center, 4 room glyphs orbiting at compass points,
               wrapped in mint halo. Tells the "one space, four rooms" story
-              visually in a single tile. Matches PageHeader pattern on
-              every other page so the home no longer reads "empty on the right". */}
-          <div className="reveal in order-first sm:order-none">
+              visually in a single tile. Hidden on mobile because the title
+              already carries a compact inline glyph (mirrors PageHeader). */}
+          <div className="reveal in hidden sm:block">
             <div className="relative flex aspect-square w-full max-w-[200px] sm:mx-auto sm:max-w-[220px] md:max-w-[280px] lg:max-w-[320px] items-center justify-center">
               {/* Outer halo — color follows the active page theme via
                   --accent-stroke-mid (set on <main> by MainTheme).
