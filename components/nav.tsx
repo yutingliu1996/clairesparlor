@@ -150,7 +150,7 @@ export default function Nav() {
           href="/"
           className="group flex shrink-0 items-center gap-2.5 font-rounded text-[15px] font-semibold tracking-tight"
         >
-          <span className="transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-105">
+          <span className="flex transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-105">
             <Logo size={32} />
           </span>
           <span className="hidden sm:inline">{brand}</span>
