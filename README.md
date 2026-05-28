@@ -2,7 +2,7 @@
 
 > 一个空间。四个房间。
 
-[![Claire's Parlor · clairesparlor.com](https://img.shields.io/badge/Claire's_Parlor-clairesparlor.com-1F7A57?style=flat-square&logo=vercel&logoColor=white)](https://clairesparlor.com)
+[![Claire's Parlor · clairesparlor.com](https://img.shields.io/badge/Claire's_Parlor-clairesparlor.com-FF5733?style=flat-square&logo=cloudflare&logoColor=white)](https://clairesparlor.com)
 
 刘玉婷 · Claire 的个人客厅 — 5 年 PM 转型 AI 内容创业者，播客 + 笔记 + 工坊 + 合作一站。
 
@@ -15,7 +15,7 @@
 - **Tailwind CSS v3**
 - **部署**：Cloudflare Pages（Git 集成 / 自动 CI）— 详见 [DEPLOY.md](./DEPLOY.md)
 
-零运行时依赖：除了 next/react，没有任何第三方 UI 库或图标包。
+运行时依赖很少：除 next/react 外，目前只用 `motion`（动效）和 `@chenglou/pretext`（文本适配）。没有第三方 UI 库或图标包。
 
 ## 站点结构
 
@@ -31,28 +31,29 @@
 /workshop            工坊（自媒体 / AI 创业 / 黑客松 三方向）
 /cooperate           合作（客户 + 投资人 + 直接联系）
 /manifesto           我的主张（6 条）
-/bar                 受邀团队入口（magic-link 邮件登录）
+/bar                 受邀团队入口（magic-link UI stub，后端待接）
 ```
 
 ## 设计系统
 
 ### 每页有自己的"主色"
 
-每条路由对应一个 halo 主题（mint / sage / peach / sky / cream），主题在 `<MainTheme>` 里通过 5 个 CSS 变量铺到 `<main>` 上，向下级联到 nav / hero / accent / 副标题：
+每条路由对应一个 halo 主题（mint / peach / sky / sage / leaf / cream），主题在 `<MainTheme>` 里通过 7 个 CSS 变量向下级联到 nav / hero / accent / 副标题 / live dot：
 
 | Halo | 用在哪 | accent text | nav pill bg |
 |---|---|---|---|
-| mint | 首页 / `/bar` | `#1F7A57` | `#DCEFE3` |
-| sage | `/workshop` `/manifesto` `/studio/l2` `/studio/l5` | `#1F7A57` | `#E1EFE5` |
-| peach | `/parlor` `/studio/l3` `/studio/aside` | `#C2502E` | `#FFE5D8` |
-| sky | `/studio` `/studio/l1` `/studio/l6` | `#1E5BA8` | `#DDE9F8` |
-| cream | `/cooperate` `/studio/ip` `/studio/l4` | `#8C6A1F` | `#F8EFD5` |
+| mint | 首页 / `/bar` | `#C24A1E` | `#FFE0DC` |
+| peach | `/parlor` `/studio/l3` `/studio/aside` | `#B57F0E` | `#FFF4B8` |
+| sky | `/studio` `/studio/bookshelf` `/studio/tunes` `/studio/l1` `/studio/l6` | `#1F6FCA` | `#D5EAFC` |
+| sage | `/workshop` `/studio/l2` `/studio/l5` | `#4A2DB5` | `#E8DFFC` |
+| leaf | `/manifesto` | `#0F6B47` | `#DFF1E6` |
+| cream | `/cooperate` `/studio/ip` `/studio/l4` | `#6F540C` | `#FFEDA0` |
 
 要新增/调整主题：改 `components/main-theme.tsx` 里的 `THEMES` 表。
 
 ### 视觉语言（约束）
 
-- **同一字体族**（系统 SF Pro / 苹方），不切换 serif；强调靠 `.accent-display`（重量 900 + 暖色记号笔下划线）
+- **同一字体族**（系统 SF Pro / 苹方），不切换 serif；强调靠 `.accent-display`（重量 900 + page accent 渐变流光）
 - **emoji 在 raster 甜区**（≤128px）保证清晰，不放大到模糊
 - **PageHeader hero 用径向光晕**，无卡片框 — 见 `components/page-header.tsx`
 - **3D 浮起卡片**用 `.thiings-card` / `.thiings-mini` — 来自 thiings.co 的视觉语汇
@@ -73,7 +74,7 @@
 
 ## 内容数据层
 
-**所有可改文案集中在 [`lib/content.ts`](./lib/content.ts)。** 改文案不用碰 JSX。
+**当前静态内容和公开站点 fallback 集中在 [`lib/content.ts`](./lib/content.ts)。** 改低频文案不用碰 JSX；高频动态内容的后台方案见 [ADMIN.md](./ADMIN.md)。
 
 ```ts
 ROOMS              // 4 个房间：会客厅 / 工作台 / 工坊 / 合作
@@ -109,7 +110,8 @@ TONGBAR_MESSAGES   // 桌面宠物气泡轮播文案
 | `tongbar.tsx` | 铜板儿桌面宠物（轮播气泡 + 一键关闭） |
 | `bgm-vinyl.tsx` | 右下角黑胶 BGM 浮窗 |
 | `platform-logo.tsx` | 12 个平台官方 App Store 图标渲染 |
-| `wechat-qr-modal.tsx` | 微信公众号扫码弹窗 |
+| `qr-card-modal.tsx` | 抖音 / 视频号 / 公众号等平台扫码弹窗 |
+| `wechat-qr-modal.tsx` | 合作页微信扫码弹窗 |
 | `lang-context.tsx` | 中英双语 context + `useLang()` hook |
 | `reveal-script.tsx` | 滚动入场动画 IntersectionObserver |
 | `footer.tsx` | 杂志 colophon 风格底栏 |
@@ -118,22 +120,22 @@ TONGBAR_MESSAGES   // 桌面宠物气泡轮播文案
 ## 资源
 
 - `public/logos/*.png` — 12 个平台官方 App Store icon（512×512），通过 iTunes Search API 抓的
-- `public/wechat-qr.jpg` — 微信公众号二维码
+- `public/qr/*.jpg` — 抖音 / 视频号 / 公众号等扫码弹窗二维码
+- `public/wechat-qr.jpg` — 合作页微信二维码
 - `public/guests/` `public/moments/` — 嘉宾头像 / 现场照片占位
 
 ## 运行 / 部署
 
 ```bash
 # 本地开发 —— dev 默认跑在 :1023（Claire 生日 10/23，别改）
-pnpm install        # or npm / yarn
+pnpm install
 pnpm dev            # → http://localhost:1023
 
 # 静态构建
 pnpm build          # 输出到 ./out
 
-# 部署到 Vercel
-npx vercel --prod   # 推一个新 production
-npx vercel          # 推一个 preview
+# 部署
+# Push 到 main 后由 Cloudflare Pages 自动构建，详见 DEPLOY.md
 ```
 
 ### ⚠️ 别同时跑 `dev` 和 `build`
@@ -162,19 +164,20 @@ pnpm dev
 - ✅ IP 化妆间（mascot + 周边 + AI prompt）
 - ✅ 中英双语切换（`useLang` hook，状态持久化在 sessionStorage）
 - ✅ 桌面宠物铜板儿 + 黑胶 BGM 浮窗（可独立关闭，per-session）
-- ✅ 微信 QR modal
+- ✅ 抖音 / 视频号 / 公众号 QR modal
+- ✅ 工坊照片墙（37 张现场照片，`public/moments/1.jpg`-`37.jpg`）
 - ✅ 12 平台官方 App Store 图标
 - ✅ 全站 per-page 主题（halo 颜色驱动整页 accent / nav / hero）
 - ✅ 滚动入场动画 + 路由切换重新观察
-- ✅ 静态导出，零后端依赖
+- ✅ 静态导出，公开站点目前无后端依赖（后台方案见 [ADMIN.md](./ADMIN.md)）
 
 ## 待办
 
 - [ ] L1–L6 章节插图 / 流程图
-- [ ] 嘉宾真人头像替换（`/parlor` Guest Room 占位）
-- [ ] 工坊照片墙真照片
+- [ ] 嘉宾真人头像替换（EP01-EP04 已接，EP05 / OPEN 待补）
+- [x] 工坊照片墙真照片（已接 37 张）
 - [ ] `/bar` 接真后端（magic-link endpoint，目前 UI stub）
-- [ ] 抖音 QR modal（已有微信 modal 模板）
+- [ ] `/admin` 接 Supabase 管理动态内容（见 [ADMIN.md](./ADMIN.md)）
 - [x] 域名从 `v2.clairesparlor.com` 切到 `clairesparlor.com` —— 已上线
 
 

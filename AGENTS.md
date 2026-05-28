@@ -57,7 +57,7 @@
 
 ### 苹果极简 × thiings.co
 - **大留白**。每个区块只放一个主角。
-- **同一字体族**（system sans / SF Pro / 苹方）。强调靠**重量 + 颜色 + 装饰**，不切 serif。
+- **同一字体族**（system sans / SF Pro / 苹方）。强调靠**重量 + page accent 渐变流光**，不切 serif。
 - **单色 ink + 单 accent**。多色出现的地方 = bug。
 - **3D-ish 物件浮在白卡上**（thiings 的视觉语汇）。
 
@@ -72,9 +72,9 @@
 | 装第三方图标包 react-icons / lucide | 自画 / 从官方 brand kit 抓 |
 | 在 JSX 里硬编码 `#XXXXXX` accent 色 | 走 CSS 变量 `var(--accent-text)` 等 |
 | 在 subtitle 用 `text-ink-3` 灰色 | 用 `.title-sub`，跟 page accent 同色 |
-| 给 subtitle 加 marker stroke 装饰 | 装饰留给 `.accent-display`，subtitle 安静 |
+| 给 subtitle 额外叠 underline / marker | subtitle 用 `.title-sub`，不再加第二层装饰 |
 | 在文案 / 组件里散落数据 | 集中到 `lib/content.ts` |
-| 用 serif italic 做强调 | 用 `.accent-display`（heavy + marker） |
+| 用 serif italic 做强调 | 用 `.accent-display`（heavy + gradient shimmer） |
 
 ---
 
@@ -87,11 +87,12 @@
 
 | Halo | 用在哪 | accent text | nav pill bg |
 |---|---|---|---|
-| `mint` | `/` `/bar` | `#1F7A57` | `#DCEFE3` |
-| `sage` | `/workshop` `/manifesto` `/studio/l2` `/studio/l5` | `#1F7A57` | `#E1EFE5` |
-| `peach` | `/parlor` `/studio/l3` `/studio/aside` | `#C2502E` | `#FFE5D8` |
-| `sky` | `/studio` `/studio/l1` `/studio/l6` | `#1E5BA8` | `#DDE9F8` |
-| `cream` | `/cooperate` `/studio/ip` `/studio/l4` | `#8C6A1F` | `#F8EFD5` |
+| `mint` | `/` `/bar` | `#C24A1E` | `#FFE0DC` |
+| `peach` | `/parlor` `/studio/l3` `/studio/aside` | `#B57F0E` | `#FFF4B8` |
+| `sky` | `/studio` `/studio/bookshelf` `/studio/tunes` `/studio/l1` `/studio/l6` | `#1F6FCA` | `#D5EAFC` |
+| `sage` | `/workshop` `/studio/l2` `/studio/l5` | `#4A2DB5` | `#E8DFFC` |
+| `leaf` | `/manifesto` | `#0F6B47` | `#DFF1E6` |
+| `cream` | `/cooperate` `/studio/ip` `/studio/l4` | `#6F540C` | `#FFEDA0` |
 
 实现：[`components/main-theme.tsx`](./components/main-theme.tsx) 在 `<main>` 上注入 7 个
 CSS 变量，向下级联。要新增/调主题：改 `THEMES` 表 + `pathToHalo` 映射。
@@ -99,10 +100,10 @@ CSS 变量，向下级联。要新增/调主题：改 `THEMES` 表 + `pathToHalo
 7 个 token：
 ```
 --accent-text          light bg 上的强调字
---accent-stroke        marker 下划线（边）
---accent-stroke-mid    marker 下划线（中央，更饱满）→ 也是 hero 光晕用色
+--accent-stroke        halo 渐变边缘色（历史命名）
+--accent-stroke-mid    hero 光晕核心色
 --accent-text-dark     dark bg 上的强调字
---accent-stroke-dark   dark bg 上的 marker 下划线
+--accent-stroke-dark   dark bg 上的 halo 辅助色
 --accent-pill          nav active 胶囊 bg
 --accent-dot           brand logo 角的呼吸点
 ```
@@ -128,10 +129,10 @@ modern browsers (Safari 16.2+ / Chrome 111+) 全支持。
 ### 3.2 字体
 
 - **唯一字体族**：`font-sans`（SF Pro Display / 苹方），其它字体类（`font-rounded` / `font-serif` / `font-mono`）只在很特殊的场景用（colophon / 代码 / 等距数字），**不要混进 hero 标题**。
-- **强调走 weight + 装饰**，不切 family：
-  - `.accent-display` — heavy 900 + 暖色 marker stroke + 字距 -0.035em
-  - `.accent` — heavy 800 + marker（小一号）
-  - `.title-sub` — 当前页 accent 色 + 0.66 透明度（副标题专用）
+- **强调走 weight + page accent 渐变流光**，不切 family：
+  - `.accent-display` — heavy 900 + gradient shimmer + 字距 -0.035em
+  - `.accent` — heavy 800 + 同主题渐变
+  - `.title-sub` — subtitle 专用，同主题渐变但语义仍是副标题
 - **字号阶梯严格**：`text-display-xl` / `text-display-lg` / `text-display-md`（用 clamp 响应式）。**不要在 hero 用 `text-3xl`、`text-5xl` 这种 Tailwind 默认字号**。
 
 ### 3.3 视觉元素
@@ -176,24 +177,27 @@ modern browsers (Safari 16.2+ / Chrome 111+) 全支持。
 ### 5.1 文件组织
 
 ```
-web/
+project-root/
 ├── app/                  路由（App Router）
 │   ├── layout.tsx        全局 shell（含 <head> 脚本 / Provider）
 │   ├── page.tsx          首页
+│   ├── admin/            管理后台（计划中，见 ADMIN.md）
 │   └── {parlor,studio,workshop,cooperate,manifesto,bar}/page.tsx
 ├── components/           可复用组件，kebab-case 命名
 ├── lib/
-│   └── content.ts        所有可改文案 / 数据集中在这
+│   └── content.ts        静态内容 / fallback 数据集中在这
 └── public/
     └── logos/            12 个平台官方 App Store icon (PNG)
 ```
 
 ### 5.2 内容数据
 
-**所有可改文案在 [`lib/content.ts`](./lib/content.ts)。** 改文案不要碰 JSX。
+**当前静态内容和公开站点 fallback 在 [`lib/content.ts`](./lib/content.ts)。** 改低频文案不要碰 JSX。
 14 个 export：`ROOMS` / `MANIFESTO` / `CHAPTERS` / `PLATFORMS` / `GUESTS` /
 `HANGOUTS` / `WORKSHOP_TRACKS` / `READING_BOOKS` / `FINISHED_BOOKS` /
 `MASCOTS` / `MERCH` / `PROMPTS` / `TONGBAR_MESSAGES`。
+
+高频动态内容（LiveStatus、音乐、播客、社交账号、照片、活动）后续走 Supabase + `/admin`，方案见 [`ADMIN.md`](./ADMIN.md)。公开页面仍保留 `lib/content.ts` fallback。
 
 ### 5.3 平台图标
 
@@ -246,26 +250,22 @@ Favicon 是同一段 SVG inline 在 `metadata.icons`。
 # 要 build / deploy 之前，先停 dev
 lsof -ti:1023 | xargs -r kill -9
 rm -rf .next
-npx next build
+pnpm build
 
 # 已经裂了 → 同上 + 重启 dev
-npx next dev      # 会自动走 package.json 里的 --port 1023
+pnpm dev
 ```
 
 ### 6.3 部署
 
 ```bash
-cd web
-npx vercel --prod      # 生产，aliased 到 clairesparlor.com
-npx vercel             # preview，独立 URL
+pnpm build             # 本地验证静态导出，产物在 ./out
+git push origin main   # Cloudflare Pages 自动部署到 clairesparlor.com
 ```
 
-项目已 link 到 `harzss-projects/claires-parlor`，`.vercel/project.json` 别删。
+当前部署目标是 Cloudflare Pages，配置见 [`DEPLOY.md`](./DEPLOY.md)。`.
 
-### 6.4 Git
 
-仓库根在 `web/`（之前误把 `web/` 当 submodule 加到外层，被回滚过两次）。
-**不要在 `/Users/chenjie/Workspace/claire/` 再 init 一个 outer git**，会冲突。
 
 ---
 
