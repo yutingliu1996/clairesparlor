@@ -102,7 +102,7 @@ export default function StudioIPPage() {
       {/* SIGNATURE SCENE */}
       <section className="reveal">
         <div className="paper-grain bg-cream/35 py-20 md:py-28">
-          <div className="wrap-wide">
+          <div className="wrap">
             <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
               <div>
                 <div className="eyebrow">
@@ -206,7 +206,7 @@ export default function StudioIPPage() {
       {/* MERCH MOCKUPS */}
       <section className="reveal">
         <div className="bg-paper py-24 md:py-32">
-          <div className="wrap-wide">
+          <div className="wrap">
             <SectionTitle
               eyebrow={t({ zh: '🎁 Merch mockups · 周边样图', en: '🎁 Merch mockups' })}
               title={
@@ -248,7 +248,7 @@ export default function StudioIPPage() {
       {/* AI PROMPTS */}
       <section className="reveal">
         <div className="paper-grain bg-ink py-24 text-surface md:py-32">
-          <div className="wrap-wide">
+          <div className="wrap">
             <div className="mb-12">
               <div className="font-mono text-[11px] uppercase tracking-eyebrow text-ink-4">
                 {t({ zh: '🤖 AI Prompt Library · 真图生成器', en: '🤖 AI Prompt Library' })}
