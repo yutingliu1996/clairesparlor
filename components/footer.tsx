@@ -3,28 +3,49 @@
 import Link from 'next/link';
 import { useLang } from './lang-context';
 
+const REPO_URL = 'https://github.com/yutingliu1996/clairesparlor';
+
+type ColophonItem = {
+  label: string;
+  value: string;
+  href?: string;
+  ariaLabel?: string;
+};
+
 /**
  * Magazine-style colophon footer — keeps the "Vol.01" magazine moment
  * from the original site, but in a much quieter Apple-style block.
  */
 export default function Footer() {
   const { lang, t } = useLang();
-  const colophon: [string, string][] = lang === 'zh'
+  const colophon: ColophonItem[] = lang === 'zh'
     ? [
-        ['Issue', 'Vol. 01 · 会客厅'],
-        ['Editor', '刘玉婷 · Claire'],
-        ['Published', '2026 · 05 · 15'],
-        ['Built with', 'Next.js · TypeScript'],
-        ['Co-author', '我 + Claude'],
-        ['Next', '写着写着就有'],
+        { label: 'Issue', value: 'Vol. 01 · 会客厅' },
+        { label: 'Editor', value: '刘玉婷 · Claire' },
+        { label: 'Published', value: '2026 · 05 · 15' },
+        { label: 'Built with', value: 'Next.js · TypeScript' },
+        {
+          label: 'Source',
+          value: 'GitHub 仓库 ↗',
+          href: REPO_URL,
+          ariaLabel: "打开 Claire's Parlor GitHub 仓库",
+        },
+        { label: 'Co-author', value: '我 + Claude' },
+        { label: 'Next', value: '写着写着就有' },
       ]
     : [
-        ['Issue', 'Vol. 01 · The Parlor'],
-        ['Editor', 'Liu Yuting · Claire'],
-        ['Published', '2026 · 05 · 15'],
-        ['Built with', 'Next.js · TypeScript'],
-        ['Co-author', 'Me + Claude'],
-        ['Next', "It'll write itself"],
+        { label: 'Issue', value: 'Vol. 01 · The Parlor' },
+        { label: 'Editor', value: 'Liu Yuting · Claire' },
+        { label: 'Published', value: '2026 · 05 · 15' },
+        { label: 'Built with', value: 'Next.js · TypeScript' },
+        {
+          label: 'Source',
+          value: 'GitHub repo ↗',
+          href: REPO_URL,
+          ariaLabel: "Open Claire's Parlor GitHub repository",
+        },
+        { label: 'Co-author', value: 'Me + Claude' },
+        { label: 'Next', value: "It'll write itself" },
       ];
 
   return (
@@ -39,10 +60,24 @@ export default function Footer() {
           </div>
         </div>
         <dl className="grid grid-cols-2 gap-x-8 gap-y-6 text-sm md:grid-cols-3">
-          {colophon.map(([k, v]) => (
-            <div key={k}>
-              <dt className="eyebrow mb-1">{k}</dt>
-              <dd className="text-ink-2">{v}</dd>
+          {colophon.map((item) => (
+            <div key={item.label}>
+              <dt className="eyebrow mb-1">{item.label}</dt>
+              <dd className="text-ink-2">
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.ariaLabel}
+                    className="quiet-link"
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  item.value
+                )}
+              </dd>
             </div>
           ))}
         </dl>
