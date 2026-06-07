@@ -228,7 +228,7 @@ export default function HomePage() {
       {/* ============== 2 · THINGS WALL ============== */}
       <section className="reveal mt-4 overflow-hidden">
         <div className="paper-grain bg-cream/35 py-20 md:py-28">
-          <div className="wrap-wide">
+          <div className="wrap">
             <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
               <div>
                 <div className="eyebrow">
@@ -310,7 +310,7 @@ export default function HomePage() {
       {/* ============== 5 · STATS ============== */}
       <section className="reveal">
         <div className="paper-grain bg-cream/35 py-20 md:py-28">
-          <div className="wrap-wide">
+          <div className="wrap">
             <div className="mb-12">
               <div className="eyebrow">
                 {t({ zh: 'By the numbers · 一些数', en: 'By the numbers' })}
