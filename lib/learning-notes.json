@@ -1,0 +1,63 @@
+{
+  "title": "学习笔记",
+  "titleEn": "Learning notes",
+  "intro": "线下课、工作坊、MBA 和播客访谈，边学边记，持续补充。",
+  "introEn": "Notes from classes, workshops, MBA courses, and podcast interviews. Updated as I learn.",
+  "readLabel": "阅读笔记",
+  "readLabelEn": "Read notes in Chinese",
+  "roomLabel": "学习笔记",
+  "roomLabelEn": "Learning notes",
+  "roomSub": "课堂 · Workshop · MBA · 访谈",
+  "roomSubEn": "Classes · Workshops · MBA · Interviews",
+  "pageTitle": "学习笔记 · Claire's Parlor",
+  "pageDescription": "Claire 的线下课、Workshop、MBA 与播客访谈笔记。按类别查找，沿着同一个网址看后续更新。",
+  "categories": [
+    {
+      "id": "offline",
+      "name": "线下课",
+      "nameEn": "In-person classes"
+    },
+    {
+      "id": "workshop",
+      "name": "Workshop 工作坊",
+      "nameEn": "Workshops"
+    },
+    {
+      "id": "mba",
+      "name": "MBA 课程",
+      "nameEn": "MBA courses"
+    },
+    {
+      "id": "podcast",
+      "name": "播客访谈",
+      "nameEn": "Podcast interviews"
+    }
+  ],
+  "items": [
+    {
+      "id": "dontbesilent-shenzhen-20260911",
+      "kind": "offline",
+      "href": "/studio/notes/dontbesilent-shenzhen-20260911/",
+      "title": "dontbesilent 深圳线下课｜第一天",
+      "titleEn": "dontbesilent · Shenzhen, Day 1",
+      "date": "2026-09-11",
+      "updatedAt": "2026-09-11",
+      "description": "AI、内容创作与真实业务：从白天课堂到晚间答疑，保留案例、适用条件和原文时间戳。",
+      "descriptionEn": "Chinese notes on AI, content creation, and business, including the evening Q&A, examples, and source timestamps.",
+      "tags": [
+        "AI",
+        "内容",
+        "商业"
+      ],
+      "tagsEn": [
+        "AI",
+        "Content",
+        "Business"
+      ],
+      "status": "持续补充",
+      "statusEn": "Ongoing",
+      "updateNote": "已收录白天课堂与晚间答疑，共八节。",
+      "updateNoteEn": "Eight sections covering daytime classes and the evening Q&A."
+    }
+  ]
+}
