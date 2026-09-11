@@ -27,6 +27,14 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
 
+# 学习笔记更新
+/studio/notes/*
+  Cache-Control: public, max-age=0, must-revalidate
+/studio/notes/updates.json
+  Cache-Control: no-store
+/studio/notes/live.js
+  Cache-Control: public, max-age=0, must-revalidate
+
 # 安全头
 /*
   X-Content-Type-Options: nosniff
