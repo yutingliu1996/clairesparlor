@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
-import { CHAPTERS } from '@/lib/content';
+import { CHAPTERS, LEARNING_NOTES } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
 
 /**
@@ -111,6 +111,37 @@ export default function StudioPage() {
                 </div>
               </div>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="learning-notes" className="wrap reveal pb-24 scroll-mt-20">
+        <SectionTitle
+          eyebrow={t({ zh: 'Learning · 学习记录', en: 'Learning' })}
+          title={lang === 'zh' ? LEARNING_NOTES.title : LEARNING_NOTES.titleEn}
+          sub={lang === 'zh' ? LEARNING_NOTES.intro : LEARNING_NOTES.introEn}
+        />
+        <div className="space-y-4">
+          {LEARNING_NOTES.items.map((note) => (
+            // These documents are standalone HTML files in the static export.
+            <a key={note.href} href={note.href} className="thiings-card group block p-6 md:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-ink-2">
+                <time dateTime={note.date}>{note.date}</time>
+                <span className="flex gap-3">
+                  {(lang === 'zh' ? note.tags : note.tagsEn).map((tag) => <span key={tag}>{tag}</span>)}
+                </span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold tracking-tight md:text-2xl">
+                {lang === 'zh' ? note.title : note.titleEn}
+              </h3>
+              <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-2">
+                {lang === 'zh' ? note.description : note.descriptionEn}
+              </p>
+              <div className="mt-5 flex items-center gap-2 text-sm font-medium" style={{ color: 'var(--accent-text)' }}>
+                {lang === 'zh' ? LEARNING_NOTES.readLabel : LEARNING_NOTES.readLabelEn}
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </div>
+            </a>
           ))}
         </div>
       </section>
