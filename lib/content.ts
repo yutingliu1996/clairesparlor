@@ -60,26 +60,7 @@ export const ROOMS: Room[] = [
   },
 ];
 
-export const LEARNING_NOTES = {
-  title: '学习笔记',
-  titleEn: 'Learning notes',
-  intro: '听过的课，留下的案例和问题。',
-  introEn: 'Classes, examples, and questions I keep coming back to.',
-  readLabel: '阅读笔记',
-  readLabelEn: 'Read notes in Chinese',
-  items: [
-    {
-      href: '/studio/notes/dontbesilent-shenzhen-20260911/',
-      title: 'dontbesilent 深圳线下课｜第一天',
-      titleEn: 'dontbesilent · Shenzhen, Day 1',
-      date: '2026-09-11',
-      description: 'AI、内容创作与真实业务：从白天课堂到晚间答疑，保留案例、适用条件和原文时间戳。',
-      descriptionEn: 'Chinese notes on AI, content creation, and business, including the evening Q&A, examples, and source timestamps.',
-      tags: ['AI', '内容', '商业'],
-      tagsEn: ['AI', 'Content', 'Business'],
-    },
-  ],
-};
+export { default as LEARNING_NOTES } from './learning-notes.json';
 
 export type ManifestoItem = {
   num: string;

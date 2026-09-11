@@ -14,6 +14,13 @@ export default function StudioPage() {
   const { lang, t } = useLang();
   const subRooms = [
     {
+      href: '/studio/notes/',
+      glyph: '📓',
+      name: lang === 'zh' ? LEARNING_NOTES.roomLabel : LEARNING_NOTES.roomLabelEn,
+      sub: lang === 'zh' ? LEARNING_NOTES.roomSub : LEARNING_NOTES.roomSubEn,
+      tint: 'bg-sky2/50',
+    },
+    {
       href: '/studio#chapters',
       glyph: '📝',
       name: t({ zh: 'AI 笔记', en: 'AI Notes' }),
@@ -82,13 +89,13 @@ export default function StudioPage() {
         lede={
           lang === 'zh' ? (
             <>
-              遇到 Transformer / Agent / RAG / MCP / Vibe Coding 这些名词，
-              回来速查就好——这里不是教程，是一份<em>永远在更新的草稿</em>。
+              听课和访谈的笔记、AI 知识，还有正在做的东西，
+              都放在这里。边学边记，回来接着看。
             </>
           ) : (
             <>
-              When you hit terms like Transformer / Agent / RAG / MCP / Vibe Coding,
-              come back and look them up — not a tutorial, just a <em>forever-updating draft</em>.
+              Class and interview notes, AI references, and work in progress.
+              A place to return to as I keep learning.
             </>
           )
         }
@@ -96,7 +103,7 @@ export default function StudioPage() {
 
       {/* SUB-ROOMS */}
       <section className="wrap reveal pb-20">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 md:gap-5">
           {subRooms.map((s) => (
             <Link key={s.href} href={s.href} className="thiings-card group relative block aspect-square overflow-hidden">
               <div className="flex h-full flex-col text-center">
@@ -121,6 +128,9 @@ export default function StudioPage() {
           title={lang === 'zh' ? LEARNING_NOTES.title : LEARNING_NOTES.titleEn}
           sub={lang === 'zh' ? LEARNING_NOTES.intro : LEARNING_NOTES.introEn}
         />
+        <Link href="/studio/notes/" className="mb-6 inline-flex items-center gap-2 text-base font-medium" style={{ color: 'var(--accent-text)' }}>
+          {t({ zh: '查看全部学习笔记', en: 'Browse all learning notes' })}<span aria-hidden="true">→</span>
+        </Link>
         <div className="space-y-4">
           {LEARNING_NOTES.items.map((note) => (
             // These documents are standalone HTML files in the static export.
