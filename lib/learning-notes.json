@@ -42,8 +42,8 @@
       "titleEn": "dontbesilent · Shenzhen, Day 2",
       "date": "2026-09-12",
       "updatedAt": "2026-09-12",
-      "description": "素材与内容入口、AI 写作反馈、平台经验、故事主线与业务承接。保留课堂案例、适用条件及原文时间戳。",
-      "descriptionEn": "Chinese notes on content, AI writing feedback, platform observations, storytelling, and business, with source timestamps.",
+      "description": "素材与内容入口、AI 写作反馈、平台经验和故事主线；晚间答疑补充咨询产品、交付与内容信任。保留原文时间戳。",
+      "descriptionEn": "Chinese notes on content, AI writing feedback, storytelling, and evening Q&A on consulting, delivery, and trust, with source timestamps.",
       "tags": [
         "AI",
         "内容",
@@ -54,10 +54,10 @@
         "Content",
         "Business"
       ],
-      "status": "持续补充",
-      "statusEn": "Ongoing",
-      "updateNote": "已补入下午后半场，共 4 段录音、5 小时 29 分钟，整理为十节。",
-      "updateNoteEn": "Updated with the later afternoon session: four recordings, 5 hours 29 minutes, in ten sections."
+      "status": "已含晚间答疑",
+      "statusEn": "Evening Q&A included",
+      "updateNote": "已补入晚间答疑，共 5 段录音、6 小时 37 分钟，整理为十一节。",
+      "updateNoteEn": "Evening Q&A added: five recordings, 6 hours 37 minutes, in eleven sections."
     },
     {
       "id": "dontbesilent-shenzhen-20260911",
