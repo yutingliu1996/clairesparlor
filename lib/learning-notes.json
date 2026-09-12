@@ -35,6 +35,31 @@
   ],
   "items": [
     {
+      "id": "dontbesilent-shenzhen-20260912",
+      "kind": "offline",
+      "href": "/studio/notes/dontbesilent-shenzhen-20260912/",
+      "title": "dontbesilent 深圳线下课｜第二天",
+      "titleEn": "dontbesilent · Shenzhen, Day 2",
+      "date": "2026-09-12",
+      "updatedAt": "2026-09-12",
+      "description": "从素材、标题和封面，到 AI 研究与写作反馈，再到知识内容的步骤、信任和变现。附案例、适用条件与原文时间戳。",
+      "descriptionEn": "Chinese notes on source material, titles and covers, AI research and writing feedback, practical knowledge content, trust, and business.",
+      "tags": [
+        "AI",
+        "内容",
+        "商业"
+      ],
+      "tagsEn": [
+        "AI",
+        "Content",
+        "Business"
+      ],
+      "status": "持续补充",
+      "statusEn": "Ongoing",
+      "updateNote": "目前收录上午两段、下午一段录音，共 3 小时 9 分钟；重复链接已去重。",
+      "updateNoteEn": "Currently covers three recordings from the morning and afternoon, totaling 3 hours 9 minutes."
+    },
+    {
       "id": "dontbesilent-shenzhen-20260911",
       "kind": "offline",
       "href": "/studio/notes/dontbesilent-shenzhen-20260911/",
