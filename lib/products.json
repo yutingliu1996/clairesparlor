@@ -1,0 +1,35 @@
+{
+  "title": "产品",
+  "titleEn": "Products",
+  "intro": "我做的一些小产品。想到有意思的东西，就试着把它做出来。",
+  "introEn": "Small products I make. When an idea catches my interest, I try building it.",
+  "roomSub": "做出来，试试看",
+  "roomSubEn": "Built to try",
+  "openLabel": "打开产品",
+  "openLabelEn": "Open product",
+  "items": [
+    {
+      "id": "reading-room",
+      "title": "全球杂志书架",
+      "titleEn": "The Reading Room",
+      "href": "/studio/products/reading-room/",
+      "description": "翻阅全球刊物，看看新一期在讨论什么。按领域找杂志，收藏喜欢的刊物，记下自己的观察。",
+      "descriptionEn": "Explore global publications and their latest verified issues. Browse by field, save favorites, and keep your own reading notes.",
+      "tags": [
+        "53个刊物条目",
+        "13个领域",
+        "收藏与笔记"
+      ],
+      "tagsEn": [
+        "53 publications",
+        "13 fields",
+        "Bookmarks & notes"
+      ],
+      "status": "可以使用",
+      "statusEn": "Ready to use",
+      "updatedAt": "2026-09-19",
+      "checkedAt": "2026-09-18",
+      "preview": "/studio/products/reading-room-preview.jpg"
+    }
+  ]
+}

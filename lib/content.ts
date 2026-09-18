@@ -61,6 +61,7 @@ export const ROOMS: Room[] = [
 ];
 
 export { default as LEARNING_NOTES } from './learning-notes.json';
+export { default as PRODUCTS } from './products.json';
 
 export type ManifestoItem = {
   num: string;

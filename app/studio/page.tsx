@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
 import SectionTitle from '@/components/section-title';
-import { CHAPTERS, LEARNING_NOTES } from '@/lib/content';
+import { CHAPTERS, LEARNING_NOTES, PRODUCTS } from '@/lib/content';
 import { useLang } from '@/components/lang-context';
 
 /**
@@ -13,6 +13,13 @@ import { useLang } from '@/components/lang-context';
 export default function StudioPage() {
   const { lang, t } = useLang();
   const subRooms = [
+    {
+      href: '/studio/products/',
+      glyph: '🧩',
+      name: lang === 'zh' ? PRODUCTS.title : PRODUCTS.titleEn,
+      sub: lang === 'zh' ? PRODUCTS.roomSub : PRODUCTS.roomSubEn,
+      tint: 'bg-sky2/50',
+    },
     {
       href: '/studio/notes/',
       glyph: '📓',
@@ -103,7 +110,7 @@ export default function StudioPage() {
 
       {/* SUB-ROOMS */}
       <section className="wrap reveal pb-20">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 md:gap-5">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6 md:gap-5">
           {subRooms.map((s) => (
             <Link key={s.href} href={s.href} className="thiings-card group relative block aspect-square overflow-hidden">
               <div className="flex h-full flex-col text-center">
